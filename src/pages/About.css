@@ -15,6 +15,41 @@
     border-left: 2px solid var(--accent);
     padding-left: 35px;
     position: relative;
+    margin-left: 10px;
+}
+
+.mastery-card {
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.mastery-icon {
+    color: var(--accent);
+    margin-bottom: 15px;
+}
+
+.timeline-bullet {
+    position: absolute;
+    left: -46px;
+    top: 4px;
+    width: 20px;
+    height: 20px;
+    background: var(--primary);
+    border: 2px solid var(--accent);
+    border-radius: 50%;
+    z-index: 1;
+}
+
+.timeline-year {
+    font-size: 0.9rem;
+    color: var(--accent);
+    font-weight: 600;
+    line-height: 1.4;
+    display: block;
 }
 
 @media (max-width: 1024px) {

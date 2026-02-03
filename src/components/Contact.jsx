@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import React, { useRef, useState } from 'react';
 import emailjs from '@emailjs/browser';
 import toast from 'react-hot-toast';
@@ -54,19 +55,34 @@ const Contact = () => {
                 <h3 className="section-title" style={{ fontSize: '2rem' }}>The Collaborative Process</h3>
                 <div className="process-grid">
                     {processSteps.map((step, i) => (
-                        <div key={i} className="glass-card" style={{ padding: '30px', textAlign: 'center' }}>
+                        <motion.div
+                            key={i}
+                            className="glass-card"
+                            style={{ padding: '30px', textAlign: 'center' }}
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.8, delay: i * 0.2 }}
+                            whileHover={{ y: -5, borderColor: 'var(--accent)' }}
+                        >
                             <div style={{ color: 'var(--accent)', marginBottom: '15px', display: 'flex', justifyContent: 'center' }}>
                                 <CheckCircle2 size={32} />
                             </div>
                             <h4 style={{ fontSize: '1.4rem', marginBottom: '10px' }}>{step.title}</h4>
                             <p style={{ color: 'var(--text-dim)', fontSize: '0.95rem', lineHeight: '1.6' }}>{step.desc}</p>
-                        </div>
+                        </motion.div>
                     ))}
                 </div>
             </div>
 
             <div className="contact-container" style={{ marginBottom: '100px' }}>
-                <div className="contact-info">
+                <motion.div
+                    className="contact-info"
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8 }}
+                >
                     <div className="glass-card" style={{ padding: '40px', height: '100%', display: 'flex', flexDirection: 'column', gap: '40px' }}>
                         <div>
                             <h3 style={{ fontSize: '1.5rem', marginBottom: '20px' }}>Contact Details</h3>
@@ -110,17 +126,33 @@ const Contact = () => {
                                     { icon: <Linkedin size={20} />, link: "#" },
                                     { icon: <Twitter size={20} />, link: "#" }
                                 ].map((social, i) => (
-                                    <a key={i} href={social.link} target="_blank" rel="noopener noreferrer"
-                                        style={{ width: '45px', height: '45px', borderRadius: '10px', background: 'var(--accent-faint)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--text-dim)', border: '1px solid var(--glass-border)', transition: '0.3s' }}>
+                                    <motion.a
+                                        key={i}
+                                        href={social.link}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        whileHover={{ y: -5, color: 'var(--accent)', borderColor: 'var(--accent)' }}
+                                        whileTap={{ scale: 0.9 }}
+                                        style={{ width: '45px', height: '45px', borderRadius: '10px', background: 'var(--accent-faint)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--text-dim)', border: '1px solid var(--glass-border)', transition: '0.3s' }}
+                                    >
                                         {social.icon}
-                                    </a>
+                                    </motion.a>
                                 ))}
                             </div>
                         </div>
                     </div>
-                </div>
+                </motion.div>
 
-                <form ref={form} className="contact-form glass-card" onSubmit={sendEmail} style={{ padding: '40px', maxWidth: 'none', margin: '0' }}>
+                <motion.form
+                    ref={form}
+                    className="contact-form glass-card"
+                    onSubmit={sendEmail}
+                    style={{ padding: '40px', maxWidth: 'none', margin: '0' }}
+                    initial={{ opacity: 0, x: 20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8, delay: 0.2 }}
+                >
                     <h3 style={{ fontSize: '1.5rem', marginBottom: '30px' }}>Project Inquiry</h3>
                     <div className="contact-form-grid" style={{ marginBottom: '20px' }}>
                         <input type="text" name="user_name" placeholder="Full Name" required />
@@ -131,10 +163,17 @@ const Contact = () => {
                     <p style={{ fontSize: '0.8rem', color: 'var(--text-dim)', marginBottom: '20px', textAlign: 'center' }}>
                         Your information is secure and will never be shared with third parties.
                     </p>
-                    <button type="submit" className="cta-primary" disabled={isSending} style={{ width: '100%', justifyContent: 'center' }}>
+                    <motion.button
+                        type="submit"
+                        className="cta-primary"
+                        disabled={isSending}
+                        style={{ width: '100%', justifyContent: 'center' }}
+                        whileHover={{ scale: 1.01 }}
+                        whileTap={{ scale: 0.99 }}
+                    >
                         {isSending ? 'Transmitting...' : 'Initiate Project Discussion'}
-                    </button>
-                </form>
+                    </motion.button>
+                </motion.form>
             </div>
 
             {/* FAQ Section */}
@@ -142,7 +181,15 @@ const Contact = () => {
                 <h3 className="section-title" style={{ fontSize: '2rem' }}>Frequently Asked Questions</h3>
                 <div className="faq-grid">
                     {faqs.map((faq, i) => (
-                        <div key={i} className="glass-card" style={{ padding: '30px' }}>
+                        <motion.div
+                            key={i}
+                            className="glass-card"
+                            style={{ padding: '30px' }}
+                            initial={{ opacity: 0, scale: 0.95 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.7, delay: i * 0.15 }}
+                        >
                             <div style={{ display: 'flex', gap: '15px' }}>
                                 <HelpCircle size={20} style={{ color: 'var(--accent)', flexShrink: 0, marginTop: '3px' }} />
                                 <div>
@@ -150,7 +197,7 @@ const Contact = () => {
                                     <p style={{ color: 'var(--text-dim)', fontSize: '0.9rem', lineHeight: '1.6' }}>{faq.a}</p>
                                 </div>
                             </div>
-                        </div>
+                        </motion.div>
                     ))}
                 </div>
             </div>

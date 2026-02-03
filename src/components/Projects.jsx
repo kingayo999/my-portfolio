@@ -35,15 +35,26 @@ const Projects = () => {
                     <motion.div
                         key={i}
                         className="project-card glass-card"
-                        initial={{ opacity: 0, y: 20 }}
+                        initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ delay: i * 0.1 }}
-                        whileHover={{ y: -10 }}
+                        viewport={{ once: true, margin: "-50px" }}
+                        transition={{
+                            duration: 0.8,
+                            delay: i * 0.2,
+                            ease: [0.215, 0.61, 0.355, 1]
+                        }}
+                        whileHover={{
+                            y: -10,
+                            transition: { duration: 0.3 }
+                        }}
                         style={{ overflow: 'hidden', display: 'flex', flexDirection: 'column' }}
                     >
-                        <div style={{ height: '200px', background: 'linear-gradient(135deg, rgba(0, 242, 255, 0.1) 0%, rgba(112, 0, 255, 0.1) 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                        <motion.div
+                            style={{ height: '200px', background: 'linear-gradient(135deg, rgba(0, 242, 255, 0.1) 0%, rgba(112, 0, 255, 0.1) 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+                            whileHover={{ scale: 1.05 }}
+                        >
                             <Layers size={48} style={{ color: 'var(--accent)', opacity: 0.5 }} />
-                        </div>
+                        </motion.div>
                         <div style={{ padding: '30px' }}>
                             <span style={{ color: 'var(--accent)', fontSize: '0.8rem', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '1px' }}>{p.category}</span>
                             <h3 style={{ fontSize: '1.5rem', margin: '10px 0' }}>{p.title}</h3>
@@ -52,10 +63,25 @@ const Projects = () => {
                                 {p.tech.map(t => <span key={t} style={{ color: 'var(--text-main)', fontSize: '0.75rem', background: 'var(--accent-faint)', padding: '5px 12px', borderRadius: '50px', border: '1px solid var(--glass-border)' }}>{t}</span>)}
                             </div>
                             <div style={{ display: 'flex', gap: '15px' }}>
-                                <a href={p.link} className="cta-secondary" style={{ padding: '10px 20px', fontSize: '0.9rem', flex: 1, textAlign: 'center' }}>Live View</a>
-                                <a href="https://github.com/kingayo999" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--text-dim)', display: 'flex', alignItems: 'center', justifyContent: 'center', width: '44px', height: '44px', borderRadius: '12px', background: 'var(--glass)', border: '1px solid var(--glass-border)' }}>
+                                <motion.a
+                                    whileHover={{ scale: 1.02 }}
+                                    whileTap={{ scale: 0.98 }}
+                                    href={p.link}
+                                    className="cta-secondary"
+                                    style={{ padding: '10px 20px', fontSize: '0.9rem', flex: 1, textAlign: 'center' }}
+                                >
+                                    Live View
+                                </motion.a>
+                                <motion.a
+                                    whileHover={{ scale: 1.1, rotate: 5 }}
+                                    whileTap={{ scale: 0.9 }}
+                                    href="https://github.com/kingayo999"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    style={{ color: 'var(--text-dim)', display: 'flex', alignItems: 'center', justifyContent: 'center', width: '44px', height: '44px', borderRadius: '12px', background: 'var(--glass)', border: '1px solid var(--glass-border)' }}
+                                >
                                     <Github size={18} />
-                                </a>
+                                </motion.a>
                             </div>
                         </div>
                     </motion.div>

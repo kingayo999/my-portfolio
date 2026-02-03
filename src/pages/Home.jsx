@@ -59,21 +59,47 @@ const Home = () => {
 
                 <motion.div
                     className="services-grid"
-                    variants={container}
                     initial="hidden"
-                    whileInView="show"
-                    viewport={{ once: true }}
+                    whileInView="visible"
+                    viewport={{ once: true, margin: "-100px" }}
+                    variants={{
+                        visible: {
+                            transition: {
+                                staggerChildren: 0.25
+                            }
+                        }
+                    }}
                     style={{
                         display: 'grid',
                         gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
                         gap: '30px'
                     }}
                 >
-                    {skills.map((skill, i) => (
-                        <motion.div key={i} className="glass-card" variants={item} style={{ padding: '40px' }}>
-                            <div style={{ color: 'var(--accent)', marginBottom: '20px' }}>{skill.icon}</div>
-                            <h3 style={{ fontSize: '1.5rem', marginBottom: '15px' }}>{skill.title}</h3>
-                            <p style={{ color: 'var(--text-dim)' }}>{skill.desc}</p>
+                    {[
+                        { icon: <Code2 size={32} />, title: "Full-Stack engineering", desc: "Architecting end-to-end solutions with a focus on scalability and clean architecture." },
+                        { icon: <Smartphone size={32} />, title: "Mobile Innovation", desc: "Crafting fluid, native-quality experiences for iOS and Android using modern frameworks." },
+                        { icon: <Database size={32} />, title: "Systems Architecture", desc: "Designing robust backend ecosystems that handle high traffic and complex data flows." },
+                        { icon: <Cpu size={32} />, title: "AI Integration", desc: "Implementing intelligent features and predictive models to drive business automation." }
+                    ].map((service, i) => (
+                        <motion.div
+                            key={i}
+                            className="glass-card"
+                            variants={{
+                                hidden: { opacity: 0, y: 20 },
+                                visible: { opacity: 1, y: 0 }
+                            }}
+                            whileHover={{
+                                y: -10,
+                                borderColor: 'var(--accent)',
+                                boxShadow: '0 20px 40px rgba(0, 242, 255, 0.1)'
+                            }}
+                            style={{ padding: '40px', textAlign: 'center', transition: 'border-color 0.3s' }}
+                        >
+                            <div style={{ color: 'var(--accent)', marginBottom: '20px', display: 'flex', justifyContent: 'center' }}>
+                                {service.icon}
+                            </div>
+                            <h3 style={{ fontSize: '1.5rem', marginBottom: '15px' }}>{service.title}</h3>
+                            <p style={{ color: 'var(--text-dim)', lineHeight: '1.6' }}>{service.desc}</p>
                         </motion.div>
                     ))}
                 </motion.div>

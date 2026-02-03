@@ -17,21 +17,52 @@ const Navbar = ({ theme, toggleTheme }) => {
 
                 {/* Desktop Links */}
                 <ul className="nav-links">
-                    <li><NavLink to="/" className={({ isActive }) => isActive ? 'active' : ''}>Home</NavLink></li>
-                    <li><NavLink to="/about" className={({ isActive }) => isActive ? 'active' : ''}>About</NavLink></li>
-                    <li><NavLink to="/projects" className={({ isActive }) => isActive ? 'active' : ''}>Projects</NavLink></li>
-                    <li><NavLink to="/contact" className={({ isActive }) => isActive ? 'active' : ''}>Contact</NavLink></li>
+                    {['Home', 'About', 'Projects', 'Contact'].map((item, i) => (
+                        <motion.li
+                            key={item}
+                            initial={{ opacity: 0, y: -10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.8, delay: i * 0.15 + 0.3, ease: "easeOut" }}
+                        >
+                            <NavLink
+                                to={item === 'Home' ? '/' : `/${item.toLowerCase()}`}
+                                className={({ isActive }) => isActive ? 'active' : ''}
+                            >
+                                {item}
+                            </NavLink>
+                        </motion.li>
+                    ))}
                 </ul>
 
                 <div className="nav-actions">
-                    <button
+                    <motion.button
                         onClick={toggleTheme}
                         className="theme-toggle"
                         aria-label="Toggle theme"
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.9 }}
                     >
-                        {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
-                    </button>
-                    {!isOpen && <Link to="/contact" className="cta-button desktop-only" onClick={closeMenu}>Hire Me</Link>}
+                        <AnimatePresence mode="wait" initial={false}>
+                            <motion.div
+                                key={theme}
+                                initial={{ y: -20, opacity: 0, rotate: -90 }}
+                                animate={{ y: 0, opacity: 1, rotate: 0 }}
+                                exit={{ y: 20, opacity: 0, rotate: 90 }}
+                                transition={{ duration: 0.4, ease: "anticipate" }}
+                            >
+                                {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
+                            </motion.div>
+                        </AnimatePresence>
+                    </motion.button>
+                    {!isOpen && (
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.9 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            transition={{ duration: 0.6, delay: 0.8 }}
+                        >
+                            <Link to="/contact" className="cta-button desktop-only" onClick={closeMenu}>Hire Me</Link>
+                        </motion.div>
+                    )}
                     <button className="hamburger" onClick={toggleMenu} aria-label="Toggle menu">
                         {isOpen ? <X size={28} /> : <Menu size={28} />}
                     </button>
