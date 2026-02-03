@@ -23,11 +23,11 @@ const Hero = () => {
                 </motion.div>
 
                 <h1 className="hero-title">
-                    I build <span className="gradient-text">high-performance</span> digital products.
+                    Turning Visionary Ideas into <span className="gradient-text">Scalable Digital Realities</span>.
                 </h1>
 
                 <p className="hero-description">
-                    Senior Full-Stack Developer & UI/UX Designer. I specialize in crafting seamless web experiences that merge aesthetics with scalable technology.
+                    Senior Full-Stack Engineer & Digital Architect. I specialize in designing and engineering high-performance web applications that drive business growth through technical excellence and user-centric design.
                 </p>
 
                 <div className="hero-btns">

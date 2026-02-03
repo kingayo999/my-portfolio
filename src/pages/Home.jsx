@@ -1,13 +1,30 @@
 import { motion } from 'framer-motion';
+import { Helmet } from 'react-helmet-async';
 import { Code2, Database, Cpu, Smartphone } from 'lucide-react';
 import Hero from '../components/Hero';
 
 const Home = () => {
     const skills = [
-        { icon: <Code2 size={24} />, title: "Frontend", desc: "React, Next.js, Framer Motion" },
-        { icon: <Database size={24} />, title: "Backend", desc: "Node.js, PostgreSQL, Redis" },
-        { icon: <Cpu size={24} />, title: "System Design", desc: "Architecture & Scalability" },
-        { icon: <Smartphone size={24} />, title: "Mobile", desc: "React Native, Responsive UI" }
+        {
+            icon: <Code2 size={24} />,
+            title: "Frontend Engineering",
+            desc: "Architecting conversion-optimized, high-performance user interfaces. I build fluid, accessible, and maintainable frontend systems using React, Next.js, and advanced animation libraries like Framer Motion."
+        },
+        {
+            icon: <Database size={24} />,
+            title: "Backend Architecture",
+            desc: "Building robust, secure, and distributed server-side architectures. My expertise includes designing scalable APIs and managing complex data flows with Node.js, PostgreSQL, and Redis for maximum performance."
+        },
+        {
+            icon: <Cpu size={24} />,
+            title: "System Design",
+            desc: "Engineering for the future. I design resilient systems that scale horizontally and vertically, prioritizing high availability, security, and sub-millisecond latency for enterprise-grade applications."
+        },
+        {
+            icon: <Smartphone size={24} />,
+            title: "Mobile Experiences",
+            desc: "Crafting seamless cross-platform mobile solutions that feel native. I specialize in React Native to deliver fast, intuitive, and responsive mobile apps that maintain a consistent brand experience across all devices."
+        }
     ];
 
     const container = {
@@ -25,6 +42,11 @@ const Home = () => {
 
     return (
         <div className="home-page">
+            <Helmet>
+                <title>KING. | Full-Stack Engineer & System Architect</title>
+                <meta name="description" content="Welcome to the portfolio of KING, a premium Full-Stack Engineer specializing in high-performance web applications, scalable backend architectures, and seamless mobile experiences." />
+                <meta name="keywords" content="Full-Stack Engineer, React Developer, Node.js Expert, System Architect, UI/UX Design, Portfolio" />
+            </Helmet>
             <Hero />
 
             <section className="tech-stack">

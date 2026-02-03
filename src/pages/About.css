@@ -1,0 +1,39 @@
+.about-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 80px;
+    align-items: start;
+}
+
+.mastery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 20px;
+}
+
+.timeline {
+    border-left: 2px solid var(--accent);
+    padding-left: 35px;
+    position: relative;
+}
+
+@media (max-width: 1024px) {
+    .about-grid {
+        grid-template-columns: 1fr;
+        gap: 60px;
+    }
+}
+
+@media (max-width: 768px) {
+    .timeline {
+        padding-left: 25px;
+    }
+
+    .timeline-item h4 {
+        font-size: 1.1rem;
+    }
+
+    .about-story h3 {
+        font-size: 1.5rem;
+    }
+}

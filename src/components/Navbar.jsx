@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Sun, Moon } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import './Navbar.css';
 
-const Navbar = () => {
+const Navbar = ({ theme, toggleTheme }) => {
     const [isOpen, setIsOpen] = useState(false);
 
     const toggleMenu = () => setIsOpen(!isOpen);
     const closeMenu = () => setIsOpen(false);
 
     return (
-        <nav className="navbar glass-card">
+        <nav className={`navbar glass-card ${isOpen ? 'menu-open' : ''}`}>
             <div className="nav-container">
                 <Link to="/" className="logo gradient-text" onClick={closeMenu}>KING.</Link>
 
@@ -23,12 +23,19 @@ const Navbar = () => {
                     <li><NavLink to="/contact" className={({ isActive }) => isActive ? 'active' : ''}>Contact</NavLink></li>
                 </ul>
 
-                <Link to="/contact" className="cta-button desktop-only" onClick={closeMenu}>Hire Me</Link>
-
-                {/* Hamburger Button */}
-                <button className="hamburger" onClick={toggleMenu} aria-label="Toggle menu">
-                    {isOpen ? <X size={28} /> : <Menu size={28} />}
-                </button>
+                <div className="nav-actions">
+                    <button
+                        onClick={toggleTheme}
+                        className="theme-toggle"
+                        aria-label="Toggle theme"
+                    >
+                        {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
+                    </button>
+                    {!isOpen && <Link to="/contact" className="cta-button desktop-only" onClick={closeMenu}>Hire Me</Link>}
+                    <button className="hamburger" onClick={toggleMenu} aria-label="Toggle menu">
+                        {isOpen ? <X size={28} /> : <Menu size={28} />}
+                    </button>
+                </div>
             </div>
 
             {/* Mobile Menu */}

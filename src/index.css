@@ -1,17 +1,54 @@
 :root {
+  --font-main: 'Inter', system-ui, -apple-system, sans-serif;
+  --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  --nav-height: 80px;
+
+  /* Responsive Spacing & Typography */
+  --section-padding: clamp(60px, 10vw, 120px);
+  --title-size: clamp(2rem, 5vw, 3.5rem);
+  --body-size: clamp(0.95rem, 1.2vw, 1.15rem);
+  --container-width: 1400px;
+
+  /* Default Dark Theme */
   --primary: #030408;
   --secondary: #080c14;
   --accent: #00f2ff;
   --accent-secondary: #7000ff;
   --accent-glow: rgba(0, 242, 255, 0.4);
+  --accent-faint: rgba(0, 242, 255, 0.05);
+  --accent-semi: rgba(0, 242, 255, 0.15);
   --text-main: #f8fafc;
   --text-dim: #94a3b8;
   --glass: rgba(15, 23, 42, 0.6);
   --glass-border: rgba(255, 255, 255, 0.08);
-  --font-main: 'Inter', system-ui, -apple-system, sans-serif;
-  --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  --nav-height: 80px;
+  --card-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+
+  /* Background Gradients */
+  --bg-grad-1: hsla(253, 16%, 7%, 1);
+  --bg-grad-2: hsla(225, 39%, 30%, 0.3);
+  --bg-grad-3: hsla(339, 49%, 30%, 0.3);
 }
+
+[data-theme='light'] {
+  --primary: #ffffff;
+  --secondary: #f8fafc;
+  --accent: #0e7490;
+  --accent-secondary: #6d28d9;
+  --accent-glow: rgba(14, 116, 144, 0.2);
+  --accent-faint: rgba(14, 116, 144, 0.06);
+  --accent-semi: rgba(14, 116, 144, 0.1);
+  --text-main: #020617;
+  --text-dim: #334155;
+  --glass: rgba(255, 255, 255, 0.7);
+  --glass-border: rgba(0, 0, 0, 0.1);
+  --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+
+  /* Light Background Gradients */
+  --bg-grad-1: hsla(210, 40%, 98%, 1);
+  --bg-grad-2: hsla(210, 100%, 95%, 0.5);
+  --bg-grad-3: hsla(210, 100%, 90%, 0.3);
+}
+
 
 @keyframes mesh {
   0% {
@@ -40,11 +77,12 @@
 body {
   background-color: var(--primary);
   background-image:
-    radial-gradient(at 0% 0%, hsla(253, 16%, 7%, 1) 0, transparent 50%),
-    radial-gradient(at 50% 0%, hsla(225, 39%, 30%, 0.3) 0, transparent 50%),
-    radial-gradient(at 100% 0%, hsla(339, 49%, 30%, 0.3) 0, transparent 50%);
+    radial-gradient(at 0% 0%, var(--bg-grad-1) 0, transparent 50%),
+    radial-gradient(at 50% 0%, var(--bg-grad-2) 0, transparent 50%),
+    radial-gradient(at 100% 0%, var(--bg-grad-3) 0, transparent 50%);
   color: var(--text-main);
   font-family: var(--font-main);
+  font-size: var(--body-size);
   line-height: 1.6;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
@@ -89,8 +127,8 @@ ul {
 }
 
 section {
-  padding: 120px 20px;
-  max-width: 1300px;
+  padding: var(--section-padding) 20px;
+  max-width: var(--container-width);
   margin: 0 auto;
 }
 
@@ -104,33 +142,33 @@ section {
 }
 
 .glass-card:hover {
-  border-color: rgba(0, 242, 255, 0.3);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  border-color: var(--accent);
+  box-shadow: var(--card-shadow);
 }
 
 .gradient-text {
-  background: linear-gradient(135deg, #fff 0%, var(--accent) 50%, var(--accent-secondary) 100%);
+  background: linear-gradient(135deg, var(--text-main) 0%, var(--accent) 50%, var(--accent-secondary) 100%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-@media (max-width: 768px) {
-  section {
-    padding: 60px 20px;
+@media (max-width: 1024px) {
+  :root {
+    --nav-height: 70px;
   }
 }
 
 .section-title {
-  font-size: 2.5rem;
-  margin-bottom: 50px;
+  font-size: var(--title-size);
+  margin-bottom: clamp(30px, 5vw, 60px);
   text-align: center;
 }
 
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 30px;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: clamp(20px, 3vw, 40px);
 }
 
 .project-card {
@@ -154,11 +192,11 @@ section {
 
 .contact-form input,
 .contact-form textarea {
-  background: var(--glass);
+  background: var(--secondary);
   border: 1px solid var(--glass-border);
   padding: 15px;
   border-radius: 8px;
-  color: white;
+  color: var(--text-main);
   font-family: inherit;
 }
 

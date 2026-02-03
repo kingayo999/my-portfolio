@@ -31,7 +31,7 @@
     width: 44px;
     height: 44px;
     border-radius: 12px;
-    background: rgba(255, 255, 255, 0.05);
+    background: var(--accent-faint);
     border: 1px solid var(--glass-border);
     display: flex;
     align-items: center;
@@ -43,7 +43,7 @@
 .social-icon:hover {
     color: var(--accent);
     border-color: var(--accent);
-    background: rgba(0, 242, 255, 0.05);
+    background: var(--accent-faint);
     transform: translateY(-3px);
 }
 

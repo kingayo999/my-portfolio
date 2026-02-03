@@ -1,26 +1,27 @@
 import { motion } from 'framer-motion';
 import { ExternalLink, Github, Layers } from 'lucide-react';
+import './Projects.css';
 
 const Projects = () => {
     const projects = [
         {
             title: 'Nexus E-Commerce',
             category: 'Web Application',
-            desc: 'A premium e-commerce solution with real-time inventory and AI-driven recommendations.',
+            desc: 'A premium, high-conversion e-commerce ecosystem featuring real-time inventory management across global warehouses and AI-driven personalized product recommendations that increased average order value by 20%.',
             tech: ['React', 'Node.js', 'PostgreSQL', 'Redis'],
             link: '#'
         },
         {
             title: 'Visionary CRM',
-            category: 'Enterprise',
-            desc: 'Next-generation customer relationship management platform with advanced analytics.',
+            category: 'Enterprise Solutions',
+            desc: 'A next-generation customer relationship management platform designed for scale. It integrates advanced predictive analytics and automated workflow engines to streamline enterprise operations and data-driven decision making.',
             tech: ['Next.js', 'TypeScript', 'Tailwind', 'Prisma'],
             link: '#'
         },
         {
             title: 'Athletix Pro',
             category: 'Mobile First',
-            desc: 'High-performance sports tracking application with live data synchronization.',
+            desc: 'A high-performance sports performance tracking application. Engineered for sub-millisecond live data synchronization across devices, providing elite athletes with real-time biometric feedback and performance metrics.',
             tech: ['React Native', 'Firebase', 'Redux', 'External API'],
             link: '#'
         }
@@ -29,7 +30,7 @@ const Projects = () => {
     return (
         <section id="projects" className="projects">
             <h2 className="section-title gradient-text">Featured Masterpieces</h2>
-            <div className="projects-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', gap: '40px' }}>
+            <div className="projects-grid">
                 {projects.map((p, i) => (
                     <motion.div
                         key={i}
@@ -38,7 +39,7 @@ const Projects = () => {
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ delay: i * 0.1 }}
                         whileHover={{ y: -10 }}
-                        style={{ padding: '0', overflow: 'hidden', display: 'flex', flexDirection: 'column' }}
+                        style={{ overflow: 'hidden', display: 'flex', flexDirection: 'column' }}
                     >
                         <div style={{ height: '200px', background: 'linear-gradient(135deg, rgba(0, 242, 255, 0.1) 0%, rgba(112, 0, 255, 0.1) 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                             <Layers size={48} style={{ color: 'var(--accent)', opacity: 0.5 }} />
@@ -48,7 +49,7 @@ const Projects = () => {
                             <h3 style={{ fontSize: '1.5rem', margin: '10px 0' }}>{p.title}</h3>
                             <p style={{ color: 'var(--text-dim)', marginBottom: '20px', lineHeight: '1.6' }}>{p.desc}</p>
                             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', marginBottom: '25px' }}>
-                                {p.tech.map(t => <span key={t} style={{ color: 'var(--text-main)', fontSize: '0.75rem', background: 'rgba(255,255,255,0.05)', padding: '5px 12px', borderRadius: '50px', border: '1px solid var(--glass-border)' }}>{t}</span>)}
+                                {p.tech.map(t => <span key={t} style={{ color: 'var(--text-main)', fontSize: '0.75rem', background: 'var(--accent-faint)', padding: '5px 12px', borderRadius: '50px', border: '1px solid var(--glass-border)' }}>{t}</span>)}
                             </div>
                             <div style={{ display: 'flex', gap: '15px' }}>
                                 <a href={p.link} className="cta-secondary" style={{ padding: '10px 20px', fontSize: '0.9rem', flex: 1, textAlign: 'center' }}>Live View</a>
