@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { Helmet } from 'react-helmet-async';
 import { Code2, Database, Cpu, Smartphone } from 'lucide-react';
 import Hero from '../components/Hero';
+import Testimonials from '../components/Testimonials';
 
 const Home = () => {
     const skills = [
@@ -104,6 +105,8 @@ const Home = () => {
                     ))}
                 </motion.div>
             </section>
+
+            <Testimonials />
 
             <section className="cta-banner" style={{ textAlign: 'center' }}>
                 <div className="glass-card" style={{ padding: '80px 40px', background: 'linear-gradient(135deg, rgba(0, 242, 255, 0.05) 0%, rgba(112, 0, 255, 0.05) 100%)' }}>

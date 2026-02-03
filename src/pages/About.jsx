@@ -46,7 +46,7 @@ const About = () => {
                                 visible: { transition: { staggerChildren: 0.2 } }
                             }}
                         >
-                            <h3 style={{ fontSize: '1.8rem', marginBottom: '20px', color: 'var(--accent)' }}>The Story So Far</h3>
+                            <h3 className="about-title">The Story So Far</h3>
                             <motion.p
                                 variants={{ hidden: { opacity: 0, x: -20 }, visible: { opacity: 1, x: 0 } }}
                                 transition={{ duration: 0.8 }}
@@ -109,7 +109,7 @@ const About = () => {
                                     >
                                         <div className="timeline-bullet"></div>
                                         <span className="timeline-year">{item.year}</span>
-                                        <h4 style={{ fontSize: '1.3rem', margin: '5px 0' }}>{item.title}</h4>
+                                        <h4 className="timeline-title">{item.title}</h4>
                                         <p style={{ fontSize: '1rem', color: 'var(--text-main)', marginBottom: '5px' }}>{item.company}</p>
                                         <p style={{ fontSize: '0.9rem', color: 'var(--text-dim)' }}>{item.desc}</p>
                                     </motion.div>

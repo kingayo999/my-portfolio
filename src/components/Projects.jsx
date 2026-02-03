@@ -1,39 +1,17 @@
 import { motion } from 'framer-motion';
-import { ExternalLink, Github, Layers } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { ExternalLink, Github, Layers, ArrowRight } from 'lucide-react';
+import { projectsData } from '../data/projectsData';
 import './Projects.css';
 
 const Projects = () => {
-    const projects = [
-        {
-            title: 'Nexus E-Commerce',
-            category: 'Web Application',
-            desc: 'A premium, high-conversion e-commerce ecosystem featuring real-time inventory management across global warehouses and AI-driven personalized product recommendations that increased average order value by 20%.',
-            tech: ['React', 'Node.js', 'PostgreSQL', 'Redis'],
-            link: '#'
-        },
-        {
-            title: 'Visionary CRM',
-            category: 'Enterprise Solutions',
-            desc: 'A next-generation customer relationship management platform designed for scale. It integrates advanced predictive analytics and automated workflow engines to streamline enterprise operations and data-driven decision making.',
-            tech: ['Next.js', 'TypeScript', 'Tailwind', 'Prisma'],
-            link: '#'
-        },
-        {
-            title: 'Athletix Pro',
-            category: 'Mobile First',
-            desc: 'A high-performance sports performance tracking application. Engineered for sub-millisecond live data synchronization across devices, providing elite athletes with real-time biometric feedback and performance metrics.',
-            tech: ['React Native', 'Firebase', 'Redux', 'External API'],
-            link: '#'
-        }
-    ];
-
     return (
         <section id="projects" className="projects">
             <h2 className="section-title gradient-text">Featured Masterpieces</h2>
             <div className="projects-grid">
-                {projects.map((p, i) => (
+                {projectsData.map((p, i) => (
                     <motion.div
-                        key={i}
+                        key={p.id}
                         className="project-card glass-card"
                         initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -63,15 +41,15 @@ const Projects = () => {
                                 {p.tech.map(t => <span key={t} style={{ color: 'var(--text-main)', fontSize: '0.75rem', background: 'var(--accent-faint)', padding: '5px 12px', borderRadius: '50px', border: '1px solid var(--glass-border)' }}>{t}</span>)}
                             </div>
                             <div style={{ display: 'flex', gap: '15px' }}>
-                                <motion.a
-                                    whileHover={{ scale: 1.02 }}
-                                    whileTap={{ scale: 0.98 }}
-                                    href={p.link}
-                                    className="cta-secondary"
-                                    style={{ padding: '10px 20px', fontSize: '0.9rem', flex: 1, textAlign: 'center' }}
-                                >
-                                    Live View
-                                </motion.a>
+                                <motion.div style={{ flex: 1 }}>
+                                    <Link
+                                        to={`/project/${p.id}`}
+                                        className="cta-secondary"
+                                        style={{ padding: '10px 20px', fontSize: '0.9rem', width: '100%', textAlign: 'center', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}
+                                    >
+                                        Case Study <ArrowRight size={16} />
+                                    </Link>
+                                </motion.div>
                                 <motion.a
                                     whileHover={{ scale: 1.1, rotate: 5 }}
                                     whileTap={{ scale: 0.9 }}

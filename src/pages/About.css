@@ -9,6 +9,13 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
     gap: 20px;
+    justify-content: center;
+}
+
+.about-title {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: var(--accent);
 }
 
 .timeline {
@@ -49,7 +56,13 @@
     color: var(--accent);
     font-weight: 600;
     line-height: 1.4;
+    line-height: 1.4;
     display: block;
+}
+
+.timeline-title {
+    font-size: 1.3rem;
+    margin: 5px 0;
 }
 
 @media (max-width: 1024px) {
@@ -62,6 +75,18 @@
 @media (max-width: 768px) {
     .timeline {
         padding-left: 25px;
+    }
+
+    .timeline-bullet {
+        left: -36px;
+    }
+
+    .timeline-title {
+        font-size: 1.1rem;
+    }
+
+    .about-title {
+        font-size: 1.5rem;
     }
 
     .timeline-item h4 {
