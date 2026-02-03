@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { MessageSquare, X, Send, Bot, User } from 'lucide-react';
+import { triggerHaptic, hapticPatterns } from '../utils/haptics';
 
 const responses = {
     greetings: ["Hello! I'm KingGPT, KING's digital twin. How can I help you today?", "Hi there! Looking for a top-tier engineer? You've come to the right place.", "Greetings! I can tell you about KING's experience, stack, or availability."],
@@ -28,6 +29,7 @@ const Chatbot = () => {
     const handleSend = () => {
         if (!inputValue.trim()) return;
 
+        triggerHaptic(hapticPatterns.light);
         const userMsg = { id: Date.now(), type: 'user', text: inputValue };
         setMessages(prev => [...prev, userMsg]);
         setInputValue('');
@@ -44,6 +46,7 @@ const Chatbot = () => {
             else if (input.includes('experience') || input.includes('work') || input.includes('history')) replyText = responses.experience[Math.floor(Math.random() * responses.experience.length)];
             else replyText = responses.default[Math.floor(Math.random() * responses.default.length)];
 
+            triggerHaptic(hapticPatterns.notification);
             setMessages(prev => [...prev, { id: Date.now() + 1, type: 'bot', text: replyText }]);
             setIsTyping(false);
         }, 1200);

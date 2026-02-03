@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import { Toaster } from 'react-hot-toast';
-import { AnimatePresence } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import './index.css';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
@@ -12,6 +12,8 @@ import ContactPage from './pages/ContactPage';
 import ProjectDetail from './pages/ProjectDetail';
 import Chatbot from './components/Chatbot';
 import PageTransition from './components/PageTransition';
+import VaultEntry from './components/VaultEntry';
+import IntroTour from './components/IntroTour';
 
 const AnimatedRoutes = () => {
   const location = useLocation();
@@ -30,6 +32,7 @@ const AnimatedRoutes = () => {
 
 function App() {
   const [theme, setTheme] = useState(localStorage.getItem('theme') || 'dark');
+  const [showVault, setShowVault] = useState(!sessionStorage.getItem('vault_accessed'));
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
@@ -40,29 +43,48 @@ function App() {
     setTheme(prev => prev === 'dark' ? 'light' : 'dark');
   };
 
+  const handleAccessGranted = () => {
+    setShowVault(false);
+    sessionStorage.setItem('vault_accessed', 'true');
+  };
+
   return (
     <HelmetProvider>
       <Router>
-        <Toaster position="top-center" reverseOrder={false} />
-        <div className="mesh-bg">
-          <div className="mesh-blob"></div>
-          <div className="mesh-blob mesh-blob-2"></div>
-        </div>
-        <div className="app">
-          <Navbar theme={theme} toggleTheme={toggleTheme} />
-          <main style={{ paddingTop: 'var(--nav-height)' }}>
-            <AnimatedRoutes />
-          </main>
-          <Chatbot />
-          <footer style={{ textAlign: 'center', padding: '60px 20px', color: 'var(--text-dim)', fontSize: '0.9rem' }}>
-            <div style={{ marginBottom: '20px', display: 'flex', justifyContent: 'center', gap: '20px' }}>
-              <a href="https://github.com/kingayo999" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--accent)' }}>GitHub</a>
-              <a href="#" style={{ color: 'var(--text-dim)' }}>LinkedIn</a>
-              <a href="#" style={{ color: 'var(--text-dim)' }}>Twitter</a>
-            </div>
-            &copy; {new Date().getFullYear()} KING. All rights reserved.
-          </footer>
-        </div>
+        <AnimatePresence mode="wait">
+          {showVault ? (
+            <VaultEntry key="vault" onAccessGranted={handleAccessGranted} />
+          ) : (
+            <motion.div
+              key="app-content"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1 }}
+            >
+              <Toaster position="top-center" reverseOrder={false} />
+              <div className="mesh-bg">
+                <div className="mesh-blob"></div>
+                <div className="mesh-blob mesh-blob-2"></div>
+              </div>
+              <div className="app">
+                <Navbar theme={theme} toggleTheme={toggleTheme} />
+                <main style={{ paddingTop: 'var(--nav-height)' }}>
+                  <AnimatedRoutes />
+                </main>
+                <IntroTour />
+                <Chatbot />
+                <footer style={{ textAlign: 'center', padding: '60px 20px', color: 'var(--text-dim)', fontSize: '0.9rem' }}>
+                  <div style={{ marginBottom: '20px', display: 'flex', justifyContent: 'center', gap: '20px' }}>
+                    <a href="https://github.com/kingayo999" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--accent)' }}>GitHub</a>
+                    <a href="#" style={{ color: 'var(--text-dim)' }}>LinkedIn</a>
+                    <a href="#" style={{ color: 'var(--text-dim)' }}>Twitter</a>
+                  </div>
+                  &copy; {new Date().getFullYear()} KING. All rights reserved.
+                </footer>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </Router>
     </HelmetProvider>
   );

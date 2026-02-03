@@ -2,10 +2,17 @@ import React, { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { Menu, X, Sun, Moon } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { triggerHaptic, hapticPatterns } from '../utils/haptics';
 import './Navbar.css';
 
 const Navbar = ({ theme, toggleTheme }) => {
     const [isOpen, setIsOpen] = useState(false);
+
+    const handleThemeToggle = () => {
+        triggerHaptic(hapticPatterns.light);
+        toggleTheme();
+    };
+
 
     const toggleMenu = () => setIsOpen(!isOpen);
     const closeMenu = () => setIsOpen(false);
@@ -36,7 +43,7 @@ const Navbar = ({ theme, toggleTheme }) => {
 
                 <div className="nav-actions">
                     <motion.button
-                        onClick={toggleTheme}
+                        onClick={handleThemeToggle}
                         className="theme-toggle"
                         aria-label="Toggle theme"
                         whileHover={{ scale: 1.1 }}
