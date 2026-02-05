@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { AnimatePresence, motion as Motion } from 'framer-motion';
 import { X, ChevronRight, HelpCircle } from 'lucide-react';
 
 const tourSteps = [
@@ -53,10 +53,7 @@ const IntroTour = () => {
         localStorage.setItem('has_seen_tour', 'true');
     };
 
-    const startManualTour = () => {
-        setStep(0);
-        setIsVisible(true);
-    };
+
 
     return (
         <>
@@ -65,7 +62,7 @@ const IntroTour = () => {
             <AnimatePresence>
                 {isVisible && step >= 0 && (
                     <div style={{ position: 'fixed', inset: 0, zIndex: 9999, pointerEvents: 'none' }}>
-                        <motion.div
+                        <Motion.div
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
@@ -73,7 +70,7 @@ const IntroTour = () => {
                             onClick={completeTour}
                         />
 
-                        <motion.div
+                        <Motion.div
                             initial={{ opacity: 0, scale: 0.9, y: 20 }}
                             animate={{ opacity: 1, scale: 1, y: 0 }}
                             exit={{ opacity: 0, scale: 0.9, y: 20 }}
@@ -99,7 +96,7 @@ const IntroTour = () => {
                             </p>
 
                             <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                                <motion.button
+                                <Motion.button
                                     onClick={nextStep}
                                     whileHover={{ x: 5 }}
                                     style={{
@@ -117,9 +114,9 @@ const IntroTour = () => {
                                     }}
                                 >
                                     {step === tourSteps.length - 1 ? 'Finish' : 'Next'} <ChevronRight size={18} />
-                                </motion.button>
+                                </Motion.button>
                             </div>
-                        </motion.div>
+                        </Motion.div>
                     </div>
                 )}
             </AnimatePresence>

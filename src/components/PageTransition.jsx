@@ -1,14 +1,14 @@
-import { motion } from 'framer-motion';
+import { motion as Motion } from 'framer-motion';
 
 const PageTransition = ({ children }) => {
     return (
-        <motion.div
+        <Motion.div
             initial="initial"
             animate="animate"
             exit="exit"
         >
             {/* Shutter Layer */}
-            <motion.div
+            <Motion.div
                 className="shutter-layer"
                 initial={{ scaleY: 0 }}
                 animate={{ scaleY: 0 }}
@@ -28,7 +28,7 @@ const PageTransition = ({ children }) => {
             />
 
             {/* Reverse Shutter Layer (Entrance) */}
-            <motion.div
+            <Motion.div
                 className="shutter-layer"
                 initial={{ scaleY: 1 }}
                 animate={{ scaleY: 0 }}
@@ -47,15 +47,15 @@ const PageTransition = ({ children }) => {
                 }}
             />
 
-            <motion.div
+            <Motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
             >
                 {children}
-            </motion.div>
-        </motion.div>
+            </Motion.div>
+        </Motion.div>
     );
 };
 

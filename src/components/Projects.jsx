@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { motion as Motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ExternalLink, Github, Layers, ArrowRight } from 'lucide-react';
 import { projectsData } from '../data/projectsData';
@@ -10,7 +10,7 @@ const Projects = () => {
             <h2 className="section-title gradient-text">Featured Masterpieces</h2>
             <div className="projects-grid">
                 {projectsData.map((p, i) => (
-                    <motion.div
+                    <Motion.div
                         key={p.id}
                         className="project-card glass-card"
                         initial={{ opacity: 0, y: 30 }}
@@ -27,12 +27,12 @@ const Projects = () => {
                         }}
                         style={{ overflow: 'hidden', display: 'flex', flexDirection: 'column' }}
                     >
-                        <motion.div
+                        <Motion.div
                             className="project-card-image"
                             whileHover={{ scale: 1.05 }}
                         >
                             <Layers size={48} style={{ color: 'var(--accent)', opacity: 0.5 }} />
-                        </motion.div>
+                        </Motion.div>
                         <div className="project-card-content">
                             <span style={{ color: 'var(--accent)', fontSize: '0.8rem', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '1px' }}>{p.category}</span>
                             <h3 style={{ fontSize: '1.5rem', margin: '10px 0' }}>{p.title}</h3>
@@ -41,7 +41,7 @@ const Projects = () => {
                                 {p.tech.map(t => <span key={t} className="tech-tag">{t}</span>)}
                             </div>
                             <div style={{ display: 'flex', gap: '15px' }}>
-                                <motion.div style={{ flex: 1 }}>
+                                <Motion.div style={{ flex: 1 }}>
                                     <Link
                                         to={`/project/${p.id}`}
                                         className="cta-secondary"
@@ -49,20 +49,34 @@ const Projects = () => {
                                     >
                                         Case Study <ArrowRight size={16} />
                                     </Link>
-                                </motion.div>
-                                <motion.a
-                                    whileHover={{ scale: 1.1, rotate: 5 }}
-                                    whileTap={{ scale: 0.9 }}
-                                    href="https://github.com/kingayo999"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    style={{ color: 'var(--text-dim)', display: 'flex', alignItems: 'center', justifyContent: 'center', width: '44px', height: '44px', borderRadius: '12px', background: 'var(--glass)', border: '1px solid var(--glass-border)' }}
-                                >
-                                    <Github size={18} />
-                                </motion.a>
+                                </Motion.div>
+                                {p.github && (
+                                    <Motion.a
+                                        whileHover={{ scale: 1.1, rotate: 5 }}
+                                        whileTap={{ scale: 0.9 }}
+                                        href={p.github}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        style={{ color: 'var(--text-dim)', display: 'flex', alignItems: 'center', justifyContent: 'center', width: '44px', height: '44px', borderRadius: '12px', background: 'var(--glass)', border: '1px solid var(--glass-border)' }}
+                                    >
+                                        <Github size={18} />
+                                    </Motion.a>
+                                )}
+                                {p.link && (
+                                    <Motion.a
+                                        whileHover={{ scale: 1.1, rotate: 5 }}
+                                        whileTap={{ scale: 0.9 }}
+                                        href={p.link}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        style={{ color: 'var(--text-dim)', display: 'flex', alignItems: 'center', justifyContent: 'center', width: '44px', height: '44px', borderRadius: '12px', background: 'var(--glass)', border: '1px solid var(--glass-border)' }}
+                                    >
+                                        <ExternalLink size={18} />
+                                    </Motion.a>
+                                )}
                             </div>
                         </div>
-                    </motion.div>
+                    </Motion.div>
                 ))}
             </div>
         </section>

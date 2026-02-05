@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion as Motion } from 'framer-motion';
 import { Quote, Linkedin } from 'lucide-react';
 
 const testimonials = [
@@ -35,7 +35,7 @@ const Testimonials = () => {
 
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '30px' }}>
                 {testimonials.map((t, i) => (
-                    <motion.div
+                    <Motion.div
                         key={i}
                         className="glass-card"
                         style={{ padding: '40px', position: 'relative' }}
@@ -57,15 +57,15 @@ const Testimonials = () => {
                                 <h4 style={{ fontSize: '1.1rem', fontWeight: '600' }}>{t.name}</h4>
                                 <p style={{ fontSize: '0.85rem', color: 'var(--text-dim)' }}>{t.role}</p>
                             </div>
-                            <motion.a
+                            <Motion.a
                                 href="#"
                                 style={{ marginLeft: 'auto', color: 'var(--text-dim)' }}
                                 whileHover={{ color: 'var(--accent)', scale: 1.1 }}
                             >
                                 <Linkedin size={18} />
-                            </motion.a>
+                            </Motion.a>
                         </div>
-                    </motion.div>
+                    </Motion.div>
                 ))}
             </div>
         </section>

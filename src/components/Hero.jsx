@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { motion as Motion } from 'framer-motion';
 import { ChevronRight, Github, Send } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import './Hero.css';
@@ -6,13 +6,13 @@ import './Hero.css';
 const Hero = () => {
     return (
         <section className="hero">
-            <motion.div
+            <Motion.div
                 className="hero-content"
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, ease: "easeOut" }}
             >
-                <motion.div
+                <Motion.div
                     className="hero-badge"
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
@@ -20,7 +20,7 @@ const Hero = () => {
                 >
                     <span className="badge-dot"></span>
                     Available for new projects
-                </motion.div>
+                </Motion.div>
 
                 <h1 className="hero-title">
                     Turning Visionary Ideas into <span className="gradient-text">Scalable Digital Realities</span>.
@@ -31,13 +31,13 @@ const Hero = () => {
                 </p>
 
                 <div className="hero-btns">
-                    <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                    <Motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
                         <Link to="/projects" className="cta-primary">
                             Explore Work <ChevronRight size={18} style={{ marginLeft: '8px' }} />
                         </Link>
-                    </motion.div>
+                    </Motion.div>
 
-                    <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                    <Motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
                         <a
                             href="https://github.com/kingayo999"
                             target="_blank"
@@ -47,15 +47,15 @@ const Hero = () => {
                         >
                             <Github size={18} /> GitHub
                         </a>
-                    </motion.div>
+                    </Motion.div>
 
-                    <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                    <Motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
                         <Link to="/contact" className="cta-secondary" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                             <Send size={18} /> Let's Talk
                         </Link>
-                    </motion.div>
+                    </Motion.div>
                 </div>
-            </motion.div>
+            </Motion.div>
         </section>
     );
 };

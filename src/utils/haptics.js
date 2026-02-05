@@ -2,7 +2,7 @@ export const triggerHaptic = (pattern = 10) => {
     if (typeof window !== 'undefined' && 'vibrate' in navigator) {
         try {
             navigator.vibrate(pattern);
-        } catch (e) {
+        } catch {
             console.warn('Haptic feedback not supported or blocked');
         }
     }

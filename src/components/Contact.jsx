@@ -1,13 +1,21 @@
-import { motion } from 'framer-motion';
+import { motion as Motion } from 'framer-motion';
 import React, { useRef, useState } from 'react';
 import emailjs from '@emailjs/browser';
 import toast from 'react-hot-toast';
-import { Mail, MapPin, Phone, MessageSquare, Github, Linkedin, Twitter, CheckCircle2, HelpCircle } from 'lucide-react';
+import { Mail, MapPin, MessageSquare, Github, Linkedin, Twitter, CheckCircle2, HelpCircle } from 'lucide-react';
 import './Contact.css';
 
 const Contact = () => {
     const form = useRef();
     const [isSending, setIsSending] = useState(false);
+    const [copied, setCopied] = useState('');
+
+    const copyToClipboard = (text, type) => {
+        navigator.clipboard.writeText(text);
+        setCopied(type);
+        toast.success(`${type} copied to clipboard!`);
+        setTimeout(() => setCopied(''), 2000);
+    };
 
     const processSteps = [
         { title: "Discovery", desc: "We deep-dive into your requirements, target audience, and business goals." },
@@ -31,11 +39,11 @@ const Contact = () => {
         emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, form.current, {
             publicKey: PUBLIC_KEY,
         })
-            .then((result) => {
+            .then(() => {
                 toast.success('Message sent successfully!');
                 setIsSending(false);
                 form.current.reset();
-            }, (error) => {
+            }, () => {
                 toast.error('Failed to send message.');
                 setIsSending(false);
             });
@@ -55,7 +63,7 @@ const Contact = () => {
                 <h3 className="section-title" style={{ fontSize: '2rem' }}>The Collaborative Process</h3>
                 <div className="process-grid">
                     {processSteps.map((step, i) => (
-                        <motion.div
+                        <Motion.div
                             key={i}
                             className="glass-card process-step-card"
                             initial={{ opacity: 0, y: 20 }}
@@ -69,13 +77,13 @@ const Contact = () => {
                             </div>
                             <h4 style={{ fontSize: '1.4rem', marginBottom: '10px' }}>{step.title}</h4>
                             <p style={{ color: 'var(--text-dim)', fontSize: '0.95rem', lineHeight: '1.6' }}>{step.desc}</p>
-                        </motion.div>
+                        </Motion.div>
                     ))}
                 </div>
             </div>
 
             <div className="contact-container contact-main">
-                <motion.div
+                <Motion.div
                     className="contact-info"
                     initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
@@ -86,14 +94,14 @@ const Contact = () => {
                         <div>
                             <h3 style={{ fontSize: '1.5rem', marginBottom: '20px' }}>Contact Details</h3>
                             <div style={{ display: 'flex', flexDirection: 'column', gap: '25px' }}>
-                                <div className="contact-method-item">
+                                <div className="contact-method-item" onClick={() => copyToClipboard('kingayo999@gmail.com', 'Email')} style={{ cursor: 'pointer' }}>
                                     <div className="contact-icon-box">
                                         <Mail size={24} />
                                     </div>
                                     <div>
                                         <h4 style={{ fontSize: '1.1rem', marginBottom: '2px' }}>Email</h4>
                                         <p style={{ color: 'var(--text-dim)' }}>kingayo999@gmail.com</p>
-                                        <span style={{ fontSize: '0.75rem', color: 'var(--accent)' }}>Responds within 24 hours</span>
+                                        <span style={{ fontSize: '0.75rem', color: 'var(--accent)' }}>{copied === 'Email' ? 'Copied!' : 'Click to copy • Responds within 24h'}</span>
                                     </div>
                                 </div>
                                 <div className="contact-method-item">
@@ -125,7 +133,7 @@ const Contact = () => {
                                     { icon: <Linkedin size={20} />, link: "#" },
                                     { icon: <Twitter size={20} />, link: "#" }
                                 ].map((social, i) => (
-                                    <motion.a
+                                    <Motion.a
                                         key={i}
                                         href={social.link}
                                         target="_blank"
@@ -135,14 +143,14 @@ const Contact = () => {
                                         style={{ width: '45px', height: '45px', borderRadius: '10px', background: 'var(--accent-faint)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--text-dim)', border: '1px solid var(--glass-border)', transition: '0.3s' }}
                                     >
                                         {social.icon}
-                                    </motion.a>
+                                    </Motion.a>
                                 ))}
                             </div>
                         </div>
                     </div>
-                </motion.div>
+                </Motion.div>
 
-                <motion.form
+                <Motion.form
                     ref={form}
                     className="contact-form glass-card contact-form-card"
                     onSubmit={sendEmail}
@@ -161,7 +169,7 @@ const Contact = () => {
                     <p style={{ fontSize: '0.8rem', color: 'var(--text-dim)', marginBottom: '20px', textAlign: 'center' }}>
                         Your information is secure and will never be shared with third parties.
                     </p>
-                    <motion.button
+                    <Motion.button
                         type="submit"
                         className="cta-primary"
                         disabled={isSending}
@@ -170,8 +178,8 @@ const Contact = () => {
                         whileTap={{ scale: 0.99 }}
                     >
                         {isSending ? 'Transmitting...' : 'Initiate Project Discussion'}
-                    </motion.button>
-                </motion.form>
+                    </Motion.button>
+                </Motion.form>
             </div>
 
             {/* FAQ Section */}
@@ -179,7 +187,7 @@ const Contact = () => {
                 <h3 className="section-title" style={{ fontSize: '2rem' }}>Frequently Asked Questions</h3>
                 <div className="faq-grid">
                     {faqs.map((faq, i) => (
-                        <motion.div
+                        <Motion.div
                             key={i}
                             className="glass-card"
                             style={{ padding: '30px' }}
@@ -195,7 +203,7 @@ const Contact = () => {
                                     <p style={{ color: 'var(--text-dim)', fontSize: '0.9rem', lineHeight: '1.6' }}>{faq.a}</p>
                                 </div>
                             </div>
-                        </motion.div>
+                        </Motion.div>
                     ))}
                 </div>
             </div>

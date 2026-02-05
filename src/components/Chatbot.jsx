@@ -1,7 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { MessageSquare, X, Send, Bot, User } from 'lucide-react';
+import { motion as Motion, AnimatePresence } from 'framer-motion';
+import { MessageSquare, X, Send } from 'lucide-react';
 import { triggerHaptic, hapticPatterns } from '../utils/haptics';
+import './Chatbot.css';
 
 const responses = {
     greetings: ["Hello! I'm KingGPT, KING's digital twin. How can I help you today?", "Hi there! Looking for a top-tier engineer? You've come to the right place.", "Greetings! I can tell you about KING's experience, stack, or availability."],
@@ -53,122 +54,69 @@ const Chatbot = () => {
     };
 
     return (
-        <div style={{ position: 'fixed', bottom: '30px', right: '30px', zIndex: 1000 }}>
-            <motion.button
+        <div className="chatbot-container">
+            <Motion.button
                 onClick={() => setIsOpen(!isOpen)}
-                className="glass-card"
-                style={{
-                    width: '60px',
-                    height: '60px',
-                    borderRadius: '50%',
-                    background: 'var(--accent)',
-                    color: 'var(--primary)',
-                    border: 'none',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    boxShadow: '0 10px 30px var(--accent-glow)',
-                    cursor: 'pointer'
-                }}
+                className="chatbot-toggle"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
             >
                 {isOpen ? <X size={24} /> : <MessageSquare size={24} />}
-            </motion.button>
+            </Motion.button>
 
             <AnimatePresence>
                 {isOpen && (
-                    <motion.div
+                    <Motion.div
                         initial={{ opacity: 0, scale: 0.8, y: 20, transformOrigin: 'bottom right' }}
                         animate={{ opacity: 1, scale: 1, y: 0 }}
                         exit={{ opacity: 0, scale: 0.8, y: 20 }}
-                        className="glass-card"
-                        style={{
-                            position: 'absolute',
-                            bottom: '80px',
-                            right: 0,
-                            width: '350px',
-                            height: '500px',
-                            display: 'flex',
-                            flexDirection: 'column',
-                            overflow: 'hidden',
-                            border: '1px solid var(--accent-semi)',
-                            padding: 0
-                        }}
+                        className="glass-card chatbot-window"
                     >
                         {/* Header */}
-                        <div style={{ padding: '20px', background: 'var(--accent-faint)', borderBottom: '1px solid var(--glass-border)', display: 'flex', alignItems: 'center', gap: '10px' }}>
-                            <div style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#ff3b3b', boxShadow: '0 0 10px #ff3b3b' }}></div>
+                        <div className="chatbot-header">
+                            <div className="chatbot-status-dot"></div>
                             <span style={{ fontWeight: '600', color: 'var(--text-main)' }}>KingGPT</span>
                             <span style={{ fontSize: '0.7rem', opacity: 0.6 }}>AI Engine v1.0</span>
                         </div>
 
                         {/* Messages */}
-                        <div ref={scrollRef} style={{ flex: 1, overflowY: 'auto', padding: '20px', display: 'flex', flexDirection: 'column', gap: '15px' }}>
+                        <div ref={scrollRef} className="chatbot-messages">
                             {messages.map(msg => (
-                                <div key={msg.id} style={{ alignSelf: msg.type === 'bot' ? 'flex-start' : 'flex-end', maxWidth: '80%' }}>
-                                    <div style={{
-                                        padding: '12px 16px',
-                                        borderRadius: msg.type === 'bot' ? '20px 20px 20px 4px' : '20px 20px 4px 20px',
-                                        background: msg.type === 'bot' ? 'var(--secondary)' : 'var(--accent)',
-                                        color: msg.type === 'bot' ? 'var(--text-main)' : 'var(--primary)',
-                                        fontSize: '0.9rem',
-                                        lineHeight: '1.4'
-                                    }}>
-                                        {msg.text}
-                                    </div>
+                                <div key={msg.id} className={`message-bubble ${msg.type === 'bot' ? 'message-bot' : 'message-user'}`}>
+                                    {msg.text}
                                 </div>
                             ))}
                             {isTyping && (
                                 <div style={{ alignSelf: 'flex-start', background: 'var(--secondary)', padding: '10px 15px', borderRadius: '15px' }}>
-                                    <motion.div
+                                    <Motion.div
                                         animate={{ opacity: [0.4, 1, 0.4] }}
                                         transition={{ repeat: Infinity, duration: 1 }}
                                         style={{ fontSize: '0.8rem', color: 'var(--text-dim)' }}
                                     >
                                         Bot is thinking...
-                                    </motion.div>
+                                    </Motion.div>
                                 </div>
                             )}
                         </div>
 
                         {/* Input */}
-                        <div style={{ padding: '20px', borderTop: '1px solid var(--glass-border)', display: 'flex', gap: '10px' }}>
+                        <div className="chatbot-input-area">
                             <input
                                 type="text"
                                 placeholder="Ask about King..."
                                 value={inputValue}
                                 onChange={(e) => setInputValue(e.target.value)}
                                 onKeyPress={(e) => e.key === 'Enter' && handleSend()}
-                                style={{
-                                    flex: 1,
-                                    background: 'var(--secondary)',
-                                    border: '1px solid var(--glass-border)',
-                                    padding: '10px 15px',
-                                    borderRadius: '10px',
-                                    color: 'var(--text-main)',
-                                    outline: 'none'
-                                }}
+                                className="chatbot-input"
                             />
                             <button
                                 onClick={handleSend}
-                                style={{
-                                    background: 'var(--accent)',
-                                    color: 'var(--primary)',
-                                    border: 'none',
-                                    width: '40px',
-                                    height: '40px',
-                                    borderRadius: '10px',
-                                    cursor: 'pointer',
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    justifyContent: 'center'
-                                }}
+                                className="chatbot-send-btn"
                             >
                                 <Send size={18} />
                             </button>
                         </div>
-                    </motion.div>
+                    </Motion.div>
                 )}
             </AnimatePresence>
         </div>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { motion as Motion } from 'framer-motion';
 import { Helmet } from 'react-helmet-async';
 import { ArrowLeft, Github, ExternalLink, Cpu, Layout, Boxes, CheckCircle2 } from 'lucide-react';
 import { projectsData } from '../data/projectsData';
@@ -27,7 +27,7 @@ const ProjectDetail = () => {
             </Helmet>
 
             <section className="project-detail-container">
-                <motion.div
+                <Motion.div
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.6 }}
@@ -35,36 +35,36 @@ const ProjectDetail = () => {
                     <Link to="/projects" style={{ display: 'flex', alignItems: 'center', gap: '10px', color: 'var(--accent)', marginBottom: '40px', fontWeight: '600' }}>
                         <ArrowLeft size={20} /> Back to Masterpieces
                     </Link>
-                </motion.div>
+                </Motion.div>
 
                 <div className="detail-header">
-                    <motion.span
+                    <Motion.span
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ delay: 0.2 }}
                         style={{ color: 'var(--accent)', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '2px', fontSize: '0.9rem' }}
                     >
                         {project.category}
-                    </motion.span>
-                    <motion.h1
+                    </Motion.span>
+                    <Motion.h1
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.3, duration: 0.8 }}
                         className="gradient-text"
                     >
                         {project.title}
-                    </motion.h1>
-                    <motion.p
+                    </Motion.h1>
+                    <Motion.p
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ delay: 0.4 }}
                     >
                         {project.desc}
-                    </motion.p>
+                    </Motion.p>
                 </div>
 
                 <div className="detail-grid">
-                    <motion.div
+                    <Motion.div
                         className="detail-section"
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -75,9 +75,9 @@ const ProjectDetail = () => {
                             <Layout size={24} style={{ color: 'var(--accent)' }} /> Overview
                         </h3>
                         <p>{project.fullDesc}</p>
-                    </motion.div>
+                    </Motion.div>
 
-                    <motion.div
+                    <Motion.div
                         className="detail-section"
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -88,9 +88,9 @@ const ProjectDetail = () => {
                             <Boxes size={24} style={{ color: 'var(--accent)' }} /> Technical Approach
                         </h3>
                         <p>{project.approach}</p>
-                    </motion.div>
+                    </Motion.div>
 
-                    <motion.div
+                    <Motion.div
                         className="detail-section"
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -101,9 +101,9 @@ const ProjectDetail = () => {
                             <Cpu size={24} style={{ color: 'var(--accent)' }} /> Challenges
                         </h3>
                         <p>{project.challenges}</p>
-                    </motion.div>
+                    </Motion.div>
 
-                    <motion.div
+                    <Motion.div
                         className="detail-section"
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -114,22 +114,22 @@ const ProjectDetail = () => {
                             <CheckCircle2 size={24} style={{ color: 'var(--accent)' }} /> Impact & Results
                         </h3>
                         <p>{project.results}</p>
-                    </motion.div>
+                    </Motion.div>
                 </div>
 
-                <motion.div
+                <Motion.div
                     className="glass-card detail-footer-actions"
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                 >
-                    <a href={project.github} className="cta-secondary" style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                    <a href={project.github} target="_blank" rel="noopener noreferrer" className="cta-secondary" style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                         <Github size={20} /> View Source Code
                     </a>
-                    <a href={project.link} className="cta-primary" style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                    <a href={project.link} target="_blank" rel="noopener noreferrer" className="cta-primary" style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                         <ExternalLink size={20} /> Experience Live Site
                     </a>
-                </motion.div>
+                </Motion.div>
             </section>
         </div>
     );

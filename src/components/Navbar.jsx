@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { Menu, X, Sun, Moon } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion as Motion, AnimatePresence } from 'framer-motion';
 import { triggerHaptic, hapticPatterns } from '../utils/haptics';
 import './Navbar.css';
 
@@ -25,7 +25,7 @@ const Navbar = ({ theme, toggleTheme }) => {
                 {/* Desktop Links */}
                 <ul className="nav-links">
                     {['Home', 'About', 'Projects', 'Contact'].map((item, i) => (
-                        <motion.li
+                        <Motion.li
                             key={item}
                             initial={{ opacity: 0, y: -10 }}
                             animate={{ opacity: 1, y: 0 }}
@@ -37,12 +37,12 @@ const Navbar = ({ theme, toggleTheme }) => {
                             >
                                 {item}
                             </NavLink>
-                        </motion.li>
+                        </Motion.li>
                     ))}
                 </ul>
 
                 <div className="nav-actions">
-                    <motion.button
+                    <Motion.button
                         onClick={handleThemeToggle}
                         className="theme-toggle"
                         aria-label="Toggle theme"
@@ -50,7 +50,7 @@ const Navbar = ({ theme, toggleTheme }) => {
                         whileTap={{ scale: 0.9 }}
                     >
                         <AnimatePresence mode="wait" initial={false}>
-                            <motion.div
+                            <Motion.div
                                 key={theme}
                                 initial={{ y: -20, opacity: 0, rotate: -90 }}
                                 animate={{ y: 0, opacity: 1, rotate: 0 }}
@@ -58,17 +58,17 @@ const Navbar = ({ theme, toggleTheme }) => {
                                 transition={{ duration: 0.4, ease: "anticipate" }}
                             >
                                 {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
-                            </motion.div>
+                            </Motion.div>
                         </AnimatePresence>
-                    </motion.button>
+                    </Motion.button>
                     {!isOpen && (
-                        <motion.div
+                        <Motion.div
                             initial={{ opacity: 0, scale: 0.9 }}
                             animate={{ opacity: 1, scale: 1 }}
                             transition={{ duration: 0.6, delay: 0.8 }}
                         >
                             <Link to="/contact" className="cta-button desktop-only" onClick={closeMenu}>Hire Me</Link>
-                        </motion.div>
+                        </Motion.div>
                     )}
                     <button className="hamburger" onClick={toggleMenu} aria-label="Toggle menu">
                         {isOpen ? <X size={28} /> : <Menu size={28} />}
@@ -79,7 +79,7 @@ const Navbar = ({ theme, toggleTheme }) => {
             {/* Mobile Menu */}
             <AnimatePresence>
                 {isOpen && (
-                    <motion.div
+                    <Motion.div
                         className="mobile-menu"
                         initial={{ opacity: 0, height: 0 }}
                         animate={{ opacity: 1, height: 'auto' }}
@@ -93,7 +93,7 @@ const Navbar = ({ theme, toggleTheme }) => {
                             <li><NavLink to="/contact" onClick={closeMenu} className={({ isActive }) => isActive ? 'active' : ''}>Contact</NavLink></li>
                         </ul>
                         <Link to="/contact" className="cta-button mobile-cta" onClick={closeMenu}>Hire Me</Link>
-                    </motion.div>
+                    </Motion.div>
                 )}
             </AnimatePresence>
         </nav>

@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { motion as Motion } from 'framer-motion';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { Code2, Database, Cpu, Smartphone } from 'lucide-react';
@@ -6,41 +6,11 @@ import Hero from '../components/Hero';
 import Testimonials from '../components/Testimonials';
 
 const Home = () => {
-    const skills = [
-        {
-            icon: <Code2 size={24} />,
-            title: "Frontend Engineering",
-            desc: "Architecting conversion-optimized, high-performance user interfaces. I build fluid, accessible, and maintainable frontend systems using React, Next.js, and advanced animation libraries like Framer Motion."
-        },
-        {
-            icon: <Database size={24} />,
-            title: "Backend Architecture",
-            desc: "Building robust, secure, and distributed server-side architectures. My expertise includes designing scalable APIs and managing complex data flows with Node.js, PostgreSQL, and Redis for maximum performance."
-        },
-        {
-            icon: <Cpu size={24} />,
-            title: "System Design",
-            desc: "Engineering for the future. I design resilient systems that scale horizontally and vertically, prioritizing high availability, security, and sub-millisecond latency for enterprise-grade applications."
-        },
-        {
-            icon: <Smartphone size={24} />,
-            title: "Mobile Experiences",
-            desc: "Crafting seamless cross-platform mobile solutions that feel native. I specialize in React Native to deliver fast, intuitive, and responsive mobile apps that maintain a consistent brand experience across all devices."
-        }
-    ];
 
-    const container = {
-        hidden: { opacity: 0 },
-        show: {
-            opacity: 1,
-            transition: { staggerChildren: 0.1 }
-        }
-    };
 
-    const item = {
-        hidden: { opacity: 0, y: 20 },
-        show: { opacity: 1, y: 0 }
-    };
+
+
+
 
     return (
         <div className="home-page">
@@ -59,7 +29,7 @@ const Home = () => {
                     </p>
                 </div>
 
-                <motion.div
+                <Motion.div
                     className="services-grid"
                     initial="hidden"
                     whileInView="visible"
@@ -83,7 +53,7 @@ const Home = () => {
                         { icon: <Database size={32} />, title: "Systems Architecture", desc: "Designing robust backend ecosystems that handle high traffic and complex data flows." },
                         { icon: <Cpu size={32} />, title: "AI Integration", desc: "Implementing intelligent features and predictive models to drive business automation." }
                     ].map((service, i) => (
-                        <motion.div
+                        <Motion.div
                             key={i}
                             className="glass-card"
                             variants={{
@@ -102,9 +72,9 @@ const Home = () => {
                             </div>
                             <h3 style={{ fontSize: '1.5rem', marginBottom: '15px' }}>{service.title}</h3>
                             <p style={{ color: 'var(--text-dim)', lineHeight: '1.6' }}>{service.desc}</p>
-                        </motion.div>
+                        </Motion.div>
                     ))}
-                </motion.div>
+                </Motion.div>
             </section>
 
             <Testimonials />
@@ -115,14 +85,14 @@ const Home = () => {
                     <p className="hero-description" style={{ marginBottom: '40px' }}>
                         Let's discuss how we can bring your vision to life with world-class engineering.
                     </p>
-                    <motion.button
+                    <Motion.button
                         className="cta-primary"
                         style={{ margin: '0 auto' }}
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                     >
                         Start a Conversation
-                    </motion.button>
+                    </Motion.button>
                 </div>
             </section>
         </div>

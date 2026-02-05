@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion as Motion, AnimatePresence } from 'framer-motion';
 import { Fingerprint, ShieldCheck, Lock, Unlock } from 'lucide-react';
 import './VaultEntry.css';
 
@@ -25,7 +25,7 @@ const VaultEntry = ({ onAccessGranted }) => {
     }, [status, onAccessGranted]);
 
     return (
-        <motion.div
+        <Motion.div
             className="vault-entry-overlay"
             exit={{ opacity: 0, scale: 1.1 }}
             transition={{ duration: 0.8, ease: 'easeInOut' }}
@@ -33,7 +33,7 @@ const VaultEntry = ({ onAccessGranted }) => {
             <div className="vault-entry-container">
                 <AnimatePresence mode="wait">
                     {status === 'initial' && (
-                        <motion.div
+                        <Motion.div
                             key="initial"
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
@@ -42,19 +42,19 @@ const VaultEntry = ({ onAccessGranted }) => {
                             <Lock size={64} style={{ marginBottom: '30px', opacity: 0.8 }} />
                             <h2 style={{ fontSize: '1.2rem', letterSpacing: '4px', marginBottom: '20px' }}>ENCRYPTED VAULT</h2>
                             <p style={{ fontSize: '0.8rem', opacity: 0.6, marginBottom: '40px' }}>IDENTITY VERIFICATION REQUIRED</p>
-                            <motion.button
+                            <Motion.button
                                 onClick={() => setStatus('scanning')}
                                 whileHover={{ scale: 1.05, boxShadow: '0 0 20px var(--accent)' }}
                                 whileTap={{ scale: 0.95 }}
                                 className="vault-scan-btn"
                             >
                                 INITIATE SCAN
-                            </motion.button>
-                        </motion.div>
+                            </Motion.button>
+                        </Motion.div>
                     )}
 
                     {status === 'scanning' && (
-                        <motion.div
+                        <Motion.div
                             key="scanning"
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
@@ -62,7 +62,7 @@ const VaultEntry = ({ onAccessGranted }) => {
                         >
                             <div style={{ position: 'relative', width: '120px', height: '120px', margin: '0 auto 40px' }}>
                                 <Fingerprint size={120} style={{ opacity: 0.3 }} />
-                                <motion.div
+                                <Motion.div
                                     style={{
                                         position: 'absolute',
                                         top: 0,
@@ -77,17 +77,17 @@ const VaultEntry = ({ onAccessGranted }) => {
                                 />
                             </div>
                             <div className="vault-progress-bg">
-                                <motion.div
+                                <Motion.div
                                     className="vault-progress-bar"
                                     style={{ width: `${progress}%` }}
                                 />
                             </div>
                             <p style={{ fontSize: '0.8rem', letterSpacing: '2px' }}>SCANNING BIOMETRICS: {progress}%</p>
-                        </motion.div>
+                        </Motion.div>
                     )}
 
                     {status === 'granted' && (
-                        <motion.div
+                        <Motion.div
                             key="granted"
                             initial={{ opacity: 0, scale: 0.8 }}
                             animate={{ opacity: 1, scale: 1 }}
@@ -96,7 +96,7 @@ const VaultEntry = ({ onAccessGranted }) => {
                             <h2 style={{ color: '#00ff41', fontSize: '1.5rem', letterSpacing: '6px', marginBottom: '10px' }}>ACCESS GRANTED</h2>
                             <p style={{ color: '#00ff41', opacity: 0.8, fontSize: '0.8rem' }}>WELCOME, COMMANDER KING</p>
 
-                            <motion.div
+                            <Motion.div
                                 className="vault-logs"
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
@@ -104,12 +104,12 @@ const VaultEntry = ({ onAccessGranted }) => {
                                 <p>{">"} decrypting_portfolio_v2.0...</p>
                                 <p>{">"} bypassing_security_protocols...</p>
                                 <p>{">"} initializing_ux_engine...</p>
-                            </motion.div>
-                        </motion.div>
+                            </Motion.div>
+                        </Motion.div>
                     )}
                 </AnimatePresence>
             </div>
-        </motion.div>
+        </Motion.div>
     );
 };
 
