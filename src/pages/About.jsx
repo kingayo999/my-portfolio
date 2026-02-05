@@ -29,9 +29,9 @@ const About = () => {
                     viewport={{ once: true }}
                     transition={{ duration: 0.6 }}
                 >
-                    <div style={{ textAlign: 'center', marginBottom: '80px' }}>
+                    <div className="about-hero-header">
                         <h2 className="section-title gradient-text">My Professional Journey</h2>
-                        <p className="hero-description" style={{ margin: '0 auto' }}>
+                        <p className="hero-description">
                             Transforming complex requirements into elegant, high-performance digital solutions.
                         </p>
                     </div>
@@ -50,21 +50,22 @@ const About = () => {
                             <motion.p
                                 variants={{ hidden: { opacity: 0, x: -20 }, visible: { opacity: 1, x: 0 } }}
                                 transition={{ duration: 0.8 }}
-                                style={{ fontSize: '1.1rem', color: 'var(--text-dim)', marginBottom: '20px', lineHeight: '1.7' }}
+                                className="about-story-text"
                             >
                                 My journey began with a fundamental fascination for solving complex puzzles through code. What started as exploring the building blocks of the web has evolved into a career dedicated to architecting high-stakes digital environments. I've spent years refining my craft, moving from individual contributor to a leadership role where I bridge the gap between technical possibility and business necessity.
                             </motion.p>
                             <motion.p
                                 variants={{ hidden: { opacity: 0, x: -20 }, visible: { opacity: 1, x: 0 } }}
                                 transition={{ duration: 0.8 }}
-                                style={{ fontSize: '1.1rem', color: 'var(--text-dim)', marginBottom: '20px', lineHeight: '1.7' }}
+                                className="about-story-text"
                             >
                                 I believe that great software isn't just about clean code—it's about empathy for the end-user and a deep understanding of the problem being solved. My methodology revolves around rigorous testing, performance optimization, and maintaining a high standard of accessibility, ensuring that every product I build is inclusive, fast, and future-proof.
                             </motion.p>
                             <motion.p
                                 variants={{ hidden: { opacity: 0, x: -20 }, visible: { opacity: 1, x: 0 } }}
                                 transition={{ duration: 0.8 }}
-                                style={{ fontSize: '1.1rem', color: 'var(--text-dim)', marginBottom: '30px', lineHeight: '1.7' }}
+                                className="about-story-text"
+                                style={{ marginBottom: '30px' }}
                             >
                                 Today, I partner with forward-thinking companies to deliver digital products that don't just function—they thrive. Whether it's scaling a fintech platform to handle millions of transactions or building a premium brand experience, I bring a commitment to excellence that ensures long-term success and user loyalty.
                             </motion.p>

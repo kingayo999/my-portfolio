@@ -69,7 +69,7 @@ const IntroTour = () => {
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
-                            style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.4)', backdropFilter: 'blur(2px)', pointerEvents: 'auto' }}
+                            className="tour-overlay"
                             onClick={completeTour}
                         />
 
@@ -77,18 +77,7 @@ const IntroTour = () => {
                             initial={{ opacity: 0, scale: 0.9, y: 20 }}
                             animate={{ opacity: 1, scale: 1, y: 0 }}
                             exit={{ opacity: 0, scale: 0.9, y: 20 }}
-                            className="glass-card"
-                            style={{
-                                position: 'fixed',
-                                bottom: '100px',
-                                left: '50%',
-                                transform: 'translateX(-50%)',
-                                width: 'min(400px, 90vw)',
-                                padding: '30px',
-                                pointerEvents: 'auto',
-                                border: '1px solid var(--accent)',
-                                boxShadow: '0 0 30px var(--accent-glow)'
-                            }}
+                            className="glass-card tour-card"
                         >
                             <button
                                 onClick={completeTour}

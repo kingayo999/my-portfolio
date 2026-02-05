@@ -43,7 +43,7 @@ const Contact = () => {
 
     return (
         <section id="contact" className="contact">
-            <div style={{ textAlign: 'center', marginBottom: '80px' }}>
+            <div className="contact-header">
                 <h2 className="section-title gradient-text">Elevate Your Project</h2>
                 <p className="hero-description" style={{ margin: '0 auto', maxWidth: '700px' }}>
                     Ready to build something extraordinary? I'm currently accepting new projects and consulting engagements. Reach out to start the conversation.
@@ -51,21 +51,20 @@ const Contact = () => {
             </div>
 
             {/* Process Section */}
-            <div style={{ marginBottom: '100px' }}>
+            <div className="process-section">
                 <h3 className="section-title" style={{ fontSize: '2rem' }}>The Collaborative Process</h3>
                 <div className="process-grid">
                     {processSteps.map((step, i) => (
                         <motion.div
                             key={i}
-                            className="glass-card"
-                            style={{ padding: '30px', textAlign: 'center' }}
+                            className="glass-card process-step-card"
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.8, delay: i * 0.2 }}
                             whileHover={{ y: -5, borderColor: 'var(--accent)' }}
                         >
-                            <div style={{ color: 'var(--accent)', marginBottom: '15px', display: 'flex', justifyContent: 'center' }}>
+                            <div className="process-icon-wrapper">
                                 <CheckCircle2 size={32} />
                             </div>
                             <h4 style={{ fontSize: '1.4rem', marginBottom: '10px' }}>{step.title}</h4>
@@ -75,7 +74,7 @@ const Contact = () => {
                 </div>
             </div>
 
-            <div className="contact-container" style={{ marginBottom: '100px' }}>
+            <div className="contact-container contact-main">
                 <motion.div
                     className="contact-info"
                     initial={{ opacity: 0, x: -20 }}
@@ -83,12 +82,12 @@ const Contact = () => {
                     viewport={{ once: true }}
                     transition={{ duration: 0.8 }}
                 >
-                    <div className="glass-card" style={{ padding: '40px', height: '100%', display: 'flex', flexDirection: 'column', gap: '40px' }}>
+                    <div className="glass-card contact-info-card">
                         <div>
                             <h3 style={{ fontSize: '1.5rem', marginBottom: '20px' }}>Contact Details</h3>
                             <div style={{ display: 'flex', flexDirection: 'column', gap: '25px' }}>
-                                <div style={{ display: 'flex', gap: '20px', alignItems: 'center' }}>
-                                    <div style={{ width: '50px', height: '50px', borderRadius: '12px', background: 'var(--accent-faint)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--accent)' }}>
+                                <div className="contact-method-item">
+                                    <div className="contact-icon-box">
                                         <Mail size={24} />
                                     </div>
                                     <div>
@@ -97,8 +96,8 @@ const Contact = () => {
                                         <span style={{ fontSize: '0.75rem', color: 'var(--accent)' }}>Responds within 24 hours</span>
                                     </div>
                                 </div>
-                                <div style={{ display: 'flex', gap: '20px', alignItems: 'center' }}>
-                                    <div style={{ width: '50px', height: '50px', borderRadius: '12px', background: 'var(--accent-faint)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--accent)' }}>
+                                <div className="contact-method-item">
+                                    <div className="contact-icon-box">
                                         <MessageSquare size={24} />
                                     </div>
                                     <div>
@@ -106,8 +105,8 @@ const Contact = () => {
                                         <p style={{ color: 'var(--text-dim)' }}>WhatsApp, Slack, Discord</p>
                                     </div>
                                 </div>
-                                <div style={{ display: 'flex', gap: '20px', alignItems: 'center' }}>
-                                    <div style={{ width: '50px', height: '50px', borderRadius: '12px', background: 'var(--accent-faint)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--accent)' }}>
+                                <div className="contact-method-item">
+                                    <div className="contact-icon-box">
                                         <MapPin size={24} />
                                     </div>
                                     <div>
@@ -145,9 +144,8 @@ const Contact = () => {
 
                 <motion.form
                     ref={form}
-                    className="contact-form glass-card"
+                    className="contact-form glass-card contact-form-card"
                     onSubmit={sendEmail}
-                    style={{ padding: '40px', maxWidth: 'none', margin: '0' }}
                     initial={{ opacity: 0, x: 20 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}

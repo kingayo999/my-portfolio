@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { Helmet } from 'react-helmet-async';
 import { ArrowLeft, Github, ExternalLink, Cpu, Layout, Boxes, CheckCircle2 } from 'lucide-react';
 import { projectsData } from '../data/projectsData';
+import './ProjectDetail.css';
 
 const ProjectDetail = () => {
     const { id } = useParams();
@@ -25,7 +26,7 @@ const ProjectDetail = () => {
                 <meta name="description" content={project.desc} />
             </Helmet>
 
-            <section style={{ maxWidth: '1000px', margin: '0 auto', padding: '100px 20px' }}>
+            <section className="project-detail-container">
                 <motion.div
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
@@ -36,7 +37,7 @@ const ProjectDetail = () => {
                     </Link>
                 </motion.div>
 
-                <div className="detail-header" style={{ marginBottom: '60px' }}>
+                <div className="detail-header">
                     <motion.span
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
@@ -50,7 +51,6 @@ const ProjectDetail = () => {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.3, duration: 0.8 }}
                         className="gradient-text"
-                        style={{ fontSize: 'clamp(2.5rem, 8vw, 4rem)', margin: '10px 0 20px' }}
                     >
                         {project.title}
                     </motion.h1>
@@ -58,65 +58,67 @@ const ProjectDetail = () => {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ delay: 0.4 }}
-                        style={{ fontSize: '1.25rem', color: 'var(--text-dim)', maxWidth: '800px', lineHeight: '1.6' }}
                     >
                         {project.desc}
                     </motion.p>
                 </div>
 
-                <div className="detail-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '60px' }}>
+                <div className="detail-grid">
                     <motion.div
+                        className="detail-section"
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.5 }}
                     >
-                        <h3 style={{ display: 'flex', alignItems: 'center', gap: '12px', fontSize: '1.5rem', marginBottom: '20px' }}>
+                        <h3>
                             <Layout size={24} style={{ color: 'var(--accent)' }} /> Overview
                         </h3>
-                        <p style={{ color: 'var(--text-dim)', lineHeight: '1.8', fontSize: '1.1rem' }}>{project.fullDesc}</p>
+                        <p>{project.fullDesc}</p>
                     </motion.div>
 
                     <motion.div
+                        className="detail-section"
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.6 }}
                     >
-                        <h3 style={{ display: 'flex', alignItems: 'center', gap: '12px', fontSize: '1.5rem', marginBottom: '20px' }}>
+                        <h3>
                             <Boxes size={24} style={{ color: 'var(--accent)' }} /> Technical Approach
                         </h3>
-                        <p style={{ color: 'var(--text-dim)', lineHeight: '1.8', fontSize: '1.1rem' }}>{project.approach}</p>
+                        <p>{project.approach}</p>
                     </motion.div>
 
                     <motion.div
+                        className="detail-section"
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.7 }}
                     >
-                        <h3 style={{ display: 'flex', alignItems: 'center', gap: '12px', fontSize: '1.5rem', marginBottom: '20px' }}>
+                        <h3>
                             <Cpu size={24} style={{ color: 'var(--accent)' }} /> Challenges
                         </h3>
-                        <p style={{ color: 'var(--text-dim)', lineHeight: '1.8', fontSize: '1.1rem' }}>{project.challenges}</p>
+                        <p>{project.challenges}</p>
                     </motion.div>
 
                     <motion.div
+                        className="detail-section"
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.8 }}
                     >
-                        <h3 style={{ display: 'flex', alignItems: 'center', gap: '12px', fontSize: '1.5rem', marginBottom: '20px' }}>
+                        <h3>
                             <CheckCircle2 size={24} style={{ color: 'var(--accent)' }} /> Impact & Results
                         </h3>
-                        <p style={{ color: 'var(--text-dim)', lineHeight: '1.8', fontSize: '1.1rem' }}>{project.results}</p>
+                        <p>{project.results}</p>
                     </motion.div>
                 </div>
 
                 <motion.div
-                    className="glass-card"
-                    style={{ marginTop: '80px', padding: '40px', display: 'flex', justifyContent: 'center', gap: '30px', flexWrap: 'wrap' }}
+                    className="glass-card detail-footer-actions"
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}

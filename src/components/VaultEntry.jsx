@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Fingerprint, ShieldCheck, Lock, Unlock } from 'lucide-react';
+import './VaultEntry.css';
 
 const VaultEntry = ({ onAccessGranted }) => {
     const [status, setStatus] = useState('initial'); // initial, scanning, granted
@@ -25,25 +26,11 @@ const VaultEntry = ({ onAccessGranted }) => {
 
     return (
         <motion.div
-            style={{
-                position: 'fixed',
-                top: 0,
-                left: 0,
-                width: '100%',
-                height: '100vh',
-                background: '#030408',
-                zIndex: 10000,
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                justifyContent: 'center',
-                color: 'var(--accent)',
-                fontFamily: "'Courier New', Courier, monospace"
-            }}
+            className="vault-entry-overlay"
             exit={{ opacity: 0, scale: 1.1 }}
             transition={{ duration: 0.8, ease: 'easeInOut' }}
         >
-            <div style={{ maxWidth: '400px', width: '100%', padding: '20px', textAlign: 'center' }}>
+            <div className="vault-entry-container">
                 <AnimatePresence mode="wait">
                     {status === 'initial' && (
                         <motion.div
@@ -59,16 +46,7 @@ const VaultEntry = ({ onAccessGranted }) => {
                                 onClick={() => setStatus('scanning')}
                                 whileHover={{ scale: 1.05, boxShadow: '0 0 20px var(--accent)' }}
                                 whileTap={{ scale: 0.95 }}
-                                style={{
-                                    background: 'transparent',
-                                    border: '1px solid var(--accent)',
-                                    color: 'var(--accent)',
-                                    padding: '15px 40px',
-                                    cursor: 'pointer',
-                                    fontSize: '0.9rem',
-                                    letterSpacing: '2px',
-                                    borderRadius: '4px'
-                                }}
+                                className="vault-scan-btn"
                             >
                                 INITIATE SCAN
                             </motion.button>
@@ -98,9 +76,10 @@ const VaultEntry = ({ onAccessGranted }) => {
                                     transition={{ repeat: Infinity, duration: 2, ease: 'linear' }}
                                 />
                             </div>
-                            <div style={{ background: 'rgba(255,255,255,0.05)', height: '4px', borderRadius: '2px', overflow: 'hidden', marginBottom: '20px' }}>
+                            <div className="vault-progress-bg">
                                 <motion.div
-                                    style={{ height: '100%', background: 'var(--accent)', width: `${progress}%`, boxShadow: '0 0 10px var(--accent)' }}
+                                    className="vault-progress-bar"
+                                    style={{ width: `${progress}%` }}
                                 />
                             </div>
                             <p style={{ fontSize: '0.8rem', letterSpacing: '2px' }}>SCANNING BIOMETRICS: {progress}%</p>
@@ -118,7 +97,7 @@ const VaultEntry = ({ onAccessGranted }) => {
                             <p style={{ color: '#00ff41', opacity: 0.8, fontSize: '0.8rem' }}>WELCOME, COMMANDER KING</p>
 
                             <motion.div
-                                style={{ marginTop: '40px', textAlign: 'left', fontSize: '0.7rem', opacity: 0.5 }}
+                                className="vault-logs"
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
                             >

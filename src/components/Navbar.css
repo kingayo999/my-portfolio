@@ -136,11 +136,12 @@
 }
 
 .mobile-cta {
-    width: fit-content;
-    min-width: 180px;
+    width: 100%;
+    max-width: 250px;
     display: block;
     margin: 0 auto;
     text-align: center;
+    padding: 14px;
 }
 
 @media (max-width: 1024px) {

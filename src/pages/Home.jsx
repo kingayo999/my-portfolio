@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { Helmet } from 'react-helmet-async';
+import { Link } from 'react-router-dom';
 import { Code2, Database, Cpu, Smartphone } from 'lucide-react';
 import Hero from '../components/Hero';
 import Testimonials from '../components/Testimonials';

@@ -69,6 +69,17 @@
     }
 }
 
+@media (max-width: 320px) {
+    .hero-title {
+        font-size: 2.5rem;
+    }
+
+    .hero-badge {
+        font-size: 0.75rem;
+        padding: 6px 12px;
+    }
+}
+
 .hero-title {
     font-size: clamp(3rem, 10vw, 5.5rem);
     line-height: 1;
@@ -87,8 +98,10 @@
 
 .hero-btns {
     display: flex;
+    flex-wrap: wrap;
     gap: 20px;
     justify-content: center;
+    align-items: center;
 }
 
 .cta-primary {
@@ -101,6 +114,10 @@
     cursor: pointer;
     box-shadow: 0 0 20px var(--accent-glow);
     transition: var(--transition);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
 }
 
 .cta-primary:hover {
@@ -117,6 +134,10 @@
     font-weight: 700;
     cursor: pointer;
     transition: var(--transition);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
 }
 
 .cta-secondary:hover {
