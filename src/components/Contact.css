@@ -121,15 +121,52 @@ textarea {
 }
 
 @media (max-width: 968px) {
+    .contact-section {
+        padding: 80px 5%;
+    }
+
     .contact-grid {
         grid-template-columns: 1fr;
+        gap: 40px;
+        margin-top: 40px;
     }
 
     .contact-form {
         grid-template-columns: 1fr;
+        padding: 30px 20px;
     }
 
     .form-group.full {
         grid-column: span 1;
+    }
+
+    .method-card {
+        padding: 20px;
+        gap: 15px;
+    }
+
+    .method-icon {
+        width: 44px;
+        height: 44px;
+    }
+
+    .method-val {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .section-title {
+        font-size: 2rem;
+    }
+
+    .contact-methods {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .method-card {
+        margin-bottom: 0;
     }
 }

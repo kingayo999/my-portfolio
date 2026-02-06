@@ -1,8 +1,15 @@
 .chatbot-wrapper {
     position: fixed;
-    bottom: 30px;
-    right: 30px;
+    bottom: 20px;
+    right: 20px;
     z-index: 900;
+}
+
+@media (max-width: 480px) {
+    .chatbot-wrapper {
+        bottom: 15px;
+        right: 15px;
+    }
 }
 
 .chatbot-toggle {
@@ -24,8 +31,8 @@
     position: absolute;
     bottom: 80px;
     right: 0;
-    width: 350px;
-    height: 500px;
+    width: min(380px, calc(100vw - 40px));
+    height: min(600px, calc(100vh - 120px));
     display: flex;
     flex-direction: column;
     overflow: hidden;

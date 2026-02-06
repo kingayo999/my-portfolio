@@ -89,29 +89,33 @@ const Navbar = ({ theme, toggleTheme }) => {
                         initial={{ x: '100%' }}
                         animate={{ x: 0 }}
                         exit={{ x: '100%' }}
-                        transition={{ type: 'tween', ease: 'easeInOut', duration: 0.3 }}
+                        transition={{ type: 'spring', damping: 25, stiffness: 200 }}
                     >
                         <button
                             className="mobile-menu-close"
                             onClick={() => setIsOpen(false)}
                             aria-label="Close Menu"
                         >
-                            <X size={24} />
+                            <X size={28} />
                         </button>
                         <ul className="mobile-links">
                             {navLinks.map((item, i) => (
                                 <Motion.li
                                     key={item}
-                                    initial={{ opacity: 0, x: 20 }} // Adjusted for slide-in from right
+                                    initial={{ opacity: 0, x: 20 }}
                                     animate={{ opacity: 1, x: 0 }}
-                                    transition={{ delay: i * 0.1 }}
+                                    transition={{ delay: 0.1 + i * 0.1 }}
                                 >
                                     <NavLink to={item === 'Home' ? '/' : `/${item.toLowerCase()}`} onClick={() => setIsOpen(false)}>
                                         {item}
                                     </NavLink>
                                 </Motion.li>
                             ))}
-                            <Motion.li initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.4 }}>
+                            <Motion.li
+                                initial={{ opacity: 0, x: 20 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                transition={{ delay: 0.5 }}
+                            >
                                 <Link to="/contact" className="cta-primary" onClick={() => setIsOpen(false)}>Start a Project</Link>
                             </Motion.li>
                         </ul>

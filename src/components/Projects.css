@@ -114,7 +114,56 @@
 }
 
 @media (max-width: 768px) {
+    .projects-section {
+        padding: 80px 5%;
+    }
+
+    .section-header {
+        margin-bottom: 50px;
+    }
+
     .section-title {
-        font-size: 2.2rem;
+        font-size: 2.22rem;
+    }
+
+    .projects-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .card-inner {
+        padding: 30px 25px;
+    }
+
+    .project-card h3 {
+        font-size: 1.5rem;
+    }
+
+    .tech-stack-mini {
+        gap: 8px;
+    }
+
+    .tech-tag {
+        font-size: 0.7rem;
+        padding: 3px 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .section-title {
+        font-size: 1.8rem;
+    }
+
+    .card-actions {
+        flex-direction: column;
+        gap: 20px;
+        align-items: flex-start;
+    }
+
+    .icon-links {
+        width: 100%;
+        justify-content: space-between;
+        padding-top: 15px;
+        border-top: 1px solid var(--glass-border);
     }
 }

@@ -57,7 +57,14 @@ body {
   color: var(--text-main);
   font-family: var(--font-body);
   overflow-x: hidden;
+  width: 100%;
+  position: relative;
   line-height: 1.6;
+}
+
+html {
+  overflow-x: hidden;
+  width: 100%;
 }
 
 h1,
@@ -211,23 +218,23 @@ h6 {
 /* Global Mobile Optimizations */
 @media (max-width: 768px) {
   :root {
-    --section-spacing: 80px;
+    --nav-height: 50px;
+    --section-spacing: 40px;
     /* Reduce spacing on mobile */
     --card-radius: 16px;
     /* Slightly smaller radius */
   }
 
   h1 {
-    font-size: 2.5rem !important;
-    /* Force resize if not scoped */
+    font-size: 2.2rem !important;
+    /* Slightly smaller for tight fit */
   }
 
   h2 {
-    font-size: 2rem !important;
+    font-size: 1.8rem !important;
   }
 
   .glass-card {
-    padding: 25px !important;
-    /* Standardize card padding on mobile */
+    padding: 20px !important;
   }
 }
