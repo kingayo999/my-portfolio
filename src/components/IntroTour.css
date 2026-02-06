@@ -1,0 +1,31 @@
+.tour-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.85);
+    /* Darker backdrop */
+    backdrop-filter: blur(8px);
+    z-index: 9999;
+    cursor: pointer;
+}
+
+[data-theme='light'] .tour-overlay {
+    background: rgba(255, 255, 255, 0.95);
+}
+
+.tour-card {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) !important;
+    /* Force centering despite motion */
+    width: 90%;
+    max-width: 450px;
+    padding: 40px;
+    z-index: 2;
+    background: rgba(15, 10, 40, 0.95);
+    border: 1px solid var(--accent);
+    box-shadow: 0 0 50px rgba(0, 242, 255, 0.15);
+}

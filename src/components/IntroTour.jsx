@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { AnimatePresence, motion as Motion } from 'framer-motion';
 import { X, ChevronRight, HelpCircle } from 'lucide-react';
+import './IntroTour.css';
 
 const tourSteps = [
     {
@@ -61,7 +62,7 @@ const IntroTour = () => {
                 but for now let-s keep it simple with an internal trigger or event listener */}
             <AnimatePresence>
                 {isVisible && step >= 0 && (
-                    <div style={{ position: 'fixed', inset: 0, zIndex: 9999, pointerEvents: 'none' }}>
+                    <div style={{ position: 'fixed', inset: 0, zIndex: 9999 }}>
                         <Motion.div
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}

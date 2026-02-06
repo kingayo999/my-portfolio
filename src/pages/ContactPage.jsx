@@ -5,15 +5,9 @@ const ContactPage = () => {
     return (
         <div className="contact-page">
             <Helmet>
-                <title>Contact | KING - Let's Engineer Something Extraordinary</title>
-                <meta name="description" content="Reach out to KING for high-stakes engineering projects, system architecture consulting, or full-stack development. Available for remote collaboration." />
+                <title>Contact | King Ayo</title>
+                <meta name="description" content="Get in touch with King Ayo for web development projects and consulting." />
             </Helmet>
-            <div style={{ textAlign: 'center', paddingTop: '100px' }}>
-                <h2 className="section-title gradient-text">Let's Build Something Great</h2>
-                <p className="hero-description" style={{ marginBottom: '50px' }}>
-                    Available for freelance projects and full-time opportunities.
-                </p>
-            </div>
             <Contact />
         </div>
     );

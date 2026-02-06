@@ -10,7 +10,7 @@ const ProjectsPage = () => {
             </Helmet>
             <Projects />
             <div style={{ textAlign: 'center', paddingBottom: '100px' }}>
-                <p className="hero-description">Explore more of my work on GitHub.</p>
+                <p className="hero-description" style={{ display: 'none' }}>Explore more of my work on GitHub.</p>
                 <a
                     href="https://github.com/kingayo999"
                     target="_blank"

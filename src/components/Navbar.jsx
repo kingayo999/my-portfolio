@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { NavLink, Link, useLocation } from 'react-router-dom';
 import { Menu, X, Sun, Moon } from 'lucide-react';
 import { motion as Motion, AnimatePresence } from 'framer-motion';
 import { triggerHaptic, hapticPatterns } from '../utils/haptics';
@@ -7,96 +7,118 @@ import './Navbar.css';
 
 const Navbar = ({ theme, toggleTheme }) => {
     const [isOpen, setIsOpen] = useState(false);
+    const [scrolled, setScrolled] = useState(false);
+    const location = useLocation();
 
-    const handleThemeToggle = () => {
-        triggerHaptic(hapticPatterns.light);
-        toggleTheme();
-    };
+    // Close menu on route change
+    useEffect(() => {
+        setIsOpen(false);
+    }, [location]);
 
+    useEffect(() => {
+        const handleScroll = () => {
+            setScrolled(window.scrollY > 20);
+        };
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
 
-    const toggleMenu = () => setIsOpen(!isOpen);
-    const closeMenu = () => setIsOpen(false);
+    const navLinks = ['Home', 'About', 'Projects', 'Contact'];
 
     return (
-        <nav className={`navbar glass-card ${isOpen ? 'menu-open' : ''}`}>
-            <div className="nav-container">
-                <Link to="/" className="logo gradient-text" onClick={closeMenu}>KING.</Link>
+        <Motion.nav
+            className={`navbar ${scrolled ? 'scrolled' : ''}`}
+            initial={{ y: -100 }}
+            animate={{ y: 0 }}
+            transition={{ duration: 0.6, type: 'spring' }}
+        >
+            <div className="nav-container glass-card">
+                <Link to="/" className="logo">
+                    <span className="logo-text gradient-text">KING.</span>
+                </Link>
 
-                {/* Desktop Links */}
-                <ul className="nav-links">
-                    {['Home', 'About', 'Projects', 'Contact'].map((item, i) => (
-                        <Motion.li
-                            key={item}
-                            initial={{ opacity: 0, y: -10 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.8, delay: i * 0.15 + 0.3, ease: "easeOut" }}
-                        >
-                            <NavLink
-                                to={item === 'Home' ? '/' : `/${item.toLowerCase()}`}
-                                className={({ isActive }) => isActive ? 'active' : ''}
-                            >
-                                {item}
-                            </NavLink>
-                        </Motion.li>
-                    ))}
-                </ul>
+                {/* Desktop Menu */}
+                <div className="desktop-menu">
+                    <ul className="nav-links">
+                        {navLinks.map((item) => (
+                            <li key={item}>
+                                <NavLink
+                                    to={item === 'Home' ? '/' : `/${item.toLowerCase()}`}
+                                    className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}
+                                >
+                                    {item}
+                                    <Motion.span className="link-highlight" layoutId="highlight" />
+                                </NavLink>
+                            </li>
+                        ))}
+                    </ul>
 
-                <div className="nav-actions">
-                    <Motion.button
-                        onClick={handleThemeToggle}
-                        className="theme-toggle"
-                        aria-label="Toggle theme"
-                        whileHover={{ scale: 1.1 }}
-                        whileTap={{ scale: 0.9 }}
-                    >
-                        <AnimatePresence mode="wait" initial={false}>
-                            <Motion.div
-                                key={theme}
-                                initial={{ y: -20, opacity: 0, rotate: -90 }}
-                                animate={{ y: 0, opacity: 1, rotate: 0 }}
-                                exit={{ y: 20, opacity: 0, rotate: 90 }}
-                                transition={{ duration: 0.4, ease: "anticipate" }}
-                            >
-                                {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
-                            </Motion.div>
-                        </AnimatePresence>
-                    </Motion.button>
-                    {!isOpen && (
-                        <Motion.div
-                            initial={{ opacity: 0, scale: 0.9 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            transition={{ duration: 0.6, delay: 0.8 }}
+                    <div className="nav-actions">
+                        <Motion.button
+                            className="theme-toggle"
+                            onClick={() => { triggerHaptic(hapticPatterns.light); toggleTheme(); }}
+                            whileTap={{ scale: 0.9 }}
+                            aria-label="Toggle Theme"
                         >
-                            <Link to="/contact" className="cta-button desktop-only" onClick={closeMenu}>Hire Me</Link>
-                        </Motion.div>
-                    )}
-                    <button className="hamburger" onClick={toggleMenu} aria-label="Toggle menu">
-                        {isOpen ? <X size={28} /> : <Menu size={28} />}
-                    </button>
+                            <AnimatePresence mode="wait">
+                                {theme === 'dark' ?
+                                    <Motion.div key="sun" initial={{ rotate: -90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: 90, opacity: 0 }}>
+                                        <Sun size={20} />
+                                    </Motion.div> :
+                                    <Motion.div key="moon" initial={{ rotate: 90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: -90, opacity: 0 }}>
+                                        <Moon size={20} />
+                                    </Motion.div>
+                                }
+                            </AnimatePresence>
+                        </Motion.button>
+                        <Link to="/contact" className="cta-primary small">Hire Me</Link>
+                    </div>
                 </div>
+
+                {/* Mobile Toggle */}
+                <button className="mobile-toggle" onClick={() => setIsOpen(!isOpen)}>
+                    {isOpen ? <X size={28} /> : <Menu size={28} />}
+                </button>
             </div>
 
-            {/* Mobile Menu */}
+            {/* Mobile Menu Overlay */}
             <AnimatePresence>
                 {isOpen && (
                     <Motion.div
-                        className="mobile-menu"
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: 'auto' }}
-                        exit={{ opacity: 0, height: 0 }}
-                        transition={{ duration: 0.3, ease: "easeInOut" }}
+                        className="mobile-menu-overlay"
+                        initial={{ x: '100%' }}
+                        animate={{ x: 0 }}
+                        exit={{ x: '100%' }}
+                        transition={{ type: 'tween', ease: 'easeInOut', duration: 0.3 }}
                     >
-                        <ul className="mobile-nav-links">
-                            <li><NavLink to="/" onClick={closeMenu} className={({ isActive }) => isActive ? 'active' : ''}>Home</NavLink></li>
-                            <li><NavLink to="/about" onClick={closeMenu} className={({ isActive }) => isActive ? 'active' : ''}>About</NavLink></li>
-                            <li><NavLink to="/projects" onClick={closeMenu} className={({ isActive }) => isActive ? 'active' : ''}>Projects</NavLink></li>
-                            <li><NavLink to="/contact" onClick={closeMenu} className={({ isActive }) => isActive ? 'active' : ''}>Contact</NavLink></li>
+                        <button
+                            className="mobile-menu-close"
+                            onClick={() => setIsOpen(false)}
+                            aria-label="Close Menu"
+                        >
+                            <X size={24} />
+                        </button>
+                        <ul className="mobile-links">
+                            {navLinks.map((item, i) => (
+                                <Motion.li
+                                    key={item}
+                                    initial={{ opacity: 0, x: 20 }} // Adjusted for slide-in from right
+                                    animate={{ opacity: 1, x: 0 }}
+                                    transition={{ delay: i * 0.1 }}
+                                >
+                                    <NavLink to={item === 'Home' ? '/' : `/${item.toLowerCase()}`} onClick={() => setIsOpen(false)}>
+                                        {item}
+                                    </NavLink>
+                                </Motion.li>
+                            ))}
+                            <Motion.li initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.4 }}>
+                                <Link to="/contact" className="cta-primary" onClick={() => setIsOpen(false)}>Start a Project</Link>
+                            </Motion.li>
                         </ul>
-                        <Link to="/contact" className="cta-button mobile-cta" onClick={closeMenu}>Hire Me</Link>
                     </Motion.div>
                 )}
             </AnimatePresence>
-        </nav>
+        </Motion.nav>
     );
 };
 
