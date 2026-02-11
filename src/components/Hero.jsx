@@ -52,7 +52,7 @@ const Hero = () => {
                         <Link to="/projects" className="cta-primary">
                             View Projects <ArrowRight size={18} style={{ marginLeft: '8px' }} />
                         </Link>
-                        <a href="/my-portfolio/Ayobami_Olayanju_Resume.pdf" download="Ayobami_Olayanju_Resume.pdf" className="cta-secondary">
+                        <a href="/my-portfolio/Ayobami Olayanju Resume.pdf" download="Ayobami Olayanju Resume.pdf" className="cta-secondary">
                             Download CV <Download size={18} style={{ marginLeft: '8px' }} />
                         </a>
                     </Motion.div>
