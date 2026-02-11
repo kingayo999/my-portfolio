@@ -99,7 +99,7 @@ const Navbar = ({ theme, toggleTheme }) => {
                             <X size={28} />
                         </button>
                         <ul className="mobile-links">
-                            {navLinks.filter(item => item !== 'Contact').map((item, i) => (
+                            {navLinks.map((item, i) => (
                                 <Motion.li
                                     key={item}
                                     initial={{ opacity: 0, x: 20 }}
@@ -111,17 +111,9 @@ const Navbar = ({ theme, toggleTheme }) => {
                                     </NavLink>
                                 </Motion.li>
                             ))}
-
-                            <Motion.div
-                                className="mobile-menu-divider"
-                                initial={{ opacity: 0, scaleX: 0 }}
-                                animate={{ opacity: 1, scaleX: 1 }}
-                                transition={{ delay: 0.4 }}
-                            />
-
                             <Motion.li
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
+                                initial={{ opacity: 0, x: 20 }}
+                                animate={{ opacity: 1, x: 0 }}
                                 transition={{ delay: 0.5 }}
                             >
                                 <Link to="/contact" className="cta-primary" onClick={() => setIsOpen(false)}>

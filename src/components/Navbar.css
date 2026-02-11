@@ -196,15 +196,8 @@
 
 .mobile-links .cta-primary {
     width: 100%;
-    margin-top: 10px;
+    margin-top: 20px;
     justify-content: center;
-}
-
-.mobile-menu-divider {
-    width: 40px;
-    height: 1px;
-    background: var(--glass-border);
-    margin: 10px 0;
 }
 
 .mobile-links .active {
