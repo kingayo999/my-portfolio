@@ -115,8 +115,14 @@ const ProjectDetail = () => {
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
+                    style={{ display: 'flex', gap: '20px', flexWrap: 'wrap' }}
                 >
-                    {project.github && (
+                    {project.link && project.link !== '#' && (
+                        <a href={project.link} target="_blank" rel="noopener noreferrer" className="cta-primary">
+                            <ExternalLink size={20} /> View Live Site
+                        </a>
+                    )}
+                    {project.github && project.github !== '#' && (
                         <a href={project.github} target="_blank" rel="noopener noreferrer" className="cta-secondary">
                             <Github size={20} /> View Source
                         </a>

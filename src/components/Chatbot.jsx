@@ -9,19 +9,19 @@ import './Chatbot.css';
 // K-OS Persona Knowledge Base
 const knowledgeBase = [
     {
-        patterns: [/hi\b/, /hello\b/, /greetings\b/, /hey\b/],
+        patterns: [/hi\b/, /hello\b/, /greetings\b/, /hey\b/, /wassup\b/, /good day\b/],
         responses: [
             { text: "System Online. Greetings, User." },
-            { text: "K-OS Protocol Active. How may I assist?" },
-            { text: "Connection established. Welcome to the network." }
+            { text: "KingGPT Protocol Active. How may I assist?" },
+            { text: "Connection established. Welcome to the website." }
         ]
     },
     {
         patterns: [/who are you\b/, /what are you\b/, /bot\b/],
         responses: [
-            { text: "I am K-OS (Knowledge Operating System), a digital assistant designed to navigate King Ayo's portfolio." },
+            { text: "I am KingGPT, a digital assistant designed to navigate King Ayo's portfolio." },
             { text: "I am the digital construct of this portfolio, here to guide you through projects and skills." },
-            { text: "Identity: K-OS. Function: Assistant. Status: Operational." }
+            { text: "Identity: KingGPT. Function: Assistant. Status: Operational." }
         ]
     },
     {

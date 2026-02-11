@@ -118,7 +118,11 @@ h6 {
 .cta-primary {
   background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
   color: white;
-  padding: 16px 36px;
+  padding: 0 32px;
+  height: 52px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   border-radius: 50px;
   font-weight: 600;
   border: none;
@@ -126,19 +130,30 @@ h6 {
   box-shadow: 0 10px 30px var(--primary-glow);
   transition: var(--transition);
   text-decoration: none;
-  display: inline-block;
+  white-space: nowrap;
 }
 
 .cta-secondary {
   background: rgba(255, 255, 255, 0.05);
   color: var(--text-main);
-  padding: 14px 32px;
+  padding: 0 32px;
+  height: 52px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   border-radius: 50px;
   border: 1px solid var(--glass-border);
   cursor: pointer;
   transition: var(--transition);
   text-decoration: none;
-  display: inline-block;
+  white-space: nowrap;
+}
+
+.cta-primary.small,
+.cta-secondary.small {
+  height: 40px;
+  padding: 0 20px;
+  font-size: 0.85rem;
 }
 
 /* Scrollbar */

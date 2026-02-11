@@ -86,16 +86,16 @@
 .card-actions {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    gap: 12px;
     margin-top: auto;
+    width: 100%;
 }
 
-.cta-secondary.small {
-    padding: 8px 20px;
-    font-size: 0.85rem;
-    display: flex;
-    align-items: center;
-    gap: 8px;
+.card-actions .cta-secondary.small,
+.card-actions .cta-primary.small {
+    flex: 1;
+    min-width: 0;
+    /* Prevent overflow */
 }
 
 .icon-links {
@@ -156,13 +156,18 @@
 
     .card-actions {
         flex-direction: column;
-        gap: 20px;
-        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .card-actions .cta-secondary.small,
+    .card-actions .cta-primary.small {
+        width: 100%;
+        justify-content: center;
     }
 
     .icon-links {
         width: 100%;
-        justify-content: space-between;
+        justify-content: center;
         padding-top: 15px;
         border-top: 1px solid var(--glass-border);
     }

@@ -30,11 +30,11 @@ const Footer = () => {
                         <div className="glass-card vault-content">
                             <div className="vault-header">
                                 <Unlock size={32} color="var(--accent)" />
-                                <h3>Vault Access Granted</h3>
+                                <h3>Technical Overview</h3>
                             </div>
-                            <p>You have discovered the secret developer capabilities.</p>
-                            <p className="code-font">System Status: OPTIMAL</p>
-                            <p className="code-font">Next Upgrade: PENDING</p>
+                            <p>Deep dive into system logs and architectural prototypes.</p>
+                            <p className="code-font">Status: CONTINUOUS LEARNING</p>
+                            <p className="code-font">Focus: SCALABILITY & SECURITY</p>
                             <button onClick={() => setVaultOpen(false)} className="cta-secondary">Close Terminal</button>
                         </div>
                     </Motion.div>
@@ -46,7 +46,7 @@ const Footer = () => {
 
                 <div className="footer-links">
                     <p style={{ fontSize: '0.9rem', color: 'var(--text-dim)' }}>
-                        &copy; {new Date().getFullYear()} King Ayo. Engineered for Excellence.
+                        &copy; {new Date().getFullYear()} King Ayo. Full-Stack Developer & Student.
                     </p>
                 </div>
 

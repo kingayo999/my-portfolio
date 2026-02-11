@@ -93,15 +93,13 @@
 
 .detail-actions {
     display: flex;
-    gap: 20px;
+    gap: 16px;
     justify-content: center;
     margin-bottom: 80px;
 }
 
 .detail-actions a {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+    min-width: 200px;
 }
 
 .detail-tech {
@@ -140,9 +138,11 @@
 
     .detail-actions {
         flex-direction: column;
+        width: 100%;
+        gap: 12px;
     }
 
     .detail-actions a {
-        justify-content: center;
+        width: 100%;
     }
 }

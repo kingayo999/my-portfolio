@@ -6,17 +6,17 @@ import { Link } from 'react-router-dom';
 
 const Home = () => {
     const services = [
-        { icon: <Code2 size={32} />, title: "Full-Stack Engineering", desc: "Architecting end-to-end solutions. React, Node.js, and Cloud Infrastructure designed for scale." },
-        { icon: <Smartphone size={32} />, title: "Mobile Innovation", desc: "Native-quality iOS and Android experiences using React Native and modern animations." },
-        { icon: <Database size={32} />, title: "Systems Architecture", desc: "Robust data design, API optimization, and secure backend ecosystems." },
-        { icon: <Cpu size={32} />, title: "AI Integration", desc: "Building intelligent agents and implementing predictive models for business automation." }
+        { icon: <Code2 size={32} />, title: "Frontend Development", desc: "Building responsive, accessible user interfaces using React and modern CSS frameworks." },
+        { icon: <Database size={32} />, title: "Backend Systems", desc: "Developing secure REST APIs and database structures with Node.js and PostgreSQL." },
+        { icon: <Smartphone size={32} />, title: "Mobile Exploration", desc: "Prototyping cross-platform mobile experiences using React Native and Firebase." },
+        { icon: <Cpu size={32} />, title: "Technical Fundamentals", desc: "Applying computer engineering principles to write clean, maintainable, and efficient code." }
     ];
 
     return (
         <div className="home-page">
             <Helmet>
-                <title>KING. | Full-Stack Engineer & System Architect</title>
-                <meta name="description" content="Portfolio of King, a Senior Full-Stack Engineer specializing in high-performance web applications." />
+                <title>KING. | Full-Stack Developer</title>
+                <meta name="description" content="Portfolio of King, a Full-Stack Developer and Computer Engineering student specializing in robust web systems." />
             </Helmet>
 
             <Hero />

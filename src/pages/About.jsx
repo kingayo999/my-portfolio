@@ -6,9 +6,9 @@ import './About.css';
 
 const About = () => {
     const timeline = [
-        { year: "2023 - Present", title: "Senior Developer", company: "Digital Visionary Studio", desc: "Leading a team of developers in building enterprise-scale React applications." },
-        { year: "2021 - 2023", title: "Full Stack Engineer", company: "TechNova Solutions", desc: "Developed and maintained complex fintech dashboards and real-time trading platforms." },
-        { year: "2019 - 2021", title: "Web Developer", company: "Creative Minds Agency", desc: "Crafted high-end marketing sites and e-commerce experiences for global brands." }
+        { year: "2025 - Present", title: "Full-Stack Development Focus", company: "Self-Taught / Open Source", desc: "Specializing in the PERN/SERN stack (PostgreSQL, Express/Supabase, React, Node.js)." },
+        { year: "2023 - Present", title: "B.Eng Computer Engineering", company: "Bells University of Technology", desc: "Core focus on software engineering, data structures, and system design." },
+        { year: "2021 - 2023", title: "Web Fundamentals", company: "Independent Study", desc: "Mastering HTML, CSS, and JavaScript through documentation and project-based learning." }
     ];
 
     return (
@@ -60,22 +60,22 @@ const About = () => {
                                 whileHover={{ y: -5, borderColor: 'var(--accent)' }}
                             >
                                 <Award className="stat-icon" />
-                                <h4>50+</h4>
-                                <p>Projects Shipped</p>
+                                <h4>10+</h4>
+                                <p>Learning Prototypes</p>
                             </Motion.div>
                             <Motion.div
                                 className="glass-card stat-box"
                                 whileHover={{ y: -5, borderColor: 'var(--primary)' }}
                             >
                                 <Briefcase className="stat-icon" />
-                                <h4>5+ Years</h4>
-                                <p>Professional Exp.</p>
+                                <h4>1 Flagship</h4>
+                                <p>Full-Stack System</p>
                             </Motion.div>
                         </div>
                     </div>
 
                     <div className="timeline-column">
-                        <h3 className="section-heading">Career Trajectory</h3>
+                        <h3 className="section-heading">Learning Journey</h3>
                         <div className="timeline">
                             <div className="timeline-line"></div>
                             {timeline.map((item, i) => (

@@ -29,8 +29,8 @@ const Hero = () => {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.3, duration: 0.8 }}
                     >
-                        Building the <br />
-                        <span className="gradient-text glitch-effect" data-text="Digital Future">Digital Future</span>
+                        Full-Stack <br />
+                        <span className="gradient-text" data-text="Developer">Developer</span>
                     </Motion.h1>
 
                     <Motion.p
@@ -39,8 +39,8 @@ const Hero = () => {
                         animate={{ opacity: 1 }}
                         transition={{ delay: 0.4 }}
                     >
-                        Architecting high-performance web applications and scalable systems
-                        that bridge the gap between imagination and engineering.
+                        Junior software engineer specializing in building robust, well-architected
+                        systems using React, Node.js, and PostgreSQL.
                     </Motion.p>
 
                     <Motion.div
@@ -50,7 +50,7 @@ const Hero = () => {
                         transition={{ delay: 0.5 }}
                     >
                         <Link to="/projects" className="cta-primary">
-                            View Masterpieces <ArrowRight size={18} style={{ marginLeft: '8px' }} />
+                            View Projects <ArrowRight size={18} style={{ marginLeft: '8px' }} />
                         </Link>
                         <a href="/my-portfolio/resume.pdf" download="King_Ayo_Resume.pdf" className="cta-secondary">
                             Download CV <Download size={18} style={{ marginLeft: '8px' }} />
@@ -65,7 +65,7 @@ const Hero = () => {
                     >
                         {[
                             { icon: <Github size={22} />, link: "https://github.com/kingayo999" },
-                            { icon: <Linkedin size={22} />, link: "#" },
+                            { icon: <Linkedin size={22} />, link: "https://www.linkedin.com/in/ayobami-olayanju-9ab0223ab?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" },
                             { icon: <Twitter size={22} />, link: "#" }
                         ].map((social, i) => (
                             <a
@@ -91,12 +91,12 @@ const Hero = () => {
                     <div className="abstract-shape shape-1"></div>
                     <div className="abstract-shape shape-2"></div>
                     <div className="glass-card stat-card card-1">
-                        <h4>5+</h4>
-                        <p>Years Exp.</p>
+                        <h4>1</h4>
+                        <p>Year coding</p>
                     </div>
                     <div className="glass-card stat-card card-2">
-                        <h4>100%</h4>
-                        <p>Success Rate</p>
+                        <h4>BEng.</h4>
+                        <p>Computer Eng.</p>
                     </div>
                 </Motion.div>
             </Motion.div>

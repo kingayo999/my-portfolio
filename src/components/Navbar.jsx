@@ -71,7 +71,7 @@ const Navbar = ({ theme, toggleTheme }) => {
                                 }
                             </AnimatePresence>
                         </Motion.button>
-                        <Link to="/contact" className="cta-primary small">Hire Me</Link>
+                        <Link to="/contact" className="cta-primary small">Contact Me</Link>
                     </div>
                 </div>
 
@@ -116,7 +116,7 @@ const Navbar = ({ theme, toggleTheme }) => {
                                 animate={{ opacity: 1, x: 0 }}
                                 transition={{ delay: 0.5 }}
                             >
-                                <Link to="/contact" className="cta-primary" onClick={() => setIsOpen(false)}>Start a Project</Link>
+                                <Link to="/contact" className="cta-primary" onClick={() => setIsOpen(false)}>Get in Touch</Link>
                             </Motion.li>
                         </ul>
                     </Motion.div>

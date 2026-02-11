@@ -72,7 +72,8 @@
 
 .hero-actions {
     display: flex;
-    gap: 20px;
+    align-items: center;
+    gap: 16px;
     margin-bottom: 50px;
 }
 
@@ -225,6 +226,6 @@
     .hero-actions .cta-primary,
     .hero-actions .cta-secondary {
         width: 100%;
-        text-align: center;
+        margin: 0;
     }
 }

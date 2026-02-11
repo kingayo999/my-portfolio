@@ -55,15 +55,15 @@ const Projects = () => {
                                 <Link to={`/project/${p.id}`} className="cta-secondary small">
                                     Case Study <ArrowRight size={16} />
                                 </Link>
+                                {p.link && p.link !== '#' && (
+                                    <a href={p.link} target="_blank" rel="noreferrer" className="cta-primary small" style={{ marginLeft: '10px' }}>
+                                        Live Demo <ExternalLink size={16} />
+                                    </a>
+                                )}
                                 <div className="icon-links">
-                                    {p.github && (
+                                    {p.github && p.github !== '#' && (
                                         <a href={p.github} target="_blank" rel="noreferrer" title="View Code">
                                             <Github size={20} />
-                                        </a>
-                                    )}
-                                    {p.link && (
-                                        <a href={p.link} target="_blank" rel="noreferrer" title="Live Demo">
-                                            <ExternalLink size={20} />
                                         </a>
                                     )}
                                 </div>

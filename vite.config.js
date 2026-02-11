@@ -14,7 +14,6 @@ export default defineConfig({
         }
       }
     },
-    chunkSizeWarningLimit: 1000,
-    minify: 'terser',
+    chunkSizeWarningLimit: 1000
   }
 })
