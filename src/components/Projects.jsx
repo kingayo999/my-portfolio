@@ -52,12 +52,12 @@ const Projects = () => {
                             </div>
 
                             <div className="card-actions">
-                                <Link to={`/project/${p.id}`} className="cta-secondary small">
-                                    Case Study <ArrowRight size={16} />
+                                <Link to={`/project/${p.id}`} className="cta-secondary">
+                                    Case Study <ArrowRight size={18} />
                                 </Link>
                                 {p.link && p.link !== '#' && (
-                                    <a href={p.link} target="_blank" rel="noreferrer" className="cta-primary small" style={{ marginLeft: '10px' }}>
-                                        Live Demo <ExternalLink size={16} />
+                                    <a href={p.link} target="_blank" rel="noreferrer" className="cta-primary">
+                                        Live Demo <ExternalLink size={18} />
                                     </a>
                                 )}
                                 <div className="icon-links">

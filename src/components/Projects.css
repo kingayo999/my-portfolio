@@ -91,11 +91,11 @@
     width: 100%;
 }
 
-.card-actions .cta-secondary.small,
-.card-actions .cta-primary.small {
+.card-actions .cta-secondary,
+.card-actions .cta-primary {
     flex: 1;
     min-width: 0;
-    /* Prevent overflow */
+    font-size: 0.9rem;
 }
 
 .icon-links {
@@ -159,8 +159,8 @@
         gap: 12px;
     }
 
-    .card-actions .cta-secondary.small,
-    .card-actions .cta-primary.small {
+    .card-actions .cta-secondary,
+    .card-actions .cta-primary {
         width: 100%;
         justify-content: center;
     }
