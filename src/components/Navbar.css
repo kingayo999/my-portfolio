@@ -152,10 +152,11 @@
     background: rgba(10, 5, 30, 0.98);
     backdrop-filter: blur(20px);
     z-index: 1001;
-    padding: 100px 40px 40px;
+    padding: 100px 30px 40px;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
+    /* Center links for better focus */
     justify-content: flex-start;
     border-left: 1px solid var(--glass-border);
     box-shadow: -15px 0 40px rgba(0, 0, 0, 0.6);
@@ -189,11 +190,14 @@
     display: block;
     transition: var(--transition);
     width: 100%;
+    text-align: center;
+    /* Center link text */
 }
 
 .mobile-links .cta-primary {
     width: 100%;
-    margin-top: 10px;
+    margin-top: 20px;
+    justify-content: center;
 }
 
 .mobile-links .active {

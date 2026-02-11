@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink, Link, useLocation } from 'react-router-dom';
-import { Menu, X, Sun, Moon } from 'lucide-react';
+import { Menu, X, Sun, Moon, Send } from 'lucide-react';
 import { motion as Motion, AnimatePresence } from 'framer-motion';
 import { triggerHaptic, hapticPatterns } from '../utils/haptics';
 import './Navbar.css';
@@ -116,7 +116,9 @@ const Navbar = ({ theme, toggleTheme }) => {
                                 animate={{ opacity: 1, x: 0 }}
                                 transition={{ delay: 0.5 }}
                             >
-                                <Link to="/contact" className="cta-primary" onClick={() => setIsOpen(false)}>Get in Touch</Link>
+                                <Link to="/contact" className="cta-primary" onClick={() => setIsOpen(false)}>
+                                    Get in Touch <Send size={18} style={{ marginLeft: '8px' }} />
+                                </Link>
                             </Motion.li>
                         </ul>
                     </Motion.div>
