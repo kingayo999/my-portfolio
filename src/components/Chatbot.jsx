@@ -51,8 +51,8 @@ const knowledgeBase = [
     {
         patterns: [/resume/, /cv\b/, /download/],
         responses: [
-            { text: "Resume data located. Initiating download sequence.", link: "/my-portfolio/resume.pdf", linkText: "Download Resume PDF", download: true },
-            { text: "You can download the full CV using the link below.", link: "/my-portfolio/resume.pdf", linkText: "Access Resume", download: true }
+            { text: "Resume data located. Initiating download sequence.", link: "/my-portfolio/Ayobami_Olayanju_Resume.pdf", linkText: "Download Resume PDF", download: true },
+            { text: "You can download the full CV using the link below.", link: "/my-portfolio/Ayobami_Olayanju_Resume.pdf", linkText: "Access Resume", download: true }
         ]
     },
     {
@@ -181,7 +181,7 @@ const Chatbot = () => {
                                             className="chat-link"
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            download={msg.download ? "King_Ayo_Resume.pdf" : undefined}
+                                            download={msg.download ? "Ayobami_Olayanju_Resume.pdf" : undefined}
                                         >
                                             {msg.linkText} <ExternalLink size={12} />
                                         </a>
