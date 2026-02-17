@@ -9,8 +9,6 @@ import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
 import Chatbot from './components/Chatbot';
 import PageTransition from './components/PageTransition';
-import VaultEntry from './components/VaultEntry';
-import IntroTour from './components/IntroTour';
 
 // Lazy load page components for better performance
 const Home = lazy(() => import('./pages/Home'));
@@ -70,8 +68,6 @@ function App() {
   };
 
   const [theme, setTheme] = useState(localStorage.getItem('theme') || getSystemTheme());
-  const [showVault, setShowVault] = useState(!sessionStorage.getItem('vault_accessed'));
-  const [showIntro, setShowIntro] = useState(!localStorage.getItem('introDone'));
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
@@ -82,43 +78,25 @@ function App() {
     setTheme(prev => prev === 'dark' ? 'light' : 'dark');
   };
 
-  const handleAccessGranted = () => {
-    setShowVault(false);
-    sessionStorage.setItem('vault_accessed', 'true');
-  };
 
   return (
     <HelmetProvider>
       <Router>
         <ScrollToTop />
-        <AnimatePresence mode="wait">
-          {showVault ? (
-            <VaultEntry key="vault" onAccessGranted={handleAccessGranted} />
-          ) : (
-            <Motion.div
-              key="app-content"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 1 }}
-            >
-              <Toaster position="top-center" reverseOrder={false} />
-              <div className="mesh-bg">
-                <div className="mesh-blob"></div>
-                <div className="mesh-blob mesh-blob-2"></div>
-              </div>
+        <Toaster position="top-center" reverseOrder={false} />
+        <div className="mesh-bg">
+          <div className="mesh-blob"></div>
+          <div className="mesh-blob mesh-blob-2"></div>
+        </div>
 
-              <div className="app">
-                <Navbar theme={theme} toggleTheme={toggleTheme} />
-                <main style={{ paddingTop: 'var(--nav-height)' }}>
-                  <AnimatedRoutes />
-                </main>
-                <Chatbot />
-                <IntroTour />
-                <Footer />
-              </div>
-            </Motion.div>
-          )}
-        </AnimatePresence>
+        <div className="app">
+          <Navbar theme={theme} toggleTheme={toggleTheme} />
+          <main style={{ paddingTop: 'var(--nav-height)' }}>
+            <AnimatedRoutes />
+          </main>
+          <Chatbot />
+          <Footer />
+        </div>
       </Router>
     </HelmetProvider>
   );
