@@ -64,8 +64,28 @@
 .project-card p {
     color: var(--text-dim);
     font-size: 0.95rem;
-    margin-bottom: 25px;
+    margin-bottom: 16px;
     flex-grow: 1;
+}
+
+.project-result {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    background: rgba(0, 242, 255, 0.06);
+    border-left: 2px solid var(--accent);
+    padding: 10px 12px;
+    border-radius: 0 6px 6px 0;
+    margin-bottom: 18px;
+    font-size: 0.82rem;
+    color: var(--text-dim);
+    line-height: 1.5;
+}
+
+.result-icon {
+    color: var(--accent);
+    flex-shrink: 0;
+    margin-top: 2px;
 }
 
 .tech-stack-mini {

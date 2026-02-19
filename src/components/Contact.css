@@ -58,44 +58,16 @@
     padding: 40px;
     display: flex;
     flex-direction: column;
-    gap: 24px;
+    gap: 20px;
 }
 
-.form-group {
-    position: relative;
-    margin-bottom: 10px;
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
 }
 
-.form-group.full {
-    grid-column: span 2;
-}
-
-.form-group label {
-    position: absolute;
-    top: 15px;
-    left: 20px;
-    font-size: 0.9rem;
-    color: var(--text-dim);
-    transition: var(--transition);
-    pointer-events: none;
-    background: transparent;
-}
-
-.form-group label.active,
-.form-group input:valid~label,
-.form-group textarea:valid~label {
-    top: -10px;
-    left: 10px;
-    font-size: 0.75rem;
-    color: var(--accent);
-    background: var(--bg-dark);
-    /* Hack for visible label over border */
-    padding: 0 5px;
-    z-index: 10;
-}
-
-.form-group input,
-.form-group textarea {
+.form-group select {
     width: 100%;
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid var(--glass-border);
@@ -106,10 +78,69 @@
     font-size: 1rem;
     outline: none;
     transition: var(--transition);
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+}
+
+.form-group select:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 15px rgba(0, 242, 255, 0.1);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.form-group select option {
+    background: #0f0a28;
+    color: #ffffff;
+}
+
+[data-theme='light'] .form-group select option {
+    background: #ffffff;
+    color: #1c1917;
+}
+
+.contact-next-steps {
+    padding: 22px 24px !important;
+    margin-top: 8px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    margin-bottom: 4px;
+}
+
+.form-group.full {
+    grid-column: span 2;
+}
+
+.form-group label {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--text-dim);
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    padding: 14px 18px;
+    font-family: var(--font-body);
+    color: var(--text-main);
+    font-size: 0.97rem;
+    outline: none;
+    transition: var(--transition);
 }
 
 .form-group input:focus,
-.form-group textarea:focus {
+.form-group textarea:focus,
+.form-group select:focus {
     border-color: var(--accent);
     box-shadow: 0 0 15px rgba(0, 242, 255, 0.1);
     background: rgba(255, 255, 255, 0.05);
@@ -134,6 +165,11 @@ textarea {
     .contact-form {
         grid-template-columns: 1fr;
         padding: 30px 20px;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 0;
     }
 
     .form-group.full {

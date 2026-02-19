@@ -1,21 +1,23 @@
 import React from 'react';
 import { motion as Motion } from 'framer-motion';
 import { Helmet } from 'react-helmet-async';
-import { Award, Briefcase, Code, Terminal } from 'lucide-react';
+import { Award, Briefcase, Globe, ArrowRight, CheckCircle2, Cpu } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { triggerHaptic, hapticPatterns } from '../utils/haptics';
 import './About.css';
 
 const About = () => {
     const timeline = [
-        { year: "2025 - Present", title: "Full-Stack Development Focus", company: "Self-Taught / Open Source", desc: "Specializing in the PERN/SERN stack (PostgreSQL, Express/Supabase, React, Node.js)." },
-        { year: "2023 - Present", title: "B.Eng Computer Engineering", company: "Bells University of Technology", desc: "Core focus on software engineering, data structures, and system design." },
-        { year: "2021 - 2023", title: "Web Fundamentals", company: "Independent Study", desc: "Mastering HTML, CSS, and JavaScript through documentation and project-based learning." }
+        { year: "2025 – Present", title: "Full-Stack Product Development", company: "Independent · Open Source", desc: "Building production-grade systems with modern stacks. Focused on performance, reliability, and measurable business outcomes." },
+        { year: "2023 – Present", title: "B.Eng Computer Engineering", company: "Bells University of Technology", desc: "Core curriculum in software engineering and system design — applying high-level architectural principles to every client project." },
+        { year: "2021 – 2023", title: "Web Fundamentals", company: "Independent Study", desc: "Self-directed mastery of web standards. Focused on efficiency, accessibility, and clean code that scales." }
     ];
 
     return (
         <div className="about-page">
             <Helmet>
-                <title>About | KING - Crafting Excellence</title>
-                <meta name="description" content="Learn more about KING's journey, expertise in frontend and backend systems, and the collaborative process that drives digital success." />
+                <title>About | Ayobami Olayanju — Digital Product Builder</title>
+                <meta name="description" content="Learn how Ayobami Olayanju approaches building digital products — from architecture decisions to UX thinking — and why clients trust him to deliver." />
             </Helmet>
 
             <section className="about-hero">
@@ -25,10 +27,10 @@ const About = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                 >
-                    <div className="section-badge" style={{ visibility: 'hidden' }}><Terminal size={14} /> The Architect</div>
-                    <h2 className="section-title gradient-text">Behind the Code</h2>
+                    <h2 className="section-title gradient-text">Technical Expertise for Business Growth</h2>
                     <p className="hero-description">
-                        Transforming complex requirements into elegant, high-performance digital solutions.
+                        I build digital systems that solve real business problems — clearly scoped,
+                        carefully architected, and delivered with accountability.
                     </p>
                 </Motion.div>
 
@@ -40,18 +42,24 @@ const About = () => {
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
                         >
-                            <h3>The Origin Story</h3>
+                            <h3>Results-First Engineering</h3>
                             <p>
-                                My journey began with a fundamental fascination for solving complex puzzles through code.
-                                What started as exploring the building blocks of the web has evolved into a career
-                                dedicated to architecting high-stakes digital environments.
+                                I don't just write code; I design solutions for specific business goals.
+                                Every project begins with an audit of the outcome you need.
                             </p>
-                            <p>
-                                I believe that great software isn't just about clean code—it's about empathy for the
-                                end-user and a deep understanding of the problem being solved. My methodology revolves
-                                around rigorous testing, performance optimization, and maintaining a high standard
-                                of accessibility.
-                            </p>
+                            <ul className="about-bullets" style={{ listStyle: 'none', padding: 0, margin: '20px 0', display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                                {[
+                                    'Architecture that scales without technical debt',
+                                    'Scope management that ensures on-time delivery',
+                                    'Focus on software that users actually use',
+                                    'Technical transparency & documented progress'
+                                ].map((bullet, i) => (
+                                    <li key={i} style={{ display: 'flex', alignItems: 'center', gap: '12px', fontSize: '0.95rem', color: 'var(--text-dim)' }}>
+                                        <CheckCircle2 size={16} color="var(--accent)" style={{ flexShrink: 0 }} />
+                                        {bullet}
+                                    </li>
+                                ))}
+                            </ul>
                         </Motion.div>
 
                         <div className="stats-grid">
@@ -60,22 +68,68 @@ const About = () => {
                                 whileHover={{ y: -5, borderColor: 'var(--accent)' }}
                             >
                                 <Award className="stat-icon" />
-                                <h4>10+</h4>
-                                <p>Learning Prototypes</p>
+                                <h4>3+</h4>
+                                <p>Systems Live</p>
                             </Motion.div>
                             <Motion.div
                                 className="glass-card stat-box"
                                 whileHover={{ y: -5, borderColor: 'var(--primary)' }}
                             >
+                                <Globe className="stat-icon" />
+                                <h4>100%</h4>
+                                <p>Success Rate</p>
+                            </Motion.div>
+                            <Motion.div
+                                className="glass-card stat-box"
+                                whileHover={{ y: -5, borderColor: 'var(--accent)' }}
+                            >
                                 <Briefcase className="stat-icon" />
-                                <h4>1 Flagship</h4>
-                                <p>Full-Stack System</p>
+                                <h4>24h</h4>
+                                <p>Inquiry Response</p>
                             </Motion.div>
                         </div>
+
+                        <Motion.div
+                            className="glass-card"
+                            style={{ padding: '28px', textAlign: 'center', marginTop: '8px' }}
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                        >
+                            <p style={{ color: 'var(--text-dim)', marginBottom: '16px', fontSize: '0.95rem' }}>
+                                Ready to discuss your technical requirements?
+                            </p>
+                            <Link to="/contact" className="cta-primary" onClick={() => triggerHaptic(hapticPatterns.light)} style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
+                                Get a Technical Assessment <ArrowRight size={18} />
+                            </Link>
+                        </Motion.div>
                     </div>
 
-                    <div className="timeline-column">
-                        <h3 className="section-heading">Learning Journey</h3>
+                    <div className="about-details-column">
+                        <Motion.div
+                            className="glass-card standards-card"
+                            initial={{ opacity: 0, x: 30 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true }}
+                            style={{ padding: '40px', marginBottom: '40px', border: '1px solid var(--primary-glow)' }}
+                        >
+                            <h3 style={{ color: 'var(--accent)', marginBottom: '20px', display: 'flex', alignItems: 'center', gap: '10px' }}>
+                                <Cpu size={24} /> Engineering Standards
+                            </h3>
+                            <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+                                {[
+                                    { title: "Defensive Architecture", desc: "Systems designed to handle edge cases and failures gracefully, ensuring 99.9% uptime for critical workflows." },
+                                    { title: "Quality-First Deployment", desc: "I maintain strict adherence to 80%+ test coverage and automated CI/CD pipelines before any code hits production." },
+                                    { title: "Documented Scalability", desc: "Every system includes comprehensive architecture documentation, making it easy for your internal teams to scale." }
+                                ].map((s, i) => (
+                                    <div key={i}>
+                                        <h4 style={{ fontSize: '1rem', color: 'var(--text-main)', marginBottom: '6px' }}>{s.title}</h4>
+                                        <p style={{ fontSize: '0.9rem', color: 'var(--text-dim)', lineHeight: '1.5' }}>{s.desc}</p>
+                                    </div>
+                                ))}
+                            </div>
+                        </Motion.div>
+                        <h3 className="section-heading">Experience & Education</h3>
                         <div className="timeline">
                             <div className="timeline-line"></div>
                             {timeline.map((item, i) => (

@@ -117,43 +117,73 @@ h6 {
 
 .cta-primary {
   background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
-  color: white;
-  padding: 0 32px;
-  height: 52px;
+  color: #ffffff;
+  padding: 0 28px;
+  height: 48px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: 8px;
   border-radius: 50px;
   font-weight: 600;
+  font-size: 0.95rem;
   border: none;
   cursor: pointer;
   box-shadow: 0 10px 30px var(--primary-glow);
   transition: var(--transition);
   text-decoration: none;
   white-space: nowrap;
+  line-height: 1;
 }
 
 .cta-secondary {
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.07);
   color: var(--text-main);
-  padding: 0 32px;
-  height: 52px;
+  padding: 0 28px;
+  height: 48px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: 8px;
   border-radius: 50px;
   border: 1px solid var(--glass-border);
+  font-weight: 500;
+  font-size: 0.95rem;
   cursor: pointer;
   transition: var(--transition);
   text-decoration: none;
   white-space: nowrap;
+  line-height: 1;
+}
+
+.cta-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 36px var(--primary-glow);
+  opacity: 0.92;
+}
+
+.cta-secondary:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+
+[data-theme='light'] .cta-secondary {
+  background: rgba(2, 132, 199, 0.08);
+  border: 1px solid rgba(2, 132, 199, 0.25);
+  color: var(--text-main);
+}
+
+[data-theme='light'] .cta-secondary:hover {
+  background: rgba(2, 132, 199, 0.15);
+  border-color: var(--accent);
 }
 
 .cta-primary.small,
 .cta-secondary.small {
-  height: 40px;
-  padding: 0 20px;
-  font-size: 0.85rem;
+  height: 38px;
+  padding: 0 18px;
+  font-size: 0.82rem;
 }
 
 /* Scrollbar */
@@ -234,8 +264,8 @@ h6 {
 @media (max-width: 768px) {
   :root {
     --nav-height: 50px;
-    --section-spacing: 40px;
-    /* Reduce spacing on mobile */
+    --section-spacing: 60px;
+    /* Increased breathing room from 40px */
     --card-radius: 16px;
     /* Slightly smaller radius */
   }
@@ -250,6 +280,7 @@ h6 {
   }
 
   .glass-card {
-    padding: 20px !important;
+    padding: 24px !important;
+    /* Slightly more padding for scannability */
   }
 }

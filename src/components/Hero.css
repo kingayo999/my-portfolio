@@ -64,9 +64,10 @@
 }
 
 .hero-subtitle {
-    font-size: 1.1rem;
+    font-size: 1.25rem;
+    line-height: 1.6;
     color: var(--text-dim);
-    max-width: 500px;
+    max-width: 580px;
     margin-bottom: 40px;
 }
 
@@ -74,7 +75,15 @@
     display: flex;
     align-items: center;
     gap: 16px;
-    margin-bottom: 50px;
+    margin-bottom: 14px;
+}
+
+.hero-microcopy {
+    font-size: 0.82rem;
+    color: var(--text-dim);
+    margin-bottom: 40px;
+    opacity: 0.75;
+    letter-spacing: 0.02em;
 }
 
 .social-icon {
@@ -140,6 +149,12 @@
     bottom: 25%;
     left: 10%;
     animation: float 7s infinite ease-in-out 0.5s;
+}
+
+.card-3 {
+    top: 55%;
+    right: 5%;
+    animation: float 6s infinite ease-in-out 2s;
 }
 
 .stat-card h4 {

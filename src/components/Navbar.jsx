@@ -71,7 +71,25 @@ const Navbar = ({ theme, toggleTheme }) => {
                                 }
                             </AnimatePresence>
                         </Motion.button>
-                        <Link to="/contact" className="cta-primary small">Contact Me</Link>
+
+                        <AnimatePresence>
+                            {(scrolled || location.pathname !== '/') && (
+                                <Motion.div
+                                    initial={{ opacity: 0, x: 20 }}
+                                    animate={{ opacity: 1, x: 0 }}
+                                    exit={{ opacity: 0, x: 20 }}
+                                    transition={{ duration: 0.3 }}
+                                >
+                                    <Link
+                                        to="/contact"
+                                        className="cta-primary small"
+                                        onClick={() => triggerHaptic(hapticPatterns.light)}
+                                    >
+                                        Get an Assessment
+                                    </Link>
+                                </Motion.div>
+                            )}
+                        </AnimatePresence>
                     </div>
                 </div>
 
