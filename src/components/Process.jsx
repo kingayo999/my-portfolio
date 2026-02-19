@@ -35,14 +35,6 @@ const Process = () => {
         <section className="process-section">
             <div className="process-inner">
                 <div className="process-header">
-                    <Motion.div
-                        className="section-badge"
-                        initial={{ opacity: 0, y: 10 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                    >
-                        How It Works
-                    </Motion.div>
                     <Motion.h2
                         className="section-title gradient-text"
                         initial={{ opacity: 0, y: 20 }}

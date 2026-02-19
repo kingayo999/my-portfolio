@@ -29,14 +29,6 @@ const Testimonials = () => {
         <section className="testimonials-section">
             <div className="testimonials-inner">
                 <div className="testimonials-header">
-                    <Motion.div
-                        className="section-badge"
-                        initial={{ opacity: 0, y: 10 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                    >
-                        Client Outcomes
-                    </Motion.div>
                     <Motion.h2
                         className="section-title gradient-text"
                         initial={{ opacity: 0, y: 20 }}

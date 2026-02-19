@@ -35,14 +35,6 @@ const FAQ = () => {
         <section className="faq-section">
             <div className="faq-inner">
                 <div className="faq-header">
-                    <Motion.div
-                        className="section-badge"
-                        initial={{ opacity: 0, y: 10 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                    >
-                        Common Questions
-                    </Motion.div>
                     <Motion.h2
                         className="section-title gradient-text"
                         initial={{ opacity: 0, y: 20 }}

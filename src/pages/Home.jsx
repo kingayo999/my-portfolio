@@ -52,15 +52,6 @@ const Home = () => {
             <section className="services-section" style={{ padding: 'var(--section-spacing) 5%' }}>
                 <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
                     <div style={{ textAlign: 'center', marginBottom: '70px' }}>
-                        <Motion.div
-                            className="section-badge"
-                            initial={{ opacity: 0, y: 10 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            style={{ display: 'inline-flex', marginBottom: '16px' }}
-                        >
-                            What I Build
-                        </Motion.div>
                         <Motion.h2
                             className="section-title gradient-text"
                             style={{ fontSize: '2.5rem', marginBottom: '20px' }}
