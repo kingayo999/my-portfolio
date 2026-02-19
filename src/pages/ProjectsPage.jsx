@@ -16,7 +16,7 @@ const ProjectsPage = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="cta-secondary"
-                    style={{ display: 'inline-block', textDecoration: 'none' }}
+                    style={{ textDecoration: 'none' }}
                 >
                     Visit GitHub
                 </a>
