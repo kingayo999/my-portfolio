@@ -4,14 +4,14 @@
     left: 0;
     width: 100%;
     z-index: 1000;
-    padding: 20px 5% 0;
+    padding: 14px 5% 0;
     display: flex;
     justify-content: center;
     transition: var(--transition);
 }
 
 .navbar.scrolled {
-    padding-top: 10px;
+    padding-top: 8px;
 }
 
 .nav-container {
@@ -20,33 +20,50 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 15px 30px;
-    background: rgba(15, 10, 40, 0.4);
-    backdrop-filter: blur(12px);
+    padding: 10px 24px;
+    background: #0a0a0a;
+    border: 1px solid rgba(255, 255, 255, 0.08);
     transition: var(--transition);
 }
 
 .navbar.scrolled .nav-container {
-    background: rgba(10, 5, 30, 0.85);
-    padding: 12px 25px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    border-color: rgba(255, 255, 255, 0.1);
+    background: rgba(10, 10, 10, 0.95);
+    padding: 8px 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    border-color: rgba(255, 255, 255, 0.15);
 }
 
 [data-theme='light'] .nav-container {
-    background: rgba(255, 255, 255, 0.6);
-    border: 1px solid rgba(2, 132, 199, 0.15);
+    background: #e9e9ee;
+    border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 [data-theme='light'] .navbar.scrolled .nav-container {
-    background: rgba(255, 255, 255, 0.95);
+    background: #e4e4ea;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    border-color: rgba(0, 0, 0, 0.08);
 }
 
-.logo-text {
-    font-family: var(--font-heading);
-    font-size: 1.8rem;
-    font-weight: 800;
-    letter-spacing: -1px;
+.logo-img {
+    height: 56px;
+    width: auto;
+    display: block;
+    border-radius: 8px;
+    transition: var(--transition);
+}
+
+.navbar.scrolled .logo-img {
+    height: 48px;
+}
+
+@media (max-width: 768px) {
+    .logo-img {
+        height: 36px;
+    }
+
+    .navbar.scrolled .logo-img {
+        height: 32px;
+    }
 }
 
 .desktop-menu {
@@ -108,7 +125,11 @@
 }
 
 .theme-toggle:hover {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.15);
+}
+
+[data-theme='light'] .theme-toggle:hover {
+    background: rgba(0, 0, 0, 0.08);
 }
 
 /* Standardized by index.css */
@@ -140,7 +161,7 @@
     }
 
     .nav-container {
-        padding: 10px 15px;
+        padding: 8px 14px;
         border-radius: 0;
         /* Full edge contact on mobile */
         background: rgba(10, 5, 30, 0.9) !important;
@@ -245,7 +266,11 @@
 
 .mobile-menu-close:hover {
     color: var(--accent);
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.15);
+}
+
+[data-theme='light'] .mobile-menu-close:hover {
+    background: rgba(0, 0, 0, 0.08);
 }
 
 /* This class would be toggled by JS logic if we werent using conditional rendering. 

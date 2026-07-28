@@ -2,7 +2,7 @@ import { motion as Motion } from 'framer-motion';
 import React, { useRef, useState } from 'react';
 import emailjs from '@emailjs/browser';
 import toast from 'react-hot-toast';
-import { Mail, MapPin, Send, Phone, CheckCircle2 } from 'lucide-react';
+import { Mail, MapPin, Send, MessageSquare, CheckCircle2 } from 'lucide-react';
 import { triggerHaptic, hapticPatterns } from '../utils/haptics';
 import './Contact.css';
 
@@ -47,7 +47,7 @@ const Contact = () => {
                 <div className="contact-methods">
                     {[
                         { icon: <Mail size={24} />, title: "Email", val: "olayanjuayobami89@gmail.com", sub: "Response within 24 hours", link: "mailto:olayanjuayobami89@gmail.com" },
-                        { icon: <Phone size={24} />, title: "WhatsApp", val: "+234 912 410 5018", sub: "Click to message directly", link: "https://wa.me/2349124105018" },
+                        { icon: <MessageSquare size={24} />, title: "WhatsApp", val: "+234 704 130 3372", sub: "Click to message directly", link: "https://wa.me/2347041303372" },
                         { icon: <MapPin size={24} />, title: "Availability", val: "Remote Worldwide", sub: "Open to projects · Any timezone" }
                     ].map((m, i) => {
                         const CardContent = (

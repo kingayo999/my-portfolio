@@ -3,6 +3,8 @@ import { NavLink, Link, useLocation } from 'react-router-dom';
 import { Menu, X, Sun, Moon } from 'lucide-react';
 import { motion as Motion, AnimatePresence } from 'framer-motion';
 import { triggerHaptic, hapticPatterns } from '../utils/haptics';
+import logo2 from '../assets/logo2.jpg';
+import logo3 from '../assets/logo3.jpeg';
 import './Navbar.css';
 
 const Navbar = ({ theme, toggleTheme }) => {
@@ -10,10 +12,7 @@ const Navbar = ({ theme, toggleTheme }) => {
     const [scrolled, setScrolled] = useState(false);
     const location = useLocation();
 
-    // Close menu on route change
-    useEffect(() => {
-        setIsOpen(false);
-    }, [location]);
+    // Mobile links handle closing on click
 
     useEffect(() => {
         const handleScroll = () => {
@@ -23,7 +22,7 @@ const Navbar = ({ theme, toggleTheme }) => {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
-    const navLinks = ['Home', 'About', 'Projects', 'Contact'];
+    const navLinks = ['Home', 'About', 'Projects', 'Services', 'Contact'];
 
     return (
         <Motion.nav
@@ -34,7 +33,7 @@ const Navbar = ({ theme, toggleTheme }) => {
         >
             <div className="nav-container glass-card">
                 <Link to="/" className="logo">
-                    <span className="logo-text gradient-text">KING.</span>
+                    <img src={theme === 'light' ? logo3 : logo2} alt="King Ayo" className="logo-img" />
                 </Link>
 
                 {/* Desktop Menu */}

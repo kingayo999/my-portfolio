@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion as Motion, AnimatePresence } from 'framer-motion';
-import { Github, Linkedin, Twitter, ArrowRight } from 'lucide-react';
+import { Github, MessageSquare, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { triggerHaptic, hapticPatterns } from '../utils/haptics';
 import './Footer.css';
@@ -20,14 +20,14 @@ const Footer = () => {
 
     const navLinks = [
         { label: 'Work', to: '/projects' },
+        { label: 'Services', to: '/services' },
         { label: 'About', to: '/about' },
         { label: 'Contact', to: '/contact' },
     ];
 
     const socials = [
         { icon: <Github size={18} />, href: 'https://github.com/kingayo999', label: 'GitHub' },
-        { icon: <Linkedin size={18} />, href: 'https://www.linkedin.com/in/ayobami-olayanju-9ab0223ab', label: 'LinkedIn' },
-        { icon: <Twitter size={18} />, href: '#', label: 'Twitter' },
+        { icon: <MessageSquare size={18} />, href: 'https://wa.me/2347041303372', label: 'WhatsApp' },
     ];
 
     return (
@@ -56,7 +56,6 @@ const Footer = () => {
                         <button className="footer-logo gradient-text" onClick={handleSecretClick}>KING.</button>
                         <p className="footer-tagline">
                             Scalable software built for business outcomes.
-                            Available for technical consultation and full-stack development.
                         </p>
                         <Link to="/contact" className="cta-primary footer-cta" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
                             Get a Technical Assessment <ArrowRight size={16} />
@@ -91,7 +90,7 @@ const Footer = () => {
 
                 <div className="footer-bottom">
                     <p style={{ fontSize: '0.85rem', color: 'var(--text-dim)' }}>
-                        &copy; {new Date().getFullYear()} Ayobami Olayanju. All rights reserved.
+                        &copy; {new Date().getFullYear()} King Ayo. All rights reserved.
                     </p>
                     <p style={{ fontSize: '0.8rem', color: 'var(--text-dim)', opacity: 0.6 }}>
                         Remote · Worldwide · Available

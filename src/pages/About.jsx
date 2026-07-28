@@ -1,23 +1,84 @@
 import React from 'react';
 import { motion as Motion } from 'framer-motion';
 import { Helmet } from 'react-helmet-async';
-import { Award, Briefcase, Globe, ArrowRight, CheckCircle2, Cpu } from 'lucide-react';
+import { Award, Briefcase, Globe, ArrowRight, CheckCircle2, Cpu, FileText, Shield } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useRef, useEffect } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { triggerHaptic, hapticPatterns } from '../utils/haptics';
 import './About.css';
 
+gsap.registerPlugin(ScrollTrigger);
+
 const About = () => {
+    const leftRef = useRef(null);
+    const rightRef = useRef(null);
+
     const timeline = [
         { year: "2025 – Present", title: "Full-Stack Product Development", company: "Independent · Open Source", desc: "Building production-grade systems with modern stacks. Focused on performance, reliability, and measurable business outcomes." },
         { year: "2023 – Present", title: "B.Eng Computer Engineering", company: "Bells University of Technology", desc: "Core curriculum in software engineering and system design — applying high-level architectural principles to every client project." },
         { year: "2021 – 2023", title: "Web Fundamentals", company: "Independent Study", desc: "Self-directed mastery of web standards. Focused on efficiency, accessibility, and clean code that scales." }
     ];
 
+    useEffect(() => {
+        const left = leftRef.current;
+        const right = rightRef.current;
+        if (!left || !right) return;
+
+        const ctx = gsap.context(() => {
+            const storyCard = left.querySelector('.story-card');
+            const ctaBlock = left.querySelector('.engagement-card, .about-cta');
+            const stats = left.querySelectorAll('.stat-box');
+
+            if (storyCard) {
+                gsap.to(storyCard, {
+                    scrollTrigger: { trigger: storyCard, start: 'top 85%', toggleActions: 'play none none none' },
+                    opacity: 1, x: 0, duration: 0.9, ease: 'power2.out'
+                });
+            }
+
+            if (ctaBlock) {
+                gsap.to(ctaBlock, {
+                    scrollTrigger: { trigger: ctaBlock, start: 'top 85%', toggleActions: 'play none none none' },
+                    opacity: 1, y: 0, duration: 0.9, ease: 'power2.out'
+                });
+            }
+
+            gsap.to(stats, {
+                scrollTrigger: { trigger: stats[0], start: 'top 85%', toggleActions: 'play none none none' },
+                opacity: 1, y: 0, duration: 0.9, stagger: 0.12, ease: 'power2.out'
+            });
+
+            const standardsCard = right.querySelector('.standards-card');
+            const timelineItems = right.querySelectorAll('.timeline-item');
+
+            if (standardsCard) {
+                gsap.to(standardsCard, {
+                    scrollTrigger: { trigger: standardsCard, start: 'top 85%', toggleActions: 'play none none none' },
+                    opacity: 1, x: 0, duration: 0.9, ease: 'power2.out'
+                });
+            }
+
+            if (timelineItems.length) {
+                gsap.to(timelineItems, {
+                    scrollTrigger: { trigger: timelineItems[0], start: 'top 85%', toggleActions: 'play none none none' },
+                    opacity: 1, x: 0, duration: 0.9, stagger: 0.15, ease: 'power2.out'
+                });
+            }
+        }, left);
+
+        return () => {
+            ctx.revert();
+            ScrollTrigger.getAll().forEach(st => st.kill());
+        };
+    }, []);
+
     return (
         <div className="about-page">
             <Helmet>
-                <title>About | Ayobami Olayanju — Digital Product Builder</title>
-                <meta name="description" content="Learn how Ayobami Olayanju approaches building digital products — from architecture decisions to UX thinking — and why clients trust him to deliver." />
+                <title>About | King Ayo — Technical Expertise for Business Growth</title>
+                <meta name="description" content="Learn how King Ayo approaches building digital products — from architecture decisions to client engagement models — and why clients trust him to deliver." />
             </Helmet>
 
             <section className="about-hero">
@@ -35,12 +96,11 @@ const About = () => {
                 </Motion.div>
 
                 <div className="about-content">
-                    <div className="about-text-column">
+                    <div className="about-text-column" ref={leftRef}>
                         <Motion.div
                             className="glass-card story-card"
-                            initial={{ opacity: 0, x: -30 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true }}
+                            style={{ opacity: 0, transform: 'translateX(-30px)' }}
+                            whileHover={{ y: -5, borderColor: 'var(--accent)' }}
                         >
                             <h3>Results-First Engineering</h3>
                             <p>
@@ -66,6 +126,7 @@ const About = () => {
                             <Motion.div
                                 className="glass-card stat-box"
                                 whileHover={{ y: -5, borderColor: 'var(--accent)' }}
+                                style={{ opacity: 0, transform: 'translateY(30px)' }}
                             >
                                 <Award className="stat-icon" />
                                 <h4>3+</h4>
@@ -74,6 +135,7 @@ const About = () => {
                             <Motion.div
                                 className="glass-card stat-box"
                                 whileHover={{ y: -5, borderColor: 'var(--primary)' }}
+                                style={{ opacity: 0, transform: 'translateY(30px)' }}
                             >
                                 <Globe className="stat-icon" />
                                 <h4>100%</h4>
@@ -82,6 +144,7 @@ const About = () => {
                             <Motion.div
                                 className="glass-card stat-box"
                                 whileHover={{ y: -5, borderColor: 'var(--accent)' }}
+                                style={{ opacity: 0, transform: 'translateY(30px)' }}
                             >
                                 <Briefcase className="stat-icon" />
                                 <h4>24h</h4>
@@ -90,11 +153,9 @@ const About = () => {
                         </div>
 
                         <Motion.div
-                            className="glass-card"
-                            style={{ padding: '28px', textAlign: 'center', marginTop: '8px' }}
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
+                            className="glass-card about-cta"
+                            style={{ padding: '28px', textAlign: 'center', marginTop: '8px', opacity: 0, transform: 'translateY(20px)' }}
+                            whileHover={{ y: -5, borderColor: 'var(--accent)' }}
                         >
                             <p style={{ color: 'var(--text-dim)', marginBottom: '16px', fontSize: '0.95rem' }}>
                                 Ready to discuss your technical requirements?
@@ -105,13 +166,11 @@ const About = () => {
                         </Motion.div>
                     </div>
 
-                    <div className="about-details-column">
+                    <div className="about-details-column" ref={rightRef}>
                         <Motion.div
                             className="glass-card standards-card"
-                            initial={{ opacity: 0, x: 30 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true }}
-                            style={{ padding: '40px', marginBottom: '40px', border: '1px solid var(--primary-glow)' }}
+                            style={{ padding: '40px', marginBottom: '40px', border: '1px solid var(--primary-glow)', opacity: 0, transform: 'translateX(30px)' }}
+                            whileHover={{ y: -5, borderColor: 'var(--accent)' }}
                         >
                             <h3 style={{ color: 'var(--accent)', marginBottom: '20px', display: 'flex', alignItems: 'center', gap: '10px' }}>
                                 <Cpu size={24} /> Engineering Standards
@@ -136,10 +195,8 @@ const About = () => {
                                 <Motion.div
                                     key={i}
                                     className="timeline-item"
-                                    initial={{ opacity: 0, x: 30 }}
-                                    whileInView={{ opacity: 1, x: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ delay: i * 0.2 }}
+                                    style={{ opacity: 0, transform: 'translateX(30px)' }}
+                                    whileHover={{ x: 5, borderColor: 'var(--accent)' }}
                                 >
                                     <div className="timeline-marker"></div>
                                     <div className="timeline-content glass-card">

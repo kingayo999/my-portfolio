@@ -1,26 +1,26 @@
 import React from 'react';
 import { motion as Motion } from 'framer-motion';
-import { Quote, Globe } from 'lucide-react';
+import { Quote } from 'lucide-react';
 import './Testimonials.css';
 
 const testimonials = [
     {
-        quote: "The system Ayobami built replaced three separate spreadsheets and a manual review process. Since launch, our team saves hours each week and errors have dropped significantly.",
-        author: "Operations Lead",
-        company: "Tech-Enabled Education Platform",
+        quote: "The clarity King Ayo brought to our platform changed how we serve our clients. Professional, responsive, and technically sharp.",
+        author: "Omotola Adesoye",
+        company: "PR Strategist",
         region: "West Africa"
     },
     {
-        quote: "He understood the brief quickly, asked the right questions, and delivered something we couldn't have built in-house at this quality. The entire project was handled remotely without friction.",
-        author: "Co-Founder",
-        company: "Early-Stage SaaS Startup",
-        region: "Europe"
+        quote: "From concept to deployment, the process was straightforward and the result speaks for itself. Highly recommended for serious founders.",
+        author: "Simon Obeya",
+        company: "CEO, Midas Touch",
+        region: "West Africa"
     },
     {
-        quote: "What impressed me most was the thinking behind the decisions — not just the code. He explained trade-offs clearly and made the right calls when requirements were ambiguous.",
-        author: "Product Manager",
-        company: "Digital Agency",
-        region: "North America"
+        quote: "He doesn't just build what you ask for, he improves what you couldn't articulate. That perspective makes the difference.",
+        author: "Ayuba Mohammed",
+        company: "Mentor",
+        region: "West Africa"
     }
 ];
 
@@ -38,16 +38,6 @@ const Testimonials = () => {
                     >
                         Results That Speak
                     </Motion.h2>
-                    <Motion.div
-                        className="global-statement"
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.2 }}
-                    >
-                        <Globe size={16} />
-                        <span>Working with clients across Africa, Europe, and North America — fully remote, zero friction.</span>
-                    </Motion.div>
                 </div>
 
                 <div className="testimonials-grid">

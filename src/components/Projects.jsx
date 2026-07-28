@@ -1,55 +1,86 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import { motion as Motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ExternalLink, Github, ArrowRight, Target } from 'lucide-react';
 import { projectsData } from '../data/projectsData';
 import { triggerHaptic, hapticPatterns } from '../utils/haptics';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import './Projects.css';
 
+gsap.registerPlugin(ScrollTrigger);
+
 const Projects = () => {
+    const gridRef = useRef(null);
+    const headerRef = useRef(null);
+
+    useEffect(() => {
+        const grid = gridRef.current;
+        const header = headerRef.current;
+        if (!grid || !header) return;
+
+        const cards = grid.querySelectorAll('.project-card');
+        const title = header.querySelector('.section-title');
+        const subtitle = header.querySelector('p');
+
+        const ctx = gsap.context(() => {
+            gsap.to(title, {
+                scrollTrigger: { trigger: header, start: 'top 85%', toggleActions: 'play none none none' },
+                opacity: 1, y: 0, duration: 0.8, ease: 'power2.out'
+            });
+            gsap.to(subtitle, {
+                scrollTrigger: { trigger: header, start: 'top 85%', toggleActions: 'play none none none' },
+                opacity: 1, duration: 0.8, delay: 0.2, ease: 'power2.out'
+            });
+
+            gsap.set(cards, { y: 60, opacity: 0 });
+            gsap.to(cards, {
+                scrollTrigger: { trigger: grid, start: 'top 85%', toggleActions: 'play none none none' },
+                y: 0, opacity: 1, duration: 0.9, stagger: 0.12, ease: 'power2.out', overwrite: true
+            });
+        }, header);
+
+        return () => {
+            ctx.revert();
+            ScrollTrigger.getAll().forEach(st => st.kill());
+            gsap.killTweensOf(cards);
+            if (title) gsap.killTweensOf(title);
+            if (subtitle) gsap.killTweensOf(subtitle);
+        };
+    }, []);
+
     return (
         <section className="projects-section" id="projects">
-            <div className="section-header">
-                <Motion.h2
+            <div className="section-header" ref={headerRef}>
+                <h2
                     className="section-title gradient-text"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.1 }}
+                    style={{ opacity: 0, transform: 'translateY(20px)' }}
                 >
                     Selected Work
-                </Motion.h2>
-                <Motion.p
-                    style={{ color: 'var(--text-dim)', maxWidth: '560px', margin: '0 auto' }}
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.2 }}
+                </h2>
+                <p
+                    style={{ color: 'var(--text-dim)', maxWidth: '560px', margin: '0 auto', opacity: 0, wordBreak: 'break-word', overflowWrap: 'anywhere' }}
                 >
                     Real systems built to solve real problems. Click any project to read the full case study.
-                </Motion.p>
+                </p>
             </div>
 
-            <div className="projects-grid">
-                {projectsData.map((p, i) => (
+            <div className="projects-grid" ref={gridRef}>
+                {projectsData.map((p) => (
                     <Motion.div
                         key={p.id}
                         className="project-card glass-card"
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, margin: "-50px" }}
-                        transition={{ duration: 0.5, delay: i * 0.1 }}
                         whileHover={{ y: -10, borderColor: 'var(--accent)' }}
                     >
                         <div className="card-inner">
                             <div className="project-category">{p.category}</div>
-                            <h3>{p.title}</h3>
-                            <p>{p.desc}</p>
+                            <h3 style={{ wordBreak: 'break-word' }}>{p.title}</h3>
+                            <p style={{ wordBreak: 'break-word', overflowWrap: 'anywhere' }}>{p.desc}</p>
 
                             {p.results && (
                                 <div className="project-result">
                                     <Target size={13} className="result-icon" />
-                                    <span>{p.results.split('.')[0]}.</span>
+                                    <span style={{ wordBreak: 'break-word' }}>{p.results.split('.')[0]}.</span>
                                 </div>
                             )}
 
@@ -59,7 +90,7 @@ const Projects = () => {
                                 ))}
                             </div>
 
-                            <div className="card-actions">
+                            <div className="card-actions" style={{ flexWrap: 'wrap' }}>
                                 <Link
                                     to={`/project/${p.id}`}
                                     className="cta-primary"

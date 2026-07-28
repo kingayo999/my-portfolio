@@ -136,8 +136,29 @@
     margin-bottom: 10px;
 }
 
+.engagement-card {
+    padding: 40px;
+    position: relative;
+}
+
+.engagement-card h3 {
+    color: var(--accent);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.engagement-card div div {
+    text-align: center;
+}
+
 @media (max-width: 968px) {
     .about-content {
         grid-template-columns: 1fr;
+    }
+
+    .engagement-card {
+        padding: 28px 20px;
     }
 }

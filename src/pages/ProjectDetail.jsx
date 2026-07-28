@@ -37,7 +37,7 @@ const ProjectDetail = () => {
     return (
         <div className="project-detail-page">
             <Helmet>
-                <title>{project.title} | Case Study — Ayobami Olayanju</title>
+                <title>{project.title} | Case Study — King Ayo</title>
                 <meta name="description" content={project.desc} />
             </Helmet>
 

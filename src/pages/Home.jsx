@@ -6,6 +6,11 @@ import Process from '../components/Process';
 import FAQ from '../components/FAQ';
 import Testimonials from '../components/Testimonials';
 import { Link } from 'react-router-dom';
+import { useRef, useEffect } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const Home = () => {
     const services = [
@@ -13,7 +18,7 @@ const Home = () => {
             icon: <Layout size={32} />,
             title: "Conversion-Ready Web Apps",
             who: "For founders & startups",
-            problem: "You have a product idea but no digital presence — or a site that doesn't generate leads.",
+            problem: "You have a product idea but no digital presence or a site that doesn't generate leads.",
             outcome: "A fast, professional web application built to attract the right users and turn them into customers."
         },
         {
@@ -35,42 +40,70 @@ const Home = () => {
             title: "Full-Stack Integration",
             who: "For companies with broken digital tools",
             problem: "Your frontend, backend, and data systems don't communicate reliably or efficiently.",
-            outcome: "End-to-end technical ownership — from database schema to UI — all delivered by one accountable builder."
+            outcome: "End-to-end technical ownership from database schema to UI all delivered by one accountable builder."
         }
     ];
+
+    const servicesRef = useRef(null);
+
+    useEffect(() => {
+        const section = servicesRef.current;
+        if (!section) return;
+
+        const title = section.querySelector('.section-title');
+        const subtitle = section.querySelector('.services-header p');
+        const cards = section.querySelectorAll('.service-card');
+
+        gsap.set(cards, { y: 50, opacity: 0 });
+
+        const ctx = gsap.context(() => {
+            gsap.to(title, {
+                scrollTrigger: { trigger: section, start: 'top 85%', toggleActions: 'play none none none' },
+                opacity: 1, y: 0, duration: 0.8, ease: 'power2.out'
+            });
+            gsap.to(subtitle, {
+                scrollTrigger: { trigger: section, start: 'top 85%', toggleActions: 'play none none none' },
+                opacity: 1, duration: 0.8, delay: 0.2, ease: 'power2.out'
+            });
+            gsap.to(cards, {
+                scrollTrigger: { trigger: section, start: 'top 85%', toggleActions: 'play none none none' },
+                y: 0, opacity: 1, duration: 0.9, stagger: 0.12, ease: 'power2.out', overwrite: true
+            });
+        }, section);
+
+        return () => {
+            ctx.revert();
+            ScrollTrigger.getAll().forEach(st => st.kill());
+            gsap.killTweensOf(cards);
+            if (title) gsap.killTweensOf(title);
+            if (subtitle) gsap.killTweensOf(subtitle);
+        };
+    }, []);
 
     return (
         <div className="home-page">
             <Helmet>
-                <title>Ayobami Olayanju | Digital Products That Convert</title>
-                <meta name="description" content="Full-stack digital product builder helping founders, startups, and teams worldwide build web products that attract users and drive results." />
+                <title>King Ayo | Systems That Hold Pressure</title>
+                <meta name="description" content="Portfolio and client site of King Ayo — full stack systems builder for founders, startups, and growing teams. View case studies, services, and start a project." />
             </Helmet>
 
             <Hero />
 
             {/* Services Section */}
-            <section className="services-section" style={{ padding: 'var(--section-spacing) 5%' }}>
+            <section className="services-section" style={{ padding: 'var(--section-spacing) 5%' }} ref={servicesRef}>
                 <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-                    <div style={{ textAlign: 'center', marginBottom: '70px' }}>
-                        <Motion.h2
+                    <div style={{ textAlign: 'center', marginBottom: '70px' }} className="services-header">
+                        <h2
                             className="section-title gradient-text"
-                            style={{ fontSize: '2.5rem', marginBottom: '20px' }}
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: 0.1 }}
+                            style={{ fontSize: '2.5rem', marginBottom: '20px', opacity: 0, transform: 'translateY(20px)' }}
                         >
                             Solutions Designed Around Outcomes
-                        </Motion.h2>
-                        <Motion.p
-                            style={{ color: 'var(--text-dim)', maxWidth: '600px', margin: '0 auto' }}
-                            initial={{ opacity: 0 }}
-                            whileInView={{ opacity: 1 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: 0.2 }}
+                        </h2>
+                        <p
+                            style={{ color: 'var(--text-dim)', maxWidth: '600px', margin: '0 auto', opacity: 0 }}
                         >
                             Every project starts with understanding your business goal, not a technology checklist.
-                        </Motion.p>
+                        </p>
                     </div>
 
                     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(270px, 1fr))', gap: '30px', marginBottom: '60px' }}>
@@ -78,10 +111,6 @@ const Home = () => {
                             <Motion.div
                                 key={i}
                                 className="glass-card service-card"
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: i * 0.1 }}
                                 whileHover={{ y: -8, borderColor: 'var(--primary)' }}
                                 style={{ padding: '36px', display: 'flex', flexDirection: 'column', gap: '12px' }}
                             >
@@ -99,8 +128,11 @@ const Home = () => {
                     </div>
 
                     <div style={{ textAlign: 'center' }}>
-                        <Link to="/projects" className="cta-primary" style={{ display: 'inline-flex', alignItems: 'center', gap: '10px' }}>
-                            See How I've Solved These Problems <ArrowRight size={18} />
+                        <Link to="/projects" className="cta-secondary" style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', marginRight: '12px' }}>
+                            See Case Studies <ArrowRight size={18} />
+                        </Link>
+                        <Link to="/services" className="cta-primary" style={{ display: 'inline-flex', alignItems: 'center', gap: '10px' }}>
+                            View Engagement Models <ArrowRight size={18} />
                         </Link>
                     </div>
                 </div>

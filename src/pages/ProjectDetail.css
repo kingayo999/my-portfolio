@@ -53,6 +53,7 @@
     line-height: 1.1;
     margin-bottom: 25px;
     display: block;
+    word-break: break-word;
 }
 
 .detail-desc {
@@ -60,6 +61,8 @@
     color: var(--text-dim);
     line-height: 1.6;
     max-width: 800px;
+    word-break: break-word;
+    overflow-wrap: break-word;
 }
 
 .detail-grid {
@@ -89,6 +92,8 @@
 .detail-card p {
     color: var(--text-dim);
     font-size: 0.95rem;
+    word-break: break-word;
+    overflow-wrap: break-word;
 }
 
 .detail-actions {
@@ -129,11 +134,29 @@
 
 @media (max-width: 768px) {
     .detail-title {
-        font-size: 2.5rem;
+        font-size: 2.2rem;
+        word-break: break-word;
+    }
+
+    .detail-desc {
+        font-size: 1rem;
+        word-break: break-word;
+        overflow-wrap: break-word;
     }
 
     .detail-grid {
         grid-template-columns: 1fr;
+    }
+
+    .detail-card h3 {
+        font-size: 1rem;
+        word-break: break-word;
+    }
+
+    .detail-card p {
+        font-size: 0.88rem;
+        word-break: break-word;
+        overflow-wrap: break-word;
     }
 
     .detail-actions {
@@ -144,6 +167,17 @@
 
     .detail-actions a {
         width: 100%;
+    }
+
+    .project-navigation {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .nav-btn {
+        max-width: 100%;
+        font-size: 0.85rem;
+        word-break: break-word;
     }
 }
 

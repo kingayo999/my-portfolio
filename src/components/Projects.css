@@ -59,6 +59,7 @@
 .project-card h3 {
     font-size: 1.8rem;
     margin-bottom: 15px;
+    word-break: break-word;
 }
 
 .project-card p {
@@ -66,6 +67,8 @@
     font-size: 0.95rem;
     margin-bottom: 16px;
     flex-grow: 1;
+    word-break: break-word;
+    overflow-wrap: break-word;
 }
 
 .project-result {
@@ -80,6 +83,8 @@
     font-size: 0.82rem;
     color: var(--text-dim);
     line-height: 1.5;
+    word-break: break-word;
+    overflow-wrap: break-word;
 }
 
 .result-icon {
@@ -116,6 +121,7 @@
     flex: 1;
     min-width: 0;
     font-size: 0.9rem;
+    white-space: nowrap;
 }
 
 .icon-links {
@@ -157,15 +163,19 @@
 
     .project-card h3 {
         font-size: 1.5rem;
+        word-break: break-word;
     }
 
-    .tech-stack-mini {
-        gap: 8px;
+    .project-card p {
+        font-size: 0.9rem;
+        word-break: break-word;
+        overflow-wrap: break-word;
     }
 
-    .tech-tag {
-        font-size: 0.7rem;
-        padding: 3px 8px;
+    .project-result {
+        font-size: 0.78rem;
+        word-break: break-word;
+        overflow-wrap: break-word;
     }
 }
 

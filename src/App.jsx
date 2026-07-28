@@ -3,18 +3,21 @@ import { HashRouter as Router, Routes, Route, useLocation } from 'react-router-d
 import { HelmetProvider } from 'react-helmet-async';
 import { Toaster } from 'react-hot-toast';
 import { AnimatePresence, motion as Motion } from 'framer-motion';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import './index.css';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
 import Chatbot from './components/Chatbot';
 import PageTransition from './components/PageTransition';
+import ScrollBackground from './components/ScrollBackground';
 
 // Lazy load page components for better performance
 const Home = lazy(() => import('./pages/Home'));
 const About = lazy(() => import('./pages/About'));
 const ProjectsPage = lazy(() => import('./pages/ProjectsPage'));
 const ContactPage = lazy(() => import('./pages/ContactPage'));
+const Services = lazy(() => import('./pages/Services'));
 const ProjectDetail = lazy(() => import('./pages/ProjectDetail'));
 
 // Loading fallback component
@@ -43,6 +46,11 @@ const PageLoader = () => (
 
 const AnimatedRoutes = () => {
   const location = useLocation();
+  
+  useEffect(() => {
+    ScrollTrigger.refresh();
+  }, [location.pathname]);
+  
   return (
     <AnimatePresence mode="wait">
       <Suspense fallback={<PageLoader />}>
@@ -52,6 +60,7 @@ const AnimatedRoutes = () => {
           <Route path="/projects" element={<PageTransition><ProjectsPage /></PageTransition>} />
           <Route path="/project/:id" element={<PageTransition><ProjectDetail /></PageTransition>} />
           <Route path="/contact" element={<PageTransition><ContactPage /></PageTransition>} />
+          <Route path="/services" element={<PageTransition><Services /></PageTransition>} />
         </Routes>
       </Suspense>
     </AnimatePresence>
@@ -84,10 +93,7 @@ function App() {
       <Router>
         <ScrollToTop />
         <Toaster position="top-center" reverseOrder={false} />
-        <div className="mesh-bg">
-          <div className="mesh-blob"></div>
-          <div className="mesh-blob mesh-blob-2"></div>
-        </div>
+        <ScrollBackground />
 
         <div className="app">
           <Navbar theme={theme} toggleTheme={toggleTheme} />

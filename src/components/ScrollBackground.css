@@ -1,0 +1,143 @@
+.scroll-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+[data-theme='light'] .scroll-bg {
+  opacity: 0.7;
+}
+
+.scroll-bg-gradient {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 50%, #1a103c 0%, #000000 100%);
+}
+
+[data-theme='light'] .scroll-bg-gradient {
+  background: radial-gradient(circle at 50% 50%, #e0f2fe 0%, #f8fafc 100%);
+}
+
+.scroll-bg-grid {
+  position: absolute;
+  inset: -50%;
+  width: 200%;
+  height: 200%;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+  will-change: transform;
+}
+
+[data-theme='light'] .scroll-bg-grid {
+  background-image:
+    linear-gradient(rgba(2, 132, 199, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(2, 132, 199, 0.06) 1px, transparent 1px);
+}
+
+.scroll-orb-wrap {
+  position: absolute;
+  width: 55vw;
+  height: 55vw;
+  max-width: 600px;
+  max-height: 600px;
+  will-change: transform;
+}
+
+.scroll-orb-1 {
+  top: 15%;
+  left: 5%;
+}
+
+.scroll-orb-2 {
+  top: 55%;
+  left: 65%;
+}
+
+.scroll-orb-3 {
+  top: 35%;
+  left: 40%;
+}
+
+.scroll-orb-4 {
+  top: 75%;
+  left: 15%;
+  width: 40vw;
+  height: 40vw;
+  max-width: 420px;
+  max-height: 420px;
+}
+
+.scroll-orb-inner {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  filter: blur(80px);
+  animation: orbFloat 20s infinite alternate;
+}
+
+.scroll-orb-1 .scroll-orb-inner {
+  background: radial-gradient(circle, var(--primary) 0%, transparent 70%);
+  opacity: 0.28;
+  animation-duration: 22s;
+}
+
+.scroll-orb-2 .scroll-orb-inner {
+  background: radial-gradient(circle, var(--accent) 0%, transparent 70%);
+  opacity: 0.25;
+  animation-duration: 26s;
+  animation-direction: alternate-reverse;
+}
+
+.scroll-orb-3 .scroll-orb-inner {
+  background: radial-gradient(circle, var(--accent-secondary) 0%, transparent 70%);
+  opacity: 0.18;
+  animation-duration: 30s;
+}
+
+.scroll-orb-4 .scroll-orb-inner {
+  background: radial-gradient(circle, var(--primary) 0%, transparent 70%);
+  opacity: 0.15;
+  animation-duration: 24s;
+  animation-direction: alternate-reverse;
+}
+
+@keyframes orbFloat {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(30px, -30px) scale(1.05); }
+}
+
+.scroll-bg-vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 50%, transparent 0%, rgba(0, 0, 0, 0.35) 100%);
+  pointer-events: none;
+}
+
+[data-theme='light'] .scroll-bg-vignette {
+  background: radial-gradient(circle at 50% 50%, transparent 0%, rgba(255, 255, 255, 0.35) 100%);
+}
+
+@media (max-width: 768px) {
+  .scroll-orb-wrap {
+    width: 70vw;
+    height: 70vw;
+    max-width: 400px;
+    max-height: 400px;
+  }
+
+  .scroll-orb-1 { top: 10%; left: -10%; }
+  .scroll-orb-2 { top: 60%; left: 50%; }
+  .scroll-orb-3 { top: 30%; left: 20%; }
+  .scroll-orb-4 { top: 80%; left: 5%; }
+
+  .scroll-bg-grid {
+    background-size: 40px 40px;
+  }
+}

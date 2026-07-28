@@ -1,5 +1,6 @@
 import { Helmet } from 'react-helmet-async';
 import Projects from '../components/Projects';
+import ProjectCapabilities from '../components/ProjectCapabilities';
 
 const ProjectsPage = () => {
     return (
@@ -8,6 +9,7 @@ const ProjectsPage = () => {
                 <title>Projects | KING - Engineering Showcase</title>
                 <meta name="description" content="A gallery of high-performance web applications and system architectures built by KING. Featuring fintech platforms, enterprise tools, and more." />
             </Helmet>
+            <ProjectCapabilities />
             <Projects />
             <div style={{ textAlign: 'center', paddingBottom: '100px' }}>
                 <p className="hero-description" style={{ display: 'none' }}>Explore more of my work on GitHub.</p>

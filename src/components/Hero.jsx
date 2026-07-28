@@ -1,56 +1,53 @@
-import React from 'react';
+import React, { useRef, useLayoutEffect } from 'react';
 import { motion as Motion } from 'framer-motion';
-import { ArrowRight, Github, Linkedin, Twitter } from 'lucide-react';
+import { ArrowRight, Github, MessageSquare, Phone } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { triggerHaptic, hapticPatterns } from '../utils/haptics';
 import './Hero.css';
 
-const Hero = () => {
-    return (
-        <section className="hero-section">
-            <Motion.div
-                className="hero-container"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 1 }}
-            >
-                <div className="hero-content">
-                    <Motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.2 }}
-                        className="hero-badge"
-                    >
-                        <span className="pulsing-dot"></span> Available for new projects
-                    </Motion.div>
+gsap.registerPlugin(ScrollTrigger);
 
+const Hero = () => {
+    const heroRef = useRef(null);
+
+    useLayoutEffect(() => {
+        const ctx = gsap.context(() => {
+            const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+            tl.from('.hero-badge', { y: 20, opacity: 0, duration: 0.6 })
+              .from('.hero-title', { y: 40, opacity: 0, duration: 0.8 }, '-=0.3')
+              .from('.hero-subtitle', { y: 20, opacity: 0, duration: 0.7 }, '-=0.5')
+              .from('.hero-actions', { y: 20, opacity: 0, duration: 0.6 }, '-=0.4')
+              .from('.hero-microcopy', { opacity: 0, duration: 0.5 }, '-=0.3')
+              .from('.hero-socials', { opacity: 0, duration: 0.5 }, '-=0.2')
+              .from('.hero-visual', { opacity: 0, scale: 0.9, duration: 0.9 }, '-=0.5')
+              .from('.stat-card', { scale: 0.8, opacity: 0, duration: 0.6, stagger: 0.1 }, '-=0.6');
+        }, heroRef);
+
+        return () => ctx.revert();
+    }, []);
+
+    return (
+        <section className="hero-section" ref={heroRef}>
+            <div className="hero-container">
+                <div className="hero-content">
                     <Motion.h1
                         className="hero-title"
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.3, duration: 0.8 }}
                     >
-                        Software That<br />
-                        <span className="gradient-text" data-text="Scales Your Business">Scales Your Business</span>
+                        Websites<br />
+                        <span className="gradient-text" data-text="That Actually Work">That Actually Work</span>
                     </Motion.h1>
 
                     <Motion.p
                         className="hero-subtitle"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ delay: 0.4 }}
                     >
-                        I develop high-performance web applications that automate workflows
-                        and improve user retention. From internal tools to customer-facing
-                        platforms, I help teams launch reliable products faster.
+                        From cleaning service sites and school platforms to SaaS dashboards and secure vault products,
+                        I build digital tools that people actually use. Every project is production-ready,
+                        easy to maintain, and built to grow with whatever you are building next.
                     </Motion.p>
 
-                    <Motion.div
-                        className="hero-actions"
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.5 }}
-                    >
+                    <div className="hero-actions">
                         <Link
                             to="/contact"
                             className="cta-primary"
@@ -65,27 +62,19 @@ const Hero = () => {
                         >
                             View Case Studies <ArrowRight size={18} style={{ marginLeft: '8px' }} />
                         </Link>
-                    </Motion.div>
+                    </div>
 
                     <Motion.p
                         className="hero-microcopy"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ delay: 0.65 }}
                     >
                         Get a technical response within 24 hours &middot; No obligations
                     </Motion.p>
 
-                    <Motion.div
-                        className="hero-socials"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ delay: 0.8 }}
-                    >
+                    <div className="hero-socials">
                         {[
                             { icon: <Github size={22} />, link: "https://github.com/kingayo999", label: "GitHub" },
-                            { icon: <Linkedin size={22} />, link: "https://www.linkedin.com/in/ayobami-olayanju-9ab0223ab?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app", label: "LinkedIn" },
-                            { icon: <Twitter size={22} />, link: "#", label: "Twitter" }
+                            { icon: <MessageSquare size={22} />, link: "https://wa.me/2347041303372", label: "WhatsApp" },
+                            { icon: <Phone size={22} />, link: "tel:+2347041303372", label: "Phone" },
                         ].map((social, i) => (
                             <a
                                 key={i}
@@ -98,14 +87,11 @@ const Hero = () => {
                                 {social.icon}
                             </a>
                         ))}
-                    </Motion.div>
+                    </div>
                 </div>
 
                 <Motion.div
                     className="hero-visual"
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: 0.4, duration: 1 }}
                 >
                     <div className="abstract-shape shape-1"></div>
                     <div className="abstract-shape shape-2"></div>
@@ -122,7 +108,7 @@ const Hero = () => {
                         <p>Technical Feedback</p>
                     </div>
                 </Motion.div>
-            </Motion.div>
+            </div>
         </section>
     );
 };
