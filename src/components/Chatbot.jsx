@@ -51,8 +51,8 @@ const knowledgeBase = [
     {
         patterns: [/resume/, /cv\b/, /download/],
         responses: [
-            { text: "Resume data located. Initiating download sequence.", link: "/my-portfolio/Ayobami Olayanju Resume.pdf", linkText: "Download Resume PDF", download: true },
-            { text: "You can download the full CV using the link below.", link: "/my-portfolio/Ayobami Olayanju Resume.pdf", linkText: "Access Resume", download: true }
+            { text: "Resume data located. Initiating download sequence.", link: "./Ayobami Olayanju Resume.pdf", linkText: "Download Resume PDF", download: true },
+            { text: "You can download the full CV using the link below.", link: "./Ayobami Olayanju Resume.pdf", linkText: "Access Resume", download: true }
         ]
     },
     {

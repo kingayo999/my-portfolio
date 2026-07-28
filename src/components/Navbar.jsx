@@ -92,10 +92,30 @@ const Navbar = ({ theme, toggleTheme }) => {
                     </div>
                 </div>
 
-                {/* Mobile Toggle */}
-                <button className="mobile-toggle" onClick={() => setIsOpen(!isOpen)}>
-                    {isOpen ? <X size={28} /> : <Menu size={28} />}
-                </button>
+                {/* Mobile Header Actions */}
+                <div className="mobile-header-actions">
+                    <Motion.button
+                        className="theme-toggle mobile-theme-toggle"
+                        onClick={() => { triggerHaptic(hapticPatterns.light); toggleTheme(); }}
+                        whileTap={{ scale: 0.9 }}
+                        aria-label="Toggle Theme"
+                    >
+                        <AnimatePresence mode="wait">
+                            {theme === 'dark' ?
+                                <Motion.div key="sun" initial={{ rotate: -90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: 90, opacity: 0 }}>
+                                    <Sun size={22} />
+                                </Motion.div> :
+                                <Motion.div key="moon" initial={{ rotate: 90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: -90, opacity: 0 }}>
+                                    <Moon size={22} />
+                                </Motion.div>
+                            }
+                        </AnimatePresence>
+                    </Motion.button>
+
+                    <button className="mobile-toggle" onClick={() => setIsOpen(!isOpen)} aria-label="Toggle Navigation">
+                        {isOpen ? <X size={28} /> : <Menu size={28} />}
+                    </button>
+                </div>
             </div>
 
             {/* Mobile Menu Overlay */}
@@ -128,6 +148,20 @@ const Navbar = ({ theme, toggleTheme }) => {
                                     </NavLink>
                                 </Motion.li>
                             ))}
+                            <Motion.li
+                                initial={{ opacity: 0, x: 20 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                transition={{ delay: 0.6 }}
+                            >
+                                <Link
+                                    to="/contact"
+                                    className="cta-primary"
+                                    style={{ width: '100%', justifyContent: 'center', marginTop: '10px' }}
+                                    onClick={() => { triggerHaptic(hapticPatterns.light); setIsOpen(false); }}
+                                >
+                                    Get an Assessment
+                                </Link>
+                            </Motion.li>
                         </ul>
                     </Motion.div>
                 )}

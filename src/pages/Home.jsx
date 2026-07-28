@@ -73,7 +73,6 @@ const Home = () => {
 
         return () => {
             ctx.revert();
-            ScrollTrigger.getAll().forEach(st => st.kill());
             gsap.killTweensOf(cards);
             if (title) gsap.killTweensOf(title);
             if (subtitle) gsap.killTweensOf(subtitle);
@@ -95,12 +94,12 @@ const Home = () => {
                     <div style={{ textAlign: 'center', marginBottom: '70px' }} className="services-header">
                         <h2
                             className="section-title gradient-text"
-                            style={{ fontSize: '2.5rem', marginBottom: '20px', opacity: 0, transform: 'translateY(20px)' }}
+                            style={{ fontSize: '2.5rem', marginBottom: '20px' }}
                         >
                             Solutions Designed Around Outcomes
                         </h2>
                         <p
-                            style={{ color: 'var(--text-dim)', maxWidth: '600px', margin: '0 auto', opacity: 0 }}
+                            style={{ color: 'var(--text-dim)', maxWidth: '600px', margin: '0 auto' }}
                         >
                             Every project starts with understanding your business goal, not a technology checklist.
                         </p>

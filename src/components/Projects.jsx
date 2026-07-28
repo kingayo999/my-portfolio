@@ -42,7 +42,6 @@ const Projects = () => {
 
         return () => {
             ctx.revert();
-            ScrollTrigger.getAll().forEach(st => st.kill());
             gsap.killTweensOf(cards);
             if (title) gsap.killTweensOf(title);
             if (subtitle) gsap.killTweensOf(subtitle);
@@ -54,12 +53,11 @@ const Projects = () => {
             <div className="section-header" ref={headerRef}>
                 <h2
                     className="section-title gradient-text"
-                    style={{ opacity: 0, transform: 'translateY(20px)' }}
                 >
                     Selected Work
                 </h2>
                 <p
-                    style={{ color: 'var(--text-dim)', maxWidth: '560px', margin: '0 auto', opacity: 0, wordBreak: 'break-word', overflowWrap: 'anywhere' }}
+                    style={{ color: 'var(--text-dim)', maxWidth: '560px', margin: '0 auto', wordBreak: 'break-word', overflowWrap: 'anywhere' }}
                 >
                     Real systems built to solve real problems. Click any project to read the full case study.
                 </p>

@@ -70,7 +70,6 @@ const About = () => {
 
         return () => {
             ctx.revert();
-            ScrollTrigger.getAll().forEach(st => st.kill());
         };
     }, []);
 
@@ -99,7 +98,6 @@ const About = () => {
                     <div className="about-text-column" ref={leftRef}>
                         <Motion.div
                             className="glass-card story-card"
-                            style={{ opacity: 0, transform: 'translateX(-30px)' }}
                             whileHover={{ y: -5, borderColor: 'var(--accent)' }}
                         >
                             <h3>Results-First Engineering</h3>
@@ -126,7 +124,6 @@ const About = () => {
                             <Motion.div
                                 className="glass-card stat-box"
                                 whileHover={{ y: -5, borderColor: 'var(--accent)' }}
-                                style={{ opacity: 0, transform: 'translateY(30px)' }}
                             >
                                 <Award className="stat-icon" />
                                 <h4>3+</h4>
@@ -135,7 +132,6 @@ const About = () => {
                             <Motion.div
                                 className="glass-card stat-box"
                                 whileHover={{ y: -5, borderColor: 'var(--primary)' }}
-                                style={{ opacity: 0, transform: 'translateY(30px)' }}
                             >
                                 <Globe className="stat-icon" />
                                 <h4>100%</h4>
@@ -144,7 +140,6 @@ const About = () => {
                             <Motion.div
                                 className="glass-card stat-box"
                                 whileHover={{ y: -5, borderColor: 'var(--accent)' }}
-                                style={{ opacity: 0, transform: 'translateY(30px)' }}
                             >
                                 <Briefcase className="stat-icon" />
                                 <h4>24h</h4>
@@ -154,7 +149,7 @@ const About = () => {
 
                         <Motion.div
                             className="glass-card about-cta"
-                            style={{ padding: '28px', textAlign: 'center', marginTop: '8px', opacity: 0, transform: 'translateY(20px)' }}
+                            style={{ padding: '28px', textAlign: 'center', marginTop: '8px' }}
                             whileHover={{ y: -5, borderColor: 'var(--accent)' }}
                         >
                             <p style={{ color: 'var(--text-dim)', marginBottom: '16px', fontSize: '0.95rem' }}>
@@ -169,7 +164,7 @@ const About = () => {
                     <div className="about-details-column" ref={rightRef}>
                         <Motion.div
                             className="glass-card standards-card"
-                            style={{ padding: '40px', marginBottom: '40px', border: '1px solid var(--primary-glow)', opacity: 0, transform: 'translateX(30px)' }}
+                            style={{ padding: '40px', marginBottom: '40px', border: '1px solid var(--primary-glow)' }}
                             whileHover={{ y: -5, borderColor: 'var(--accent)' }}
                         >
                             <h3 style={{ color: 'var(--accent)', marginBottom: '20px', display: 'flex', alignItems: 'center', gap: '10px' }}>
@@ -195,7 +190,6 @@ const About = () => {
                                 <Motion.div
                                     key={i}
                                     className="timeline-item"
-                                    style={{ opacity: 0, transform: 'translateX(30px)' }}
                                     whileHover={{ x: 5, borderColor: 'var(--accent)' }}
                                 >
                                     <div className="timeline-marker"></div>

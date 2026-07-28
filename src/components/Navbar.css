@@ -134,6 +134,12 @@
 
 /* Standardized by index.css */
 
+.mobile-header-actions {
+    display: none;
+    align-items: center;
+    gap: 12px;
+}
+
 .mobile-toggle {
     display: none;
     background: none;
@@ -141,7 +147,6 @@
     color: var(--text-main);
     cursor: pointer;
     z-index: 1002;
-    /* Ensure above overlay */
     position: relative;
 }
 
@@ -150,20 +155,22 @@
         display: none;
     }
 
+    .mobile-header-actions {
+        display: flex;
+    }
+
     .mobile-toggle {
         display: block;
     }
 
     .navbar {
         top: 0;
-        /* Stick to absolute top */
         padding: 0;
     }
 
     .nav-container {
         padding: 8px 14px;
         border-radius: 0;
-        /* Full edge contact on mobile */
         background: rgba(10, 5, 30, 0.9) !important;
         backdrop-filter: blur(20px);
         border: none;
@@ -187,6 +194,7 @@
     width: 80%;
     max-width: 360px;
     height: 100vh;
+    height: 100dvh;
     background: rgba(10, 5, 30, 0.98);
     backdrop-filter: blur(20px);
     z-index: 1001;
@@ -194,12 +202,9 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    /* Revert to left align for readability */
     justify-content: flex-start;
     border-left: 1px solid var(--glass-border);
     box-shadow: -15px 0 40px rgba(0, 0, 0, 0.6);
-    transform: translateX(100%);
-    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 [data-theme='light'] .mobile-menu-overlay {
