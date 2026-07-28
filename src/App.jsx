@@ -2,8 +2,9 @@ import React, { useState, useEffect, lazy, Suspense } from 'react';
 import { HashRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import { Toaster } from 'react-hot-toast';
-import { AnimatePresence, motion as Motion } from 'framer-motion';
+import { AnimatePresence } from 'framer-motion';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { gsap } from 'gsap';
 import './index.css';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -11,9 +12,13 @@ import ScrollToTop from './components/ScrollToTop';
 import Chatbot from './components/Chatbot';
 import PageTransition from './components/PageTransition';
 import ScrollBackground from './components/ScrollBackground';
+import ErrorBoundary from './components/ErrorBoundary';
+import Home from './pages/Home';
+import { safeGetItem, safeSetItem } from './utils/storage';
 
-// Lazy load page components for better performance
-const Home = lazy(() => import('./pages/Home'));
+gsap.registerPlugin(ScrollTrigger);
+
+// Lazy load secondary pages
 const About = lazy(() => import('./pages/About'));
 const ProjectsPage = lazy(() => import('./pages/ProjectsPage'));
 const ContactPage = lazy(() => import('./pages/ContactPage'));
@@ -76,11 +81,11 @@ function App() {
     return 'light';
   };
 
-  const [theme, setTheme] = useState(localStorage.getItem('theme') || getSystemTheme());
+  const [theme, setTheme] = useState(() => safeGetItem('theme') || getSystemTheme());
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
-    localStorage.setItem('theme', theme);
+    safeSetItem('theme', theme);
   }, [theme]);
 
   const toggleTheme = () => {
@@ -98,7 +103,9 @@ function App() {
         <div className="app">
           <Navbar theme={theme} toggleTheme={toggleTheme} />
           <main style={{ paddingTop: 'var(--nav-height)' }}>
-            <AnimatedRoutes />
+            <ErrorBoundary>
+              <AnimatedRoutes />
+            </ErrorBoundary>
           </main>
           <Chatbot />
           <Footer />

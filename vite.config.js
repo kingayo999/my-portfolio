@@ -15,6 +15,7 @@ export default defineConfig(({ mode }) => {
           manualChunks: {
             'vendor-react': ['react', 'react-dom', 'react-router-dom'],
             'vendor-ui': ['framer-motion', 'lucide-react', 'react-hot-toast'],
+            'vendor-gsap': ['gsap'],
           }
         }
       },

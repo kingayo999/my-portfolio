@@ -197,7 +197,7 @@ const Chatbot = () => {
                                 placeholder="Execute command..."
                                 value={inputValue}
                                 onChange={(e) => setInputValue(e.target.value)}
-                                onKeyPress={(e) => e.key === 'Enter' && handleSend()}
+                                onKeyDown={(e) => e.key === 'Enter' && handleSend()}
                             />
                             <button onClick={handleSend}><Send size={18} /></button>
                         </div>

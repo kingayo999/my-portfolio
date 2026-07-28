@@ -1,13 +1,20 @@
-import { motion as Motion } from 'framer-motion';
+import { motion as Motion, useReducedMotion } from 'framer-motion';
 
 const PageTransition = ({ children }) => {
+    const prefersReducedMotion = useReducedMotion();
+    const isMobile = typeof window !== 'undefined' && window.matchMedia('(max-width: 768px)').matches;
+    const skipEffects = prefersReducedMotion || isMobile;
+
+    if (skipEffects) {
+        return <div>{children}</div>;
+    }
+
     return (
         <Motion.div
             initial="initial"
             animate="animate"
             exit="exit"
         >
-            {/* Shutter Layer */}
             <Motion.div
                 className="shutter-layer"
                 initial={{ scaleY: 0 }}
@@ -27,7 +34,6 @@ const PageTransition = ({ children }) => {
                 }}
             />
 
-            {/* Reverse Shutter Layer (Entrance) */}
             <Motion.div
                 className="shutter-layer"
                 initial={{ scaleY: 1 }}
