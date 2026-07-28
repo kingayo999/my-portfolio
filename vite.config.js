@@ -10,16 +10,7 @@ export default defineConfig(({ mode }) => {
     plugins: [react()],
     base,
     build: {
-      rollupOptions: {
-        output: {
-          manualChunks: {
-            'vendor-react': ['react', 'react-dom', 'react-router-dom'],
-            'vendor-ui': ['framer-motion', 'lucide-react', 'react-hot-toast'],
-            'vendor-gsap': ['gsap'],
-          }
-        }
-      },
-      chunkSizeWarningLimit: 1000
+      chunkSizeWarningLimit: 2000
     }
   }
 })

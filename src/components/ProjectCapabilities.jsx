@@ -2,11 +2,11 @@ import React, { useRef, useEffect, useState } from 'react';
 import { motion as Motion } from 'framer-motion';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import slide1 from '../assets/slides/slide1.png';
-import slide2 from '../assets/slides/slide2.png';
-import slide3 from '../assets/slides/slide3.png';
-import slide4 from '../assets/slides/slide4.png';
-import slide5 from '../assets/slides/slide5.png';
+import slide1 from '../assets/slides/slide1.webp';
+import slide2 from '../assets/slides/slide2.webp';
+import slide3 from '../assets/slides/slide3.webp';
+import slide4 from '../assets/slides/slide4.webp';
+import slide5 from '../assets/slides/slide5.webp';
 import './ProjectCapabilities.css';
 
 gsap.registerPlugin(ScrollTrigger);
