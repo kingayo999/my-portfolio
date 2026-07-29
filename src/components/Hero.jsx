@@ -1,6 +1,7 @@
 import React, { useRef, useLayoutEffect } from 'react';
 import { motion as Motion } from 'framer-motion';
 import { ArrowRight, Github, MessageSquare, Phone, Download } from 'lucide-react';
+import cvFile from '/AYOBAMI-OLAYANJU-CV.pdf';
 import { Link } from 'react-router-dom';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -56,7 +57,7 @@ const Hero = () => {
                             Get a Technical Assessment <ArrowRight size={18} style={{ marginLeft: '8px' }} />
                         </Link>
                         <a
-                            href="/AYOBAMI-OLAYANJU-CV.pdf"
+                            href={cvFile}
                             download
                             className="cta-secondary"
                             onClick={() => triggerHaptic(hapticPatterns.light)}
